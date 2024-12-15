@@ -7,8 +7,51 @@ defmodule Malin.Accounts.Token do
     data_layer: AshPostgres.DataLayer
 
   postgres do
+    schema "accounts"
     table "tokens"
     repo Malin.Repo
+  end
+
+  attributes do
+    uuid_primary_key :id
+
+    attribute :jti, :string do
+      primary_key? true
+      public? true
+      allow_nil? false
+      sensitive? true
+    end
+
+    attribute :subject, :string do
+      allow_nil? false
+    end
+
+    attribute :expires_at, :utc_datetime do
+      allow_nil? false
+    end
+
+    attribute :purpose, :string do
+      allow_nil? false
+      public? true
+    end
+
+    attribute :extra_data, :map do
+      public? true
+    end
+
+    timestamps()
+  end
+
+  policies do
+    bypass AshAuthentication.Checks.AshAuthenticationInteraction do
+      description "AshAuthentication can interact with the token resource"
+      authorize_if always()
+    end
+
+    policy always() do
+      description "No one aside from AshAuthentication can interact with the tokens resource."
+      forbid_if always()
+    end
   end
 
   actions do
@@ -56,47 +99,5 @@ defmodule Malin.Accounts.Token do
       description "Deletes expired tokens."
       change filter expr(expires_at < now())
     end
-  end
-
-  policies do
-    bypass AshAuthentication.Checks.AshAuthenticationInteraction do
-      description "AshAuthentication can interact with the token resource"
-      authorize_if always()
-    end
-
-    policy always() do
-      description "No one aside from AshAuthentication can interact with the tokens resource."
-      forbid_if always()
-    end
-  end
-
-  attributes do
-    uuid_primary_key :id
-
-    attribute :jti, :string do
-      primary_key? true
-      public? true
-      allow_nil? false
-      sensitive? true
-    end
-
-    attribute :subject, :string do
-      allow_nil? false
-    end
-
-    attribute :expires_at, :utc_datetime do
-      allow_nil? false
-    end
-
-    attribute :purpose, :string do
-      allow_nil? false
-      public? true
-    end
-
-    attribute :extra_data, :map do
-      public? true
-    end
-
-    timestamps()
   end
 end

@@ -17,28 +17,38 @@
       "primary_key?": false,
       "references": null,
       "size": null,
-      "source": "email",
-      "type": "citext"
+      "source": "name",
+      "type": "text"
+    },
+    {
+      "allow_nil?": true,
+      "default": "nil",
+      "generated?": false,
+      "primary_key?": false,
+      "references": null,
+      "size": null,
+      "source": "description",
+      "type": "text"
     }
   ],
   "base_filter": null,
   "check_constraints": [],
   "custom_indexes": [],
   "custom_statements": [],
-  "has_create_action": true,
-  "hash": "BD8E9E20BD539F98558643ADBD9D9AAAAE94F09D15A3B1E37EE1F2E8A4BF8A24",
+  "has_create_action": false,
+  "hash": "3F152A78A3805533AA2DFFFB45D6ADBD5BDC69B211953AD3EE065DFFB1F681FA",
   "identities": [
     {
       "all_tenants?": false,
       "base_filter": null,
-      "index_name": "users_unique_email_index",
+      "index_name": "categories_primary_key_index",
       "keys": [
         {
           "type": "atom",
-          "value": "email"
+          "value": "id"
         }
       ],
-      "name": "unique_email",
+      "name": "primary_key",
       "nils_distinct?": true,
       "where": null
     }
@@ -49,6 +59,6 @@
     "strategy": null
   },
   "repo": "Elixir.Malin.Repo",
-  "schema": null,
-  "table": "users"
+  "schema": "categories",
+  "table": "categories"
 }

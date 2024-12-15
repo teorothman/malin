@@ -35,8 +35,8 @@
   "check_constraints": [],
   "custom_indexes": [],
   "custom_statements": [],
-  "has_create_action": false,
-  "hash": "D909E1BF915F98480FA3974278455A1053361B33C7CA970DD596D5E4586751EF",
+  "has_create_action": true,
+  "hash": "277CF18E5F8A1445423393B678D0BB7BAE6C29D9849191E16B7B4E4429AA6548",
   "identities": [
     {
       "all_tenants?": false,
@@ -51,6 +51,20 @@
       "name": "unique_email",
       "nils_distinct?": true,
       "where": null
+    },
+    {
+      "all_tenants?": false,
+      "base_filter": null,
+      "index_name": "users_primary_key_index",
+      "keys": [
+        {
+          "type": "atom",
+          "value": "id"
+        }
+      ],
+      "name": "primary_key",
+      "nils_distinct?": true,
+      "where": null
     }
   ],
   "multitenancy": {
@@ -59,6 +73,6 @@
     "strategy": null
   },
   "repo": "Elixir.Malin.Repo",
-  "schema": null,
+  "schema": "accounts",
   "table": "users"
 }

@@ -71,6 +71,7 @@ defmodule MalinWeb do
       use Phoenix.Component
 
       # Import convenience functions from controllers
+
       import Phoenix.Controller,
         only: [get_csrf_token: 0, view_module: 1, view_template: 1]
 
@@ -85,6 +86,7 @@ defmodule MalinWeb do
       import Phoenix.HTML
       # Core UI components and translation
       import MalinWeb.CoreComponents
+      import MalinWeb.Components
       import MalinWeb.Gettext
 
       # Shortcut for generating JS commands

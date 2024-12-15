@@ -6,5 +6,5 @@ defmodule MalinWeb.PageHTML do
   """
   use MalinWeb, :html
 
-  embed_templates "page_html/*"
+  embed_templates "auth_html/*"
 end

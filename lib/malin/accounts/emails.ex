@@ -10,7 +10,7 @@ defmodule Malin.Accounts.Emails do
     email =
       new()
       |> to(get_email(user_or_email))
-      |> from("no-reply@yourapp.com")
+      |> from("no-reply@malinhagg.com")
       |> subject("Your Magic Link")
       |> html_body("Hello, #{get_email(user_or_email)}! Click this link to sign in: #{token}")
       |> text_body("Hello, #{get_email(user_or_email)}! Click this link to sign in: #{token}")

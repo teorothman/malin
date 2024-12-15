@@ -18,6 +18,14 @@ defmodule MalinWeb.Router do
     plug :load_from_bearer
   end
 
+  scope "/admin", MalinWeb do
+    pipe_through :browser
+
+    ash_authentication_live_session :authenticated_roudes do
+      live "/", AdminLive.Index
+    end
+  end
+
   scope "/", MalinWeb do
     pipe_through :browser
 
@@ -35,10 +43,23 @@ defmodule MalinWeb.Router do
     end
   end
 
+  scope "/admin", MalinWeb do
+    pipe_through(:browser)
+
+    ash_authentication_live_session :admin_only,
+      on_mount: [{MalinWeb.LiveUserAuth, :admin}] do
+      live "/post/new", PostLive.Edit, :new
+    end
+  end
+
   scope "/", MalinWeb do
     pipe_through :browser
 
-    get "/", PageController, :home
+    ash_authentication_live_session :all,
+      on_mount: [{MalinWeb.LiveUserAuth, :live_user_optional}] do
+      live "/", HomeLive.Index
+    end
+
     auth_routes AuthController, Malin.Accounts.User, path: "/auth"
     sign_out_route AuthController
 

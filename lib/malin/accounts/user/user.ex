@@ -6,6 +6,45 @@ defmodule Malin.Accounts.User do
     extensions: [AshAuthentication],
     data_layer: AshPostgres.DataLayer
 
+  postgres do
+    schema "accounts"
+    table "users"
+    repo Malin.Repo
+  end
+
+  attributes do
+    uuid_primary_key :id
+
+    attribute :email, :ci_string do
+      allow_nil? false
+      public? true
+    end
+
+    attribute :role, :atom do
+      allow_nil? false
+      constraints one_of: [:user, :admin]
+      default :user
+      writable? false
+      sortable? false
+      public? false
+    end
+  end
+
+  identities do
+    identity :unique_email, [:email]
+    identity :primary_key, [:id]
+  end
+
+  policies do
+    bypass AshAuthentication.Checks.AshAuthenticationInteraction do
+      authorize_if always()
+    end
+
+    policy always() do
+      forbid_if always()
+    end
+  end
+
   authentication do
     tokens do
       enabled? true
@@ -25,13 +64,23 @@ defmodule Malin.Accounts.User do
     end
   end
 
-  postgres do
-    table "users"
-    repo Malin.Repo
-  end
-
   actions do
     defaults [:read]
+
+    read :show do
+      get? true
+      get_by :id
+    end
+
+    create :register do
+      accept [:email]
+    end
+
+    update :update do
+      primary? true
+      require_atomic? false
+      accept [:email]
+    end
 
     read :get_by_subject do
       description "Get a user by the subject claim in a JWT"
@@ -73,37 +122,5 @@ defmodule Malin.Accounts.User do
 
       run AshAuthentication.Strategy.MagicLink.Request
     end
-  end
-
-  policies do
-    bypass AshAuthentication.Checks.AshAuthenticationInteraction do
-      authorize_if always()
-    end
-
-    policy always() do
-      forbid_if always()
-    end
-  end
-
-  attributes do
-    uuid_primary_key :id
-
-    attribute :email, :ci_string do
-      allow_nil? false
-      public? true
-    end
-
-    attribute :role, :atom do
-      allow_nil? false
-      constraints one_of: [:user, :admin]
-      default :user
-      writable? false
-      sortable? false
-      public? false
-    end
-  end
-
-  identities do
-    identity :unique_email, [:email]
   end
 end

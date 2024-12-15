@@ -1,0 +1,22 @@
+<div class="flex flex-col items-center justify-center p-8">
+  <.form for={@form} phx-change="validate" phx-submit="submit" class="gap-4 flex flex-col">
+    <h1>
+      {if @live_action == :new, do: "New Post", else: "Edit Post"}
+    </h1>
+
+    <.input type="text" label="Title" field={@form[:title]} />
+    <.input type="text" label="Intro" field={@form[:intro]} />
+    <.input type="textarea" label="Text" field={@form[:text]} />
+    <.input type="date" label="Publish at" field={@form[:publish_at]} />
+    <.input
+      type="select"
+      field={@form[:category]}
+      options={Enum.map(@categories, &{&1.name, &1.id})}
+      label="Categories"
+    />
+
+    <.button>
+      {if @live_action == :new, do: "Create Post", else: "Save"}
+    </.button>
+  </.form>
+</div>

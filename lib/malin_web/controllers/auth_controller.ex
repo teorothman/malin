@@ -8,7 +8,6 @@ defmodule MalinWeb.AuthController do
     message =
       case activity do
         {:confirm_new_user, :confirm} -> "Your email address has now been confirmed"
-        {:password, :reset} -> "Your password has successfully been reset"
         _ -> "You are now signed in"
       end
 
@@ -21,24 +20,10 @@ defmodule MalinWeb.AuthController do
     |> redirect(to: return_to)
   end
 
-  def failure(conn, activity, reason) do
-    message =
-      case {activity, reason} do
-        {{:magic_link, _},
-         %AshAuthentication.Errors.AuthenticationFailed{
-           caused_by: %Ash.Error.Forbidden{
-             errors: [%AshAuthentication.Errors.CannotConfirmUnconfirmedUser{}]
-           }
-         }} ->
-          "You have already signed in another way, but have not confirmed your account. Please confirm your account."
-
-        _ ->
-          "Incorrect email or password"
-      end
-
+  def failure(conn, _activity, _reason) do
     conn
-    |> put_flash(:error, message)
-    |> redirect(to: ~p"/sign-in")
+    |> put_status(401)
+    |> render("failure.html")
   end
 
   def sign_out(conn, _params) do

@@ -9,12 +9,6 @@ defmodule Malin.Categories.Category do
     repo Malin.Repo
   end
 
-  actions do
-    read :read do
-      primary? true
-    end
-  end
-
   attributes do
     uuid_primary_key :id
     attribute :name, :string, allow_nil?: false, public?: true
@@ -25,6 +19,16 @@ defmodule Malin.Categories.Category do
     has_many :posts, Malin.Posts.Post do
       domain Malin.Posts
       public? true
+    end
+  end
+
+  identities do
+    identity :primary_key, [:id]
+  end
+
+  actions do
+    read :read do
+      primary? true
     end
   end
 end
