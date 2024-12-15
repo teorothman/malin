@@ -17,6 +17,8 @@ config :spark,
     remove_parens?: true,
     "Ash.Resource": [
       section_order: [
+        :authentication,
+        :tokens,
         :postgres,
         :resource,
         :code_interface,
@@ -39,7 +41,8 @@ config :spark,
 
 config :malin,
   ecto_repos: [Malin.Repo],
-  generators: [timestamp_type: :utc_datetime]
+  generators: [timestamp_type: :utc_datetime],
+  ash_domains: [Malin.Accounts]
 
 # Configures the endpoint
 config :malin, MalinWeb.Endpoint,
@@ -59,7 +62,15 @@ config :malin, MalinWeb.Endpoint,
 #
 # For production it's recommended to configure a different adapter
 # at the `config/runtime.exs`.
-config :malin, Malin.Mailer, adapter: Swoosh.Adapters.Local
+config :malin, Malin.Mailer,
+  adapter: Swoosh.Adapters.SMTP,
+  relay: "smtp.your-email-provider.com",
+  username: "your-username",
+  password: "your-password",
+  tls: :if_available,
+  auth: :always
+
+config :swoosh, :api_client, Swoosh.ApiClient.Hackney
 
 # Configure esbuild (the version is required)
 config :esbuild,

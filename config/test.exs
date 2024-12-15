@@ -1,4 +1,5 @@
 import Config
+config :malin, token_signing_secret: "dtzhgrdAVrx+5iladIU5L8ESkk6zsLyR"
 config :ash, disable_async?: true
 
 # Configure your database

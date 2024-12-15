@@ -17,7 +17,8 @@ defmodule Malin.Application do
       # Start a worker by calling: Malin.Worker.start_link(arg)
       # {Malin.Worker, arg},
       # Start to serve requests, typically the last entry
-      MalinWeb.Endpoint
+      MalinWeb.Endpoint,
+      {AshAuthentication.Supervisor, [otp_app: :malin]}
     ]
 
     # See https://hexdocs.pm/elixir/Supervisor.html

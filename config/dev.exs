@@ -63,7 +63,7 @@ config :malin, MalinWeb.Endpoint,
   ]
 
 # Enable dev routes for dashboard and mailbox
-config :malin, dev_routes: true
+config :malin, dev_routes: true, token_signing_secret: "ccc2ajCximJuO8utv20VTNNRCH4dXlqf"
 
 # Do not include metadata nor timestamps in development logs
 config :logger, :console, format: "[$level] $message\n"
