@@ -92,6 +92,15 @@ defmodule Malin.Accounts.User do
       allow_nil? false
       public? true
     end
+
+    attribute :role, :atom do
+      allow_nil? false
+      constraints one_of: [:user, :admin]
+      default :user
+      writable? false
+      sortable? false
+      public? false
+    end
   end
 
   identities do
