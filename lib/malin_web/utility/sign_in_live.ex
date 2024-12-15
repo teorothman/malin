@@ -54,7 +54,7 @@ defmodule MalinWeb.Utility.SignInLive do
   def render(assigns) do
     ~H"""
     <div class="flex flex-col h-[100dvh] pt-20 items-center justify-center">
-      <div class="fixed top-0 left-0 right-0 h-16 bg-bg flex items-center justify-center"></div>
+      <div class="fixed top-0 left-0 right-0 h-16 bg-selecte flex items-center justify-center"></div>
       <div class="h-10 w-10 bg-red" />
       <div class="flex flex-col items-center">
         <h3 class="text-2xl">Sign In</h3>

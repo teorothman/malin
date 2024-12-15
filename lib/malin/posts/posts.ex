@@ -3,6 +3,8 @@ defmodule Malin.Posts do
 
   resources do
     resource Malin.Posts.Post do
+      define :list_posts, action: :read
+      define :get_post, action: :read
     end
 
     resource Malin.Posts.Comment

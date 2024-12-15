@@ -55,7 +55,7 @@ defmodule Malin.Accounts.User do
     strategies do
       magic_link do
         identity_field :email
-        registration_enabled? false
+        registration_enabled? true
 
         sender Malin.Accounts.User.Senders.SendMagicLinkEmail
         lookup_action_name :get_by_email
@@ -74,6 +74,8 @@ defmodule Malin.Accounts.User do
 
     create :register do
       accept [:email]
+      upsert? true
+      upsert_identity :unique_email
     end
 
     update :update do
@@ -100,7 +102,7 @@ defmodule Malin.Accounts.User do
       filter expr(email == ^arg(:email))
     end
 
-    read :sign_in_with_magic_link do
+    create :sign_in_with_magic_link do
       description "Sign in a user with magic link."
 
       argument :token, :string do
@@ -108,11 +110,12 @@ defmodule Malin.Accounts.User do
         allow_nil? false
       end
 
-      # **Remove the filter line**
-      # filter expr(token == ^arg(:token))
+      # Use the required change for magic link sign-in
+      change AshAuthentication.Strategy.MagicLink.SignInChange
 
-      # Ensure the correct preparation is present
-      prepare AshAuthentication.Strategy.MagicLink.SignInPreparation
+      # Enable upserts for signing in or creating the user
+      upsert? true
+      upsert_identity :unique_email
     end
 
     action :request_magic_link do

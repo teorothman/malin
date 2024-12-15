@@ -25,11 +25,6 @@ defmodule Malin.Posts.Post do
       default :draft
     end
 
-    # attribute :image, Malin.Media.Image,
-    #   allow_nil?: true,
-    #   public?: true,
-    #   description: "The image associated with the post."
-
     timestamps()
   end
 
@@ -77,9 +72,7 @@ defmodule Malin.Posts.Post do
         countable true
       end
 
-      filter expr(state == :published)
-
-      prepare build(load: [:comments, :categories, :tags, :author], sort: [publish_at: :desc])
+      prepare build(load: [:comments, :category, :tags, :author], sort: [publish_at: :desc])
     end
 
     create :create do
@@ -89,6 +82,8 @@ defmodule Malin.Posts.Post do
       argument :tags, {:array, :map} do
         allow_nil? true
       end
+
+      change relate_actor(:author)
 
       change manage_relationship(:tags, type: :append_and_remove, on_no_match: :create)
 

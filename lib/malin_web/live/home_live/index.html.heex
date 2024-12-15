@@ -1,1 +1,20 @@
-THIS IS THE HOMEPAGE
+<div class="grid grid-cols-3 h-full lg:grid-cols-main items-center justify-end px-3 lg:px-4 gap-4 relative flex-grow overflow-y-auto">
+  <div class="flex flex-col gap-4 items-center justify-center mt-4 w-72">
+    <div :for={post <- @posts}>
+      <.link navigate={~p"/post/#{post.id}"}>
+        <div class="border rounded-lg px-2 py-2 shadow-sm bg-brand">
+          <h2 class="text-2xl font-semibold">
+            {post.title}
+          </h2>
+          <p>{post.author}</p>
+          <p class="text-sm">
+            {post.intro}
+          </p>
+          <div class="flex items-center justify-start text-white font-semibold cursor-pointer">
+            <p>Read more <.icon name="hero-arrow-right" class="h-4 w-4" /></p>
+          </div>
+        </div>
+      </.link>
+    </div>
+  </div>
+</div>
