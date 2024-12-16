@@ -22,7 +22,6 @@ module.exports = {
       fontFamily: {
         sans: ["Libre Franklin", "sans-serif"],
       },
-
       gridTemplateRows: {
         // Complex site-specific row configuration
         desktop: "min-content minmax(0, 1fr) 24px",

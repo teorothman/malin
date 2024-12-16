@@ -9,10 +9,6 @@ defmodule Malin.Categories.PostTag do
     repo Malin.Repo
   end
 
-  actions do
-    defaults [:read, :destroy, :create]
-  end
-
   relationships do
     belongs_to :post, Malin.Posts.Post do
       primary_key? true
@@ -23,5 +19,9 @@ defmodule Malin.Categories.PostTag do
       primary_key? true
       allow_nil? false
     end
+  end
+
+  actions do
+    defaults [:read, :destroy, :create]
   end
 end

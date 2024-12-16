@@ -58,7 +58,7 @@ defmodule MalinWeb.Router do
     ash_authentication_live_session :all,
       on_mount: [{MalinWeb.LiveUserAuth, :live_user_optional}] do
       live "/", HomeLive.Index
-      live "/post/:id", PostLive.Show
+      live "/posts/:id", PostLive.Show
     end
 
     auth_routes AuthController, Malin.Accounts.User, path: "/auth"
