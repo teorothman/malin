@@ -49,6 +49,8 @@ defmodule MalinWeb.Router do
     ash_authentication_live_session :admin_only,
       on_mount: [{MalinWeb.LiveUserAuth, :admin}] do
       live "/post/new", PostLive.Edit, :new
+      live "/post/:id/edit", PostLive.Edit, :edit
+      live "/users", UserLive.Index, :index
     end
   end
 
@@ -59,6 +61,7 @@ defmodule MalinWeb.Router do
       on_mount: [{MalinWeb.LiveUserAuth, :live_user_optional}] do
       live "/", HomeLive.Index
       live "/posts/:id", PostLive.Show
+      live "/posts", PostLive.Index
     end
 
     auth_routes AuthController, Malin.Accounts.User, path: "/auth"
@@ -68,7 +71,7 @@ defmodule MalinWeb.Router do
     sign_in_route register_path: "/register",
                   reset_path: "/reset",
                   auth_routes_prefix: "/auth",
-                  on_mount: [{MalinWeb.LiveUserAuth, :live_no_user}],
+                  on_mount: [{MalinWeb.LiveUserAuth, :live_user_optional}],
                   overrides: [MalinWeb.AuthOverrides, AshAuthentication.Phoenix.Overrides.Default]
 
     # Remove this if you do not want to use the reset password feature
