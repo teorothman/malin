@@ -1,18 +1,35 @@
-<div class="flex flex-col items-center justify-center p-8">
-  <.form for={@form} phx-change="validate" phx-submit="submit" class="gap-4 flex flex-col">
-    <h1>
+<div class="grid grid-cols-3">
+  <div></div>
+  <.form for={@form} phx-change="validate" phx-submit="submit" class="gap-4 flex flex-col w-full ">
+    <h1 class="py-4 text-2xl">
       {if @live_action == :new, do: "New Post", else: "Edit Post"}
     </h1>
 
     <.input type="text" label="Title" field={@form[:title]} />
     <.input type="text" label="Intro" field={@form[:intro]} />
     <.input type="textarea" label="Text" field={@form[:text]} />
-    <.input type="date" label="Publish at" field={@form[:publish_at]} />
+    <.input type="datetime-local" label="Publish at" field={@form[:publish_at]} />
+
     <.input
       type="select"
-      field={@form[:category]}
+      field={@form[:category_id]}
       options={Enum.map(@categories, &{&1.name, &1.id})}
-      label="Categories"
+      label="Category"
+    />
+
+    <.input
+      type="textarea"
+      label="Tags (separated by commas)"
+      field={@form[:tags_input]}
+      value={@tags_input}
+      placeholder="e.g., elixir, phoenix, ash"
+    />
+
+    <.input
+      type="select"
+      label="Status"
+      field={@form[:state]}
+      options={["draft", "published", "archived"]}
     />
 
     <.button>
