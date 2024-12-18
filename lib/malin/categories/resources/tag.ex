@@ -11,6 +11,7 @@ defmodule Malin.Categories.Tag do
 
   attributes do
     uuid_primary_key :id
+
     attribute :name, :string, allow_nil?: false, public?: true
   end
 
@@ -22,6 +23,10 @@ defmodule Malin.Categories.Tag do
     end
   end
 
+  identities do
+    identity :unique_tag, [:name]
+  end
+
   actions do
     defaults [:destroy]
 
@@ -31,8 +36,7 @@ defmodule Malin.Categories.Tag do
 
     create :create do
       primary? true
-      argument :posts, {:array, :integer}
-      change manage_relationship(:posts, type: :append_and_remove, on_no_match: :create)
+      accept [:name]
     end
 
     update :update do
