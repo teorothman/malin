@@ -47,7 +47,6 @@ defmodule Malin.Posts.Post do
 
   policies do
     policy action_type(:read) do
-      # allow anyone to read
       authorize_if always()
     end
 
@@ -77,29 +76,21 @@ defmodule Malin.Posts.Post do
 
     create :create do
       primary? true
-      accept [:title, :intro, :text, :publish_at, :state]
+      accept [:title, :intro, :text, :publish_at, :state, :category_id]
 
-      argument :tags, {:array, :map} do
-        allow_nil? true
-      end
+      argument :tags, {:array, :map}, allow_nil?: true
 
       change relate_actor(:author)
 
       change manage_relationship(:tags, type: :append_and_remove, on_no_match: :create)
-
-      argument :category, type: :uuid, allow_nil?: false
-      change manage_relationship(:category, type: :append_and_remove)
     end
 
     update :update do
       require_atomic? false
-      accept [:title, :intro, :text, :publish_at, :state]
+      accept [:title, :intro, :text, :publish_at, :state, :category_id]
 
-      argument :tags, {:array, :integer}, allow_nil?: true
-      change manage_relationship(:tags, type: :append_and_remove)
-
-      argument :category, type: :uuid, allow_nil?: false
-      change manage_relationship(:category, type: :append_and_remove)
+      argument :tags, {:array, :map}, allow_nil?: true
+      change manage_relationship(:tags, type: :append_and_remove, on_no_match: :create)
     end
   end
 end

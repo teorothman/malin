@@ -10,25 +10,24 @@ defmodule Malin.Posts.Comment do
     repo Malin.Repo
   end
 
-  actions do
-    defaults [:destroy]
+  attributes do
+    uuid_primary_key :id, writable?: true
+    attribute :text, :string, allow_nil?: false
+  end
 
-    read :read do
-      primary? true
-
-      pagination do
-        required? false
-        offset? true
-        countable true
-      end
+  relationships do
+    belongs_to :user, Malin.Accounts.User do
+      domain Malin.Accounts
+      public? true
+      primary_key? true
+      allow_nil? false
     end
 
-    create :create do
-      accept [:text, :user_id, :post_id]
-    end
-
-    update :update do
-      accept [:text, :user_id, :post_id]
+    belongs_to :post, Malin.Posts.Post do
+      domain Malin.Posts
+      public? true
+      primary_key? true
+      allow_nil? false
     end
   end
 
@@ -51,24 +50,25 @@ defmodule Malin.Posts.Comment do
     end
   end
 
-  attributes do
-    uuid_primary_key :id, writable?: true
-    attribute :text, :string, allow_nil?: false
-  end
+  actions do
+    defaults [:destroy]
 
-  relationships do
-    belongs_to :user, Malin.Accounts.User do
-      domain Malin.Accounts
-      public? true
-      primary_key? true
-      allow_nil? false
+    read :read do
+      primary? true
+
+      pagination do
+        required? false
+        offset? true
+        countable true
+      end
     end
 
-    belongs_to :post, Malin.Posts.Post do
-      domain Malin.Posts
-      public? true
-      primary_key? true
-      allow_nil? false
+    create :create do
+      accept [:text, :user_id, :post_id]
+    end
+
+    update :update do
+      accept [:text, :user_id, :post_id]
     end
   end
 end

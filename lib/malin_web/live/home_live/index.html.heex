@@ -1,16 +1,49 @@
-<div class="grid grid-cols-3 h-full lg:grid-cols-main items-center justify-end px-3 lg:px-4 gap-4 relative flex-grow overflow-y-auto">
-  <div class="flex flex-col gap-4 items-center justify-center mt-4 w-72">
-    <div :for={post <- @posts}>
-      <.link navigate={~p"/post/#{post.id}"}>
-        <div class="border rounded-lg px-2 py-2 shadow-sm bg-brand">
+<div class="flex flex-col justify-center items-center space-y-6 lg:space-y-12 mb-12">
+  <div class="w-full bg-cover bg-center bg-neutral-800 aspect-news-card "></div>
+  <div class="prose p-3 lg:p-0 w-full max-w-4xl flex flex-col space-y-2 items-center ">
+    <h1 class="text-2xl lg:text-4xl">
+      Hjälper dig som driver bolag att skapa förutsättningarna för ett långsiktigt hållbart företagande.
+    </h1>
+
+    <p class="text-lg text-zinc-400 pt-4 px-2">
+      Är du överväldigad av alla måsten och har svårt att fokusera? Är du dränerad på energi när arbetsdagen är slut?
+
+      Du är inte ensam.
+
+      Men det behöver inte vara så. Du kan skapa utrymme för dig själv och ditt eget välmående. Jag hjälper dig gärna.
+
+      Kontakta mig så berättar jag mer.
+
+      Varannan vecka skickar jag ut ett nyhetsbrev med tips och tricks som fokuserar på hur man skap
+
+      Anmäl dig till
+      <.link
+        navigate={~p"/register"}
+        class="font-semibold underline-offset-4 underline cursor-pointer hover:shadow-lg rounded"
+      >
+        mitt nyhetsbrev här
+      </.link>
+      eller följ mig i mina sociala kanaler.
+    </p>
+  </div>
+  <div class="flex gap-2 pb-4">
+    <.svg />
+  </div>
+  <.link navigate={~p"/posts/"}>Alla inlägg</.link>
+  <div class="grid grid-cols-2 lg:grid-cols-3 gap-10">
+    <div :for={post <- @posts} class="">
+      <.link navigate={~p"/posts/#{post.id}"}>
+        <div class="grid grid-cols-1 border rounded-lg px-2 py-2 shadow-sm bg-brand w-56 h-48">
           <h2 class="text-2xl font-semibold">
             {post.title}
           </h2>
-          <p>{post.author}</p>
-          <p class="text-sm">
+          <p class="text-sm items-end">
             {post.intro}
           </p>
-          <div class="flex items-center justify-start text-white font-semibold cursor-pointer">
+          <p class="text-xs font-semibold">
+            BY: MALIN HÄGG
+          </p>
+          <div class="flex items-start justify-start text-white font-semibold cursor-pointer">
             <p>Read more <.icon name="hero-arrow-right" class="h-4 w-4" /></p>
           </div>
         </div>

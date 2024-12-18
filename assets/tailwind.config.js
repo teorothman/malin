@@ -17,12 +17,11 @@ module.exports = {
       colors: {
         brand: "#E5D1D1",
         accent: "#B08F26",
-        selected: "#E5D1D1",
+        selected: "#0346ab",
       },
       fontFamily: {
         sans: ["Libre Franklin", "sans-serif"],
       },
-
       gridTemplateRows: {
         // Complex site-specific row configuration
         desktop: "min-content minmax(0, 1fr) 24px",

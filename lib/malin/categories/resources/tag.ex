@@ -9,6 +9,24 @@ defmodule Malin.Categories.Tag do
     repo Malin.Repo
   end
 
+  attributes do
+    uuid_primary_key :id
+
+    attribute :name, :string, allow_nil?: false, public?: true
+  end
+
+  relationships do
+    many_to_many :posts, Malin.Posts.Post do
+      through Malin.Categories.PostTag
+      source_attribute_on_join_resource :tag_id
+      destination_attribute_on_join_resource :post_id
+    end
+  end
+
+  identities do
+    identity :unique_tag, [:name]
+  end
+
   actions do
     defaults [:destroy]
 
@@ -18,25 +36,11 @@ defmodule Malin.Categories.Tag do
 
     create :create do
       primary? true
-      argument :posts, {:array, :integer}
-      change manage_relationship(:posts, type: :append_and_remove, on_no_match: :create)
+      accept [:name]
     end
 
     update :update do
       accept [:name]
-    end
-  end
-
-  attributes do
-    uuid_primary_key :id
-    attribute :name, :string, allow_nil?: false, public?: true
-  end
-
-  relationships do
-    many_to_many :posts, Malin.Posts.Post do
-      through Malin.Categories.PostTag
-      source_attribute_on_join_resource :tag_id
-      destination_attribute_on_join_resource :post_id
     end
   end
 end
