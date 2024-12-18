@@ -8,6 +8,7 @@ defmodule Malin.Accounts do
       define :get_user, action: :show, args: [:id]
       define :register, action: :register
       define :update_user, action: :update
+      define :list_users, action: :read
     end
   end
 end
