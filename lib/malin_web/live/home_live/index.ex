@@ -13,7 +13,7 @@ defmodule MalinWeb.HomeLive.Index do
 
   def handle_params(_params, _uri, socket) do
     user = socket.assigns.current_user
-    posts = Posts.list_posts!(actor: user, page: [limit: 5]).results
+    posts = Posts.list_posts!(actor: user, page: [limit: 3]).results
 
     socket =
       socket
@@ -25,8 +25,8 @@ defmodule MalinWeb.HomeLive.Index do
   defp svg(assigns) do
     ~H"""
     <div class="flex gap-2 pb-4">
-      <.link
-        navigate="https://www.instagram.com/malin.hgg/"
+      <a
+        href="https://www.tiktok.com/@malinh_levelup"
         target="_blank"
         class="cursor-pointer hover:bg-accent/20 rounded-lg"
       >
@@ -59,10 +59,11 @@ defmodule MalinWeb.HomeLive.Index do
             </g>
           </g>
         </svg>
-      </.link>
-      <.link
-        navigate="https://www.linkedin.com/in/malinhagg/"
+      </a>
+      <a
+        href="https://www.linkedin.com/in/malinhagg/"
         class="cursor-pointer hover:bg-accent/20 rounded-lg"
+        target="_blank"
       >
         <svg
           xmlns="http://www.w3.org/2000/svg"
@@ -93,9 +94,9 @@ defmodule MalinWeb.HomeLive.Index do
             </g>
           </g>
         </svg>
-      </.link>
-      <.link
-        navigate="https://www.instagram.com/malin.hgg/"
+      </a>
+      <a
+        href="https://www.instagram.com/malin.hgg/"
         class="cursor-pointer hover:bg-accent/20 rounded-lg"
         target="_blank"
       >
@@ -128,7 +129,7 @@ defmodule MalinWeb.HomeLive.Index do
             </g>
           </g>
         </svg>
-      </.link>
+      </a>
     </div>
     """
   end

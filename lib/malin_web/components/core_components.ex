@@ -220,19 +220,62 @@ defmodule MalinWeb.CoreComponents do
       <.button>Send!</.button>
       <.button phx-click="go" class="ml-2">Send!</.button>
   """
+  @doc """
+  Renders a button.
+
+  ## Examples
+
+      <.button>Send!</.button>
+      <.button phx-click="go" class="ml-2">Send!</.button>
+  """
   attr :type, :string, default: nil
   attr :class, :string, default: nil
+  attr :category, :atom, default: :primary
+  attr :size, :atom, default: :small
   attr :rest, :global, include: ~w(disabled form name value)
 
   slot :inner_block, required: true
 
   def button(assigns) do
+    assigns =
+      assigns
+      |> assign(
+        :category,
+        case assigns.category do
+          :primary ->
+            "bg-accent text-white border border-transparent"
+
+          :danger ->
+            "bg-red-500 text-white"
+
+          :danger_outline ->
+            "bg-none border border-red-500 text-black/80"
+
+          :outline ->
+            "bg-none border border-accent text-accent hover:text-accent2 hover:border-grey/10"
+
+          _ ->
+            ""
+        end
+      )
+      |> assign(
+        :size,
+        case assigns.size do
+          :tiny -> "py-1 px-2 text-xs "
+          :small -> "py-1 px-3 text-sm gap-1"
+          :medium -> "py-2 px-2 text-md"
+          :large -> "py-2 px-5 text-lg"
+          _ -> "gap-2"
+        end
+      )
+
     ~H"""
     <button
       type={@type}
       class={[
-        "phx-submit-loading:opacity-75 rounded-lg bg-zinc-900 hover:bg-zinc-700 py-2 px-3",
-        "text-sm font-semibold leading-6 text-white active:text-white/80",
+        "font-semibold transition-opacity duration-100 phx-submit-loading:opacity-75 hover:opacity-90 rounded-lg flex items-center justify-center flex-auto",
+        @category,
+        @size,
         @class
       ]}
       {@rest}

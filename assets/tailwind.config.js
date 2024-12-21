@@ -15,12 +15,16 @@ module.exports = {
   theme: {
     extend: {
       colors: {
-        brand: "#E5D1D1",
-        accent: "#B08F26",
-        selected: "#0346ab",
+        brand: "hsl(0, 20%, 87%)",
+        accent: "hsl(44, 63%, 41%)",
+        accent2: "hsl(44, 63%, 31%)",
+        selected: "hsl(215, 96%, 34%)",
       },
       fontFamily: {
         sans: ["Libre Franklin", "sans-serif"],
+      },
+      backgroundImage: {
+        "hero-pattern": "url('/images/background-sunny.jpg')",
       },
       gridTemplateRows: {
         // Complex site-specific row configuration
@@ -36,6 +40,7 @@ module.exports = {
       },
       fontSize: {
         "2xs": ".625rem",
+        header: "2.65rem",
       },
     },
   },

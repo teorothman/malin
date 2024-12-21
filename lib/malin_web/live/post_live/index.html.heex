@@ -2,18 +2,16 @@
   <div class="w-full bg-cover bg-center bg-neutral-800 aspect-news-card "></div>
   <div class="prose p-3 lg:p-0 w-full max-w-4xl flex flex-col space-y-2 items-start ">
     <.link patch={~p"/"} class="text-accent text-sm -mt-4 flex items-center gap-1">
-      <.icon name="hero-arrow-left" class="w-4 h-4" /> Back
+      <.icon name="hero-arrow-left" class="w-4 h-4" /> Tillbaka
     </.link>
     <div class="order-2">
       <h1 class="text-4xl">Alla inlägg</h1>
     </div>
   </div>
 </div>
-<div class="py-8">
+<div class="py-8 flex items-center justify-center">
   <ul
-    phx-hook="InfiniteScroll"
-    id="infiniteScroll"
-    class="grid grid-cols-1 sm:grid-cols-3 lg:grid-cols-3 gap-4"
+    class="grid grid-cols-1 sm:grid-cols-3 lg:grid-cols-3 gap-4 w-3/4"
   >
     <%= for post <- @posts do %>
       <.link navigate={~p"/posts/#{post.id}"} class="block">
