@@ -71,7 +71,18 @@ defmodule Malin.Posts.Post do
         countable true
       end
 
+      filter expr(state == :published)
       prepare build(load: [:comments, :category, :tags, :author], sort: [publish_at: :desc])
+    end
+
+    read :list do
+      pagination do
+        required? false
+        offset? true
+        countable true
+      end
+
+      prepare build(load: [:category, :tags, :author], sort: [publish_at: :desc])
     end
 
     create :create do

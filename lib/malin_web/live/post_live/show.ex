@@ -25,7 +25,12 @@ defmodule MalinWeb.PostLive.Show do
 
         <h1 class="text-2xl lg:text-4xl">{@post.title}</h1>
         <span class="text-zinc-500"></span>
-        <p class="text-lg text-black/70 pt-4">{@post.text}</p>
+        <p class="text-lg text-black/70 pt-4">
+          <span :for={part <- String.split(@post.text, "\n")}>
+            {part}
+            <br />
+          </span>
+        </p>
         <div>
           <p class="text-sm">By: Malin Hägg</p>
           <div class="text-sm">Category: {@post.category.name}</div>

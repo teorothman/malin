@@ -353,7 +353,10 @@ defmodule MalinWeb.CoreComponents do
 
     ~H"""
     <div>
-      <label class="flex items-center gap-4 text-sm leading-6 text-zinc-600">
+      <label
+        required={@rest[:required]}
+        class="flex items-center gap-4 text-sm leading-6 text-zinc-600"
+      >
         <input type="hidden" name={@name} value="false" disabled={@rest[:disabled]} />
         <input
           type="checkbox"
@@ -374,7 +377,7 @@ defmodule MalinWeb.CoreComponents do
   def input(%{type: "select"} = assigns) do
     ~H"""
     <div>
-      <.label for={@id}>{@label}</.label>
+      <.label required={@rest[:required]} for={@id}>{@label}</.label>
       <select
         id={@id}
         name={@name}
@@ -393,10 +396,11 @@ defmodule MalinWeb.CoreComponents do
   def input(%{type: "textarea"} = assigns) do
     ~H"""
     <div>
-      <.label for={@id}>{@label}</.label>
+      <.label required={@rest[:required]} for={@id}>{@label}</.label>
       <textarea
         id={@id}
         name={@name}
+        required={@rest[:required]}
         class={[
           "mt-2 block w-full rounded-lg text-zinc-900 focus:ring-0 sm:text-sm sm:leading-6 min-h-[6rem]",
           @errors == [] && "border-zinc-300 focus:border-zinc-400",
@@ -413,7 +417,7 @@ defmodule MalinWeb.CoreComponents do
   def input(assigns) do
     ~H"""
     <div>
-      <.label for={@id}>{@label}</.label>
+      <.label required={@rest[:required]} for={@id}>{@label}</.label>
       <input
         type={@type}
         name={@name}
@@ -436,11 +440,12 @@ defmodule MalinWeb.CoreComponents do
   """
   attr :for, :string, default: nil
   slot :inner_block, required: true
+  attr :required, :boolean, default: false
 
   def label(assigns) do
     ~H"""
     <label for={@for} class="block text-sm font-semibold leading-6 text-zinc-800">
-      {render_slot(@inner_block)}
+      {render_slot(@inner_block)} <span :if={@required} class="text-accent">*</span>
     </label>
     """
   end

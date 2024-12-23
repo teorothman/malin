@@ -41,6 +41,7 @@ module.exports = {
       fontSize: {
         "2xs": ".625rem",
         header: "2.65rem",
+        "header-sm": "2.25rem",
       },
     },
   },
