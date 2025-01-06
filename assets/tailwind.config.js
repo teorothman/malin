@@ -27,15 +27,13 @@ module.exports = {
         "hero-pattern": "url('/images/background-sunny.jpg')",
       },
       gridTemplateRows: {
-        // Complex site-specific row configuration
         desktop: "min-content minmax(0, 1fr) 24px",
         admin: "min-content minmax(0, 1fr)",
-        mobile: "48px minmax(0, 1fr) 64px",
+        mobile: "48px minmax(0, 1fr) 0px",
         chat: "min-content minmax(0, 1fr) min-content",
         single: "minmax(0, 1fr)",
       },
       gridTemplateColumns: {
-        // Complex site-specific row configuration
         main: "minmax(280px, 1fr) 2fr minmax(280px, 1fr)",
       },
       fontSize: {

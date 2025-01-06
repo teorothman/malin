@@ -63,12 +63,12 @@
       </div>
     </div>
   </div>
-  <div class="grid grid-cols-1 h-[80dvh] px-10 w-4/5 items-center justify-center">
-    <div class="ml-4 flex flex-col gap-4 items-center">
-      <h1 class="text-header lg:text-header text-center w-1/2">
+  <div class="flex flex-col h-[80dvh] lg:px-10 lg:w-4/5 items-center justify-center w-full">
+    <div class="lg:ml-4 flex flex-col gap-4 items-center">
+      <h1 class="text-header lg:text-header text-center px-2 lg:w-1/2">
         Inspiration och tips för en enklare vardag.
       </h1>
-      <div class="grid grid-cols-3 justify-items-center items-center w-full mt-8 gap-4">
+      <div class="grid grid-cols-1 lg:grid-cols-3 justify-items-center items-center w-full mt-8 gap-4">
         <div
           :for={post <- @posts}
           class="grid grid-cols-1 justify-between  rounded-lg px-2 py-2  gap-2 "
