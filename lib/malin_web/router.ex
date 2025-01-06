@@ -51,6 +51,7 @@ defmodule MalinWeb.Router do
       live "/post/new", PostLive.Edit, :new
       live "/post/:id/edit", PostLive.Edit, :edit
       live "/users", UserLive.Index, :index
+      live "/posts", PostLive.Index, :admin
     end
   end
 
@@ -61,7 +62,9 @@ defmodule MalinWeb.Router do
       on_mount: [{MalinWeb.LiveUserAuth, :live_user_optional}] do
       live "/", HomeLive.Index
       live "/posts/:id", PostLive.Show
-      live "/posts", PostLive.Index
+      live "/posts", PostLive.Index, :index
+      live "/about", AboutLive.Index, :index
+      live "/ta-kontroll-over-din-tid", CourseLive.Index
     end
 
     auth_routes AuthController, Malin.Accounts.User, path: "/auth"

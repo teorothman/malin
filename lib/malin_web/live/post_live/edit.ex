@@ -1,8 +1,6 @@
 defmodule MalinWeb.PostLive.Edit do
   use MalinWeb, :live_view
 
-  alias AshPhoenix.Form
-
   def mount(_params, _sessions, socket) do
     {:ok, socket}
   end
@@ -76,10 +74,9 @@ defmodule MalinWeb.PostLive.Edit do
 
     case AshPhoenix.Form.submit(socket.assigns.form, params: updated_params) do
       {:ok, _post} ->
-        {:noreply, push_navigate(socket, to: ~p"/")}
+        {:noreply, push_navigate(socket, to: ~p"/admin/posts")}
 
       {:error, form} ->
-        IO.inspect(form, label: "Form with Errors")
         {:noreply, assign(socket, form: form, tags_input: tags_input)}
     end
   end

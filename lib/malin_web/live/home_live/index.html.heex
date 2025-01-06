@@ -1,53 +1,116 @@
-<div class="flex flex-col justify-center items-center space-y-6 lg:space-y-12 mb-12">
+<div class="flex flex-col justify-center items-center space-y-4 lg:space-y-12 mb-12 mt-20 lg:mt-0">
   <div class="w-full bg-cover bg-center bg-neutral-800 aspect-news-card "></div>
-  <div class="prose p-3 lg:p-0 w-full max-w-4xl flex flex-col space-y-2 items-center ">
-    <h1 class="text-2xl lg:text-4xl">
-      Hjälper dig som driver bolag att skapa förutsättningarna för ett långsiktigt hållbart företagande.
-    </h1>
-
-    <p class="text-lg text-zinc-400 pt-4 px-2">
-      Är du överväldigad av alla måsten och har svårt att fokusera? Är du dränerad på energi när arbetsdagen är slut?
-
-      Du är inte ensam.
-
-      Men det behöver inte vara så. Du kan skapa utrymme för dig själv och ditt eget välmående. Jag hjälper dig gärna.
-
-      Kontakta mig så berättar jag mer.
-
-      Varannan vecka skickar jag ut ett nyhetsbrev med tips och tricks som fokuserar på hur man skap
-
-      Anmäl dig till
-      <.link
-        navigate={~p"/register"}
-        class="font-semibold underline-offset-4 underline cursor-pointer hover:shadow-lg rounded"
-      >
-        mitt nyhetsbrev här
-      </.link>
-      eller följ mig i mina sociala kanaler.
-    </p>
-  </div>
-  <div class="flex gap-2 pb-4">
-    <.svg />
-  </div>
-  <.link navigate={~p"/posts/"}>Alla inlägg</.link>
-  <div class="grid grid-cols-2 lg:grid-cols-3 gap-10">
-    <div :for={post <- @posts} class="">
-      <.link navigate={~p"/posts/#{post.id}"}>
-        <div class="grid grid-cols-1 border rounded-lg px-2 py-2 shadow-sm bg-brand w-56 h-48">
-          <h2 class="text-2xl font-semibold">
-            {post.title}
-          </h2>
-          <p class="text-sm items-end">
-            {post.intro}
-          </p>
-          <p class="text-xs font-semibold">
-            BY: MALIN HÄGG
-          </p>
-          <div class="flex items-start justify-start text-white font-semibold cursor-pointer">
-            <p>Read more <.icon name="hero-arrow-right" class="h-4 w-4" /></p>
-          </div>
+  <div class="flex flex-col-reverse lg:grid grid-cols-2 h-[80dvh] items-center lg:w-4/5">
+    <div class="flex flex-col w-full pl-6">
+      <h1 class="text-header">
+        Få mer <span class="font-semibold">tid och energi -</span>
+      </h1>
+      <h1 class="text-header">
+        på bara <span class="font-semibold">6 veckor.</span>
+      </h1>
+      <div class="flex flex-col gap-4 items-start justify-center">
+        <p class="text-base">
+          Är du trött på att känna dig överväldigad och stressad?<br />
+          Lär dig att ta kontroll över din tid och prioritera
+          <br />det som verkligen betyder något.
+        </p>
+        <div class="flex flex-col lg:flex-row gap-4 w-1/2 lg:w-3/5 md:w-1/3">
+          <.link navigate={~p"/ta-kontroll-over-din-tid"}>
+            <.button size={:medium} class="w-48">
+              Anmäl dig här <.icon name="hero-arrow-right" class="h-4 ml-2" />
+            </.button>
+          </.link>
+          <.link navigate={~p"/register"}>
+            <.button size={:medium} category={:outline} class="w-48">
+              Nyhetsbrev <.icon name="hero-arrow-right" class="h-4 ml-2" />
+            </.button>
+          </.link>
         </div>
+      </div>
+    </div>
+    <div class="h-full flex items-center justify-center">
+      <img src={~p"/images/background-sunny.jpg"} class="lg:rounded-lg lg:ml-4" />
+    </div>
+  </div>
+  <div class="flex flex-col-reverse lg:grid grid-cols-2 h-[80dvh] items-center lg:w-4/5">
+    <div class="flex flex-col gap-4">
+      <ul class="grid text-lg gap-4 lg:pl-10">
+        <li>
+          <.icon name="hero-clock" /> Lär dig hur du kan äga din tid
+        </li>
+        <li>
+          <.icon name="hero-trophy" /> Frigöra tid till det som är viktigt för dig
+        </li>
+        <li>
+          <.icon name="hero-face-smile" /> Skapa utrymme för ditt eget välmående
+        </li>
+        <li>
+          <.icon name="hero-battery-100" /> Maximera din energi
+        </li>
+      </ul>
+    </div>
+    <div class="ml-4 flex flex-col gap-4">
+      <h1 class="text-header lg:text-header">
+        Frigör tid till det som är viktigast.
+      </h1>
+      <p class="text-base">
+        Med min personliga coachning och tydliga verktyg får du praktiska lösningar för att skapa en vardag som fungerar för dig – och ditt välmående.
+      </p>
+      <div class="w-1/2">
+        <.link navigate={~p"/ta-kontroll-over-din-tid"}>
+          <.button category={:outline} size={:large}>Läs mer här</.button>
+        </.link>
+      </div>
+    </div>
+  </div>
+  <div class="flex flex-col h-[80dvh] lg:px-10 lg:w-4/5 items-center justify-center w-full">
+    <div class="lg:ml-4 flex flex-col gap-4 items-center">
+      <h1 class="text-header lg:text-header text-center px-2 lg:w-1/2">
+        Inspiration och tips för en enklare vardag.
+      </h1>
+      <div class="grid grid-cols-1 lg:grid-cols-3 justify-items-center items-center w-full mt-8 gap-4">
+        <div
+          :for={post <- @posts}
+          class="grid grid-cols-1 justify-between  rounded-lg px-2 py-2  gap-2 "
+        >
+          <.link navigate={~p"/posts/#{post.id}"} class="flex flex-col justify-between">
+            <img src="https://picsum.photos/800/600" />
+            <h2 class="text-lg font-semibold max-h-42 p-2">
+              {post.title}
+            </h2>
+          </.link>
+        </div>
+      </div>
+      <.link navigate={~p"/posts"}>
+        <.button category={:outline}>Läs fler artiklar</.button>
       </.link>
+    </div>
+  </div>
+  <div class="flex flex-col-reverse lg:grid grid-cols-2 h-[80dvh] items-center lg:w-4/5">
+    <div class="flex flex-col gap-4">
+      <h1 class="text-header">
+        Strategisk kommunikation som skapar resultat.
+      </h1>
+      <p class="text-lg">
+        Jag heter Malin Hägg och har över 10 års erfarenhet av att hjälpa företag – från små familjeägda verksamheter till stora internationella koncerner – med kommunikation och marknadsföring. Min styrka ligger i att kombinera strategi med kreativitet för att leverera skräddarsydda lösningar som verkligen gör skillnad.
+      </p>
+      <div class="w-1/2">
+        <.link navigate={~p"/about"}>
+          <.button category={:outline} size={:large}>Läs mer om mig här</.button>
+        </.link>
+      </div>
+    </div>
+    <div class="flex items-center justify-center">
+      <img src={~p"/images/malin_profile.jpg"} class="lg:rounded-full lg:ml-4 w-[70%]" />
+    </div>
+  </div>
+  <div class="grid grid-cols-1 h-[80dvh] px-10 w-4/5 items-center justify-center">
+    <div class="ml-4 flex flex-col gap-4 items-center">
+      <h1 class="text-header lg:text-header text-center w-1/2">
+        Följ mig på mina sociala medier
+      </h1>
+
+      <.svg />
     </div>
   </div>
 </div>

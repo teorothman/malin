@@ -15,27 +15,31 @@ module.exports = {
   theme: {
     extend: {
       colors: {
-        brand: "#E5D1D1",
-        accent: "#B08F26",
-        selected: "#0346ab",
+        brand: "hsl(0, 20%, 87%)",
+        accent: "hsl(44, 63%, 41%)",
+        accent2: "hsl(44, 63%, 31%)",
+        selected: "hsl(215, 96%, 34%)",
       },
       fontFamily: {
         sans: ["Libre Franklin", "sans-serif"],
       },
+      backgroundImage: {
+        "hero-pattern": "url('/images/background-sunny.jpg')",
+      },
       gridTemplateRows: {
-        // Complex site-specific row configuration
         desktop: "min-content minmax(0, 1fr) 24px",
         admin: "min-content minmax(0, 1fr)",
-        mobile: "48px minmax(0, 1fr) 64px",
+        mobile: "48px minmax(0, 1fr) 0px",
         chat: "min-content minmax(0, 1fr) min-content",
         single: "minmax(0, 1fr)",
       },
       gridTemplateColumns: {
-        // Complex site-specific row configuration
         main: "minmax(280px, 1fr) 2fr minmax(280px, 1fr)",
       },
       fontSize: {
         "2xs": ".625rem",
+        header: "2.65rem",
+        "header-sm": "2.25rem",
       },
     },
   },
