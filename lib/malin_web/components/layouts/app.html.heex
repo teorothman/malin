@@ -1,13 +1,105 @@
-<div class="h-[100dvh] w-full grid grid-rows-mobile lg:grid-rows-desktop grid-cols-1 lg:grid-cols-[auto_auto]">
-  <div class="fixed top-0 left-0 right-0 flex items-center justify-between gap-4 bg-transparent z-40 min-h-[100px]">
-    <div class="w-screen flex justify-between items-center">
-      <.link navigate={~p"/"} class="px-8 py-4">
-        <img src={~p"/images/logo.svg"} width="80px" />
+<div class="h-[100dvh] w-full grid grid-rows-mobile lg:grid-rows-desktop grid-cols-1 lg:grid-cols-[auto_auto] ">
+  <div class="fixed top-0 left-0 right-0 flex items-center justify-between gap-4 bg-transparent z-40 min-h-[100px] px-8">
+    <!-- Logo -->
+    <.link navigate={~p"/"} class="py-4">
+      <img src={~p"/images/logo.svg"} width="60px" />
+    </.link>
+    
+<!-- Desktop Navigation Links -->
+    <div class="hidden lg:flex items-center gap-8">
+      <.link class="text-white font-medium hover:text-gray-300">Kontakta mig</.link>
+      <.link class="text-white font-medium hover:text-gray-300">Fokus 360</.link>
+      <.link class="text-white font-medium hover:text-gray-300">Blog</.link>
+      <.link class="bg-accent text-white px-6 py-2 rounded-full font-medium hover:from-pink-600 hover:to-purple-700 transition-all">
+        LOGGA IN
       </.link>
-      <div>
-        <.link>Kontakta mig</.link>
-        <.link>Fokus 360</.link>
-        <.link>Logga in</.link>
+    </div>
+    
+<!-- Mobile Menu Button -->
+    <div class="lg:hidden relative">
+      <button
+        id="mobile-menu-button"
+        phx-click={
+          JS.remove_class("-translate-y-full", to: "#mobile-menu-overlay")
+          |> JS.add_class("translate-y-0", to: "#mobile-menu-overlay")
+          |> JS.add_class("overflow-hidden", to: "body")
+        }
+      >
+        <div class="relative">
+          <.icon name="hero-bars-3" class="h-10 w-10 text-accent" id="menu-open-icon" />
+        </div>
+      </button>
+    </div>
+    
+<!-- Mobile Menu Overlay -->
+    <div
+      id="mobile-menu-overlay"
+      class="fixed inset-0 bg-black z-50 transform -translate-y-full transition-transform duration-300 ease-in-out overflow-hidden"
+    >
+      <div class="absolute top-4 right-4">
+        <button
+          id="close-menu-button"
+          phx-click={
+            JS.remove_class("translate-y-0", to: "#mobile-menu-overlay")
+            |> JS.add_class("-translate-y-full", to: "#mobile-menu-overlay")
+            |> JS.remove_class("overflow-hidden", to: "body")
+          }
+        >
+          <.icon name="hero-x-mark" class="h-10 w-10 text-accent" />
+        </button>
+      </div>
+      <div class="flex flex-col items-center justify-center h-full text-2xl font-semibold space-y-8">
+        <.link
+          class="text-white font-medium hover:text-gray-300 transition-colors"
+          phx-click={
+            JS.hide(
+              to: "#mobile-menu-overlay",
+              transition: "transition-transform duration-300 ease-in-out -translate-y-full"
+            )
+            |> JS.remove_class("overflow-hidden", to: "body")
+          }
+        >
+          Kontakta mig
+        </.link>
+        <.link
+          class="text-white font-medium hover:text-gray-300 transition-colors"
+          phx-click={
+            JS.hide(
+              to: "#mobile-menu-overlay",
+              transition: "transition-transform duration-300 ease-in-out -translate-y-full"
+            )
+            |> JS.remove_class("overflow-hidden", to: "body")
+          }
+        >
+          Fokus 360
+        </.link>
+        <.link
+          class="text-white font-medium hover:text-gray-300 transition-colors"
+          phx-click={
+            JS.hide(
+              to: "#mobile-menu-overlay",
+              transition: "transition-transform duration-300 ease-in-out -translate-y-full"
+            )
+            |> JS.remove_class("overflow-hidden", to: "body")
+          }
+        >
+          Blog
+        </.link>
+
+        <.link
+          class="mt-4"
+          phx-click={
+            JS.hide(
+              to: "#mobile-menu-overlay",
+              transition: "transition-transform duration-300 ease-in-out -translate-y-full"
+            )
+            |> JS.remove_class("overflow-hidden", to: "body")
+          }
+        >
+          <div class="bg-accent text-white px-6 py-2 rounded-full font-medium hover:from-pink-600 hover:to-purple-700 transition-all text-xl">
+            LOGGA IN
+          </div>
+        </.link>
       </div>
     </div>
   </div>
@@ -15,30 +107,4 @@
   <main class="order-3 col-span-2 overflow-y-auto flex flex-col justify-stretch h-[100dvh]">
     {@inner_content}
   </main>
-
-  <footer class="order-5 col-span-2 lg:pb-[2px] bg-transparent border-t border-divider hidden h-[24px] px-4 lg:flex justify-center">
-    <div class="items-center justify-between text-xs text-grey w-full flex">
-      <div class="flex items-center gap-2">
-        <span>
-          &copy; 2024 Malin H Consulting AB
-        </span>
-        <.link
-          :if={@current_user != nil && @current_user.role == :admin}
-          navigate={~p"/admin"}
-          class="text-xs text-accent font-semibold flex items-center gap-1"
-        >
-          <span>Admin</span>
-          <.icon name="hero-arrow-up-right" class="h-3 w-3" />
-        </.link>
-      </div>
-
-      <div class="flex items-center gap-4 text-brand">
-        <%= if @current_user do %>
-          <.link navigate={~p"/sign-out"}>Log out</.link>
-        <% else %>
-          <.link navigate={~p"/sign-in"}>Log In</.link>
-        <% end %>
-      </div>
-    </div>
-  </footer>
 </div>
