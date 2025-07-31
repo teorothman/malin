@@ -42,7 +42,7 @@ config :spark,
 config :malin,
   ecto_repos: [Malin.Repo],
   generators: [timestamp_type: :utc_datetime],
-  ash_domains: [Malin.Accounts, Malin.Posts, Malin.Categories]
+  ash_domains: [Malin.Messages, Malin.Testimonies, Malin.Accounts, Malin.Posts, Malin.Categories]
 
 # Configures the endpoint
 config :malin, MalinWeb.Endpoint,

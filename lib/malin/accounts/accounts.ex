@@ -9,6 +9,8 @@ defmodule Malin.Accounts do
       define :register, action: :register
       define :update_user, action: :update
       define :list_users, action: :read
+      define :list_users_for_admin, action: :list_for_admin
+      define :list_users_this_week, action: :list_this_week
     end
   end
 end

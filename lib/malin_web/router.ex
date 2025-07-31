@@ -18,14 +18,6 @@ defmodule MalinWeb.Router do
     plug :load_from_bearer
   end
 
-  scope "/admin", MalinWeb do
-    pipe_through :browser
-
-    ash_authentication_live_session :authenticated_roudes do
-      live "/", AdminLive.Index
-    end
-  end
-
   scope "/", MalinWeb do
     pipe_through :browser
 
@@ -52,6 +44,8 @@ defmodule MalinWeb.Router do
       live "/post/:id/edit", PostLive.Edit, :edit
       live "/users", UserLive.Index, :index
       live "/posts", PostLive.Index, :admin
+      live "/", AdminLive.Index
+      live "/messages", MessageLive.Index
     end
   end
 
@@ -64,7 +58,11 @@ defmodule MalinWeb.Router do
       live "/posts/:id", PostLive.Show
       live "/posts", PostLive.Index, :index
       live "/about", AboutLive.Index, :index
-      live "/ta-kontroll-over-din-tid", CourseLive.Index
+      live "/fokus360", CourseLive.Index
+      live "kontakta-mig", ContactLive.Index
+      live "/ansok", ApplicationLive.Index
+      live "/ansok/success", ApplicationLive.Success
+      live "/kontakt/success", ContactLive.Success
     end
 
     auth_routes AuthController, Malin.Accounts.User, path: "/auth"

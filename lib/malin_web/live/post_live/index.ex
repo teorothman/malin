@@ -18,10 +18,12 @@ defmodule MalinWeb.PostLive.Index do
       case socket.assigns.live_action do
         :admin ->
           posts = Posts.list_posts_admin!(actor: user, page: [limit: 10]).results
+
           assign(socket, posts: posts)
 
         :index ->
           posts = Posts.list_posts!(actor: user, page: [limit: 10]).results
+
           assign(socket, posts: posts)
       end
 

@@ -67,7 +67,13 @@ defmodule Malin.MixProject do
       {:jason, "~> 1.2"},
       {:dns_cluster, "~> 0.1.1"},
       {:bandit, "~> 1.5"},
-      {:gen_smtp, "~> 1.0"}
+      {:gen_smtp, "~> 1.0"},
+      {:ex_aws, "~> 2.4"},
+      {:ex_aws_s3, "~> 2.3"},
+      {:dotenv, "~> 3.0.0"},
+      {:dotenv_parser, "~> 2.0"},
+      {:uuid, "~> 1.1"},
+      {:hackney, "~> 1.18"}
     ]
   end
 

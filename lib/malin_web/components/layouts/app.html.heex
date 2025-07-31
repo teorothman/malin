@@ -1,5 +1,5 @@
 <div class="h-[100dvh] w-full grid grid-rows-mobile lg:grid-rows-desktop grid-cols-1 lg:grid-cols-[auto_auto] ">
-  <div class="fixed top-0 left-0 right-0 flex items-center justify-between gap-4 bg-transparent z-40 min-h-[100px] px-8">
+  <div class="fixed top-0 left-0 right-0 flex items-center justify-between gap-4 bg-transparent z-40 min-h-[100px] px-8 backdrop-blur-sm rounded">
     <!-- Logo -->
     <.link navigate={~p"/"} class="py-4">
       <img src={~p"/images/logo.svg"} width="60px" />
@@ -7,11 +7,35 @@
     
 <!-- Desktop Navigation Links -->
     <div class="hidden lg:flex items-center gap-8">
-      <.link class="text-white font-medium hover:text-gray-300">Kontakta mig</.link>
-      <.link class="text-white font-medium hover:text-gray-300">Fokus 360</.link>
-      <.link class="text-white font-medium hover:text-gray-300">Blog</.link>
-      <.link class="bg-accent text-white px-6 py-2 rounded-full font-medium hover:from-pink-600 hover:to-purple-700 transition-all">
+      <.link
+        :if={@current_user != nil && @current_user.role == :admin}
+        navigate={~p"/admin"}
+        class="text-selected font-medium hover:text-grey-300"
+      >
+        Admin
+      </.link>
+      <.link navigate={~p"/kontakta-mig"} class="text-accent font-medium hover:text-gray-300">
+        Kontakta mig
+      </.link>
+      <.link navigate={~p"/fokus360"} class="text-accent font-medium hover:text-gray-300">
+        Fokus 360
+      </.link>
+      <.link navigate={~p"/posts"} class="text-accent font-medium hover:text-gray-300">
+        Blog
+      </.link>
+      <.link
+        :if={@current_user == nil}
+        navigate={~p"/sign-in"}
+        class="bg-accent text-white px-6 py-2 rounded-full font-medium hover:from-pink-600 hover:to-purple-700 transition-all"
+      >
         LOGGA IN
+      </.link>
+      <.link
+        :if={@current_user != nil}
+        navigate={~p"/sign-out"}
+        class="bg-accent text-white px-6 py-2 rounded-full font-medium hover:from-pink-600 hover:to-purple-700 transition-all"
+      >
+        LOGGA UT
       </.link>
     </div>
     
