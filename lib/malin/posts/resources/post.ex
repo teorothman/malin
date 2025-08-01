@@ -105,4 +105,8 @@ defmodule Malin.Posts.Post do
       change manage_relationship(:tags, type: :append_and_remove, on_no_match: :create)
     end
   end
+
+  changes do
+    change Malin.Accounts.Changes.SendNewPostNotifications, on: [:create]
+  end
 end

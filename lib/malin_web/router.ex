@@ -3,6 +3,8 @@ defmodule MalinWeb.Router do
 
   use AshAuthentication.Phoenix.Router
 
+  import Phoenix.Router
+
   pipeline :browser do
     plug :accepts, ["html"]
     plug :fetch_session
@@ -11,6 +13,7 @@ defmodule MalinWeb.Router do
     plug :protect_from_forgery
     plug :put_secure_browser_headers
     plug :load_from_session
+    plug MalinWeb.AnalyticsPlug
   end
 
   pipeline :api do
@@ -38,6 +41,7 @@ defmodule MalinWeb.Router do
   scope "/admin", MalinWeb do
     pipe_through(:browser)
 
+    # Your existing admin routes
     ash_authentication_live_session :admin_only,
       on_mount: [{MalinWeb.LiveUserAuth, :admin}] do
       live "/post/new", PostLive.Edit, :new
@@ -46,6 +50,17 @@ defmodule MalinWeb.Router do
       live "/posts", PostLive.Index, :admin
       live "/", AdminLive.Index
       live "/messages", MessageLive.Index
+      live "analytics", AnalyticsLive.Index
+    end
+  end
+
+  scope "/profil", MalinWeb do
+    pipe_through(:browser)
+
+    # Your existing admin routes
+    ash_authentication_live_session :live_user_required,
+      on_mount: [{MalinWeb.LiveUserAuth, :live_user_required}] do
+      live "/", ProfileLive.Index
     end
   end
 
@@ -59,7 +74,7 @@ defmodule MalinWeb.Router do
       live "/posts", PostLive.Index, :index
       live "/about", AboutLive.Index, :index
       live "/fokus360", CourseLive.Index
-      live "kontakta-mig", ContactLive.Index
+      live "/kontakta-mig", ContactLive.Index
       live "/ansok", ApplicationLive.Index
       live "/ansok/success", ApplicationLive.Success
       live "/kontakt/success", ContactLive.Success

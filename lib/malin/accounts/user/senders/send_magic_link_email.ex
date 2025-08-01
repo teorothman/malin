@@ -8,24 +8,11 @@ defmodule Malin.Accounts.User.Senders.SendMagicLinkEmail do
 
   @impl true
   def send(user_or_email, token, _) do
-    # if you get a user, its for a user that already exists
-    # if you get an email, the user does not exist yet
-    # Example of how you might send this email
-    # Malin.Accounts.Emails.send_magic_link_email(
-    #   user_or_email,
-    #   token
-    # )
+    magic_link_url = url(~p"/auth/user/magic_link/?token=#{token}")
 
-    email =
-      case user_or_email do
-        %{email: email} -> email
-        email -> email
-      end
+    # Fixed: Use Malin.Accounts.Emails instead of Malin.Emails
+    Malin.Accounts.Emails.send_magic_link_email(user_or_email, magic_link_url)
 
-    IO.puts("""
-    Hello, #{email}! Click this link to sign in:
-
-    #{url(~p"/auth/user/magic_link/?token=#{token}")}
-    """)
+    :ok
   end
 end

@@ -3,7 +3,6 @@ defmodule MalinWeb.ContactLive.Index do
 
   alias Malin.Accounts.User
   alias Malin.Messages.Message
-  alias AshPhoenix.Form
 
   def mount(_params, _session, socket) do
     # Create a form that accepts the message field as an argument
@@ -67,8 +66,6 @@ defmodule MalinWeb.ContactLive.Index do
       user_id: user.id
     }
 
-    IO.inspect(attrs, label: "Message attrs")
-
     result =
       Ash.create(
         Message,
@@ -76,7 +73,6 @@ defmodule MalinWeb.ContactLive.Index do
         domain: Malin.Messages
       )
 
-    IO.inspect(result, label: "Message creation result")
     result
   end
 

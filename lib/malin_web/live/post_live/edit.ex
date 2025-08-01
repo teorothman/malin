@@ -80,12 +80,12 @@ defmodule MalinWeb.PostLive.Edit do
       |> Enum.reject(&(&1 == ""))
       |> Enum.map(&%{"name" => &1})
 
-    updated_params = Map.put(params, "tags", tags)
+    _updated_params = Map.put(params, "tags", tags)
 
     {updated_params, uploaded_files} = process_uploads(socket, params)
 
     case AshPhoenix.Form.submit(socket.assigns.form, params: updated_params) do
-      {:ok, posts} ->
+      {:ok, _posts} ->
         socket =
           socket
           |> put_flash(
@@ -158,7 +158,7 @@ defmodule MalinWeb.PostLive.Edit do
 
   defp process_gallery_image_uploads(socket, params) do
     # Process gallery image uploads if any
-    gallery_params = params["gallery"] || %{}
+    _gallery_params = params["gallery"] || %{}
 
     gallery_urls =
       consume_uploaded_entries(socket, :gallery_images, fn %{path: path}, entry ->

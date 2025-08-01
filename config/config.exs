@@ -42,7 +42,14 @@ config :spark,
 config :malin,
   ecto_repos: [Malin.Repo],
   generators: [timestamp_type: :utc_datetime],
-  ash_domains: [Malin.Messages, Malin.Testimonies, Malin.Accounts, Malin.Posts, Malin.Categories]
+  ash_domains: [
+    Malin.Analytics,
+    Malin.Messages,
+    Malin.Testimonies,
+    Malin.Accounts,
+    Malin.Posts,
+    Malin.Categories
+  ]
 
 # Configures the endpoint
 config :malin, MalinWeb.Endpoint,
@@ -62,13 +69,6 @@ config :malin, MalinWeb.Endpoint,
 #
 # For production it's recommended to configure a different adapter
 # at the `config/runtime.exs`.
-config :malin, Malin.Mailer,
-  adapter: Swoosh.Adapters.SMTP,
-  relay: "smtp.your-email-provider.com",
-  username: "your-username",
-  password: "your-password",
-  tls: :if_available,
-  auth: :always
 
 config :swoosh, :api_client, Swoosh.ApiClient.Hackney
 

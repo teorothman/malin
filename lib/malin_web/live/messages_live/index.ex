@@ -1,8 +1,6 @@
 defmodule MalinWeb.MessageLive.Index do
   use MalinWeb, :live_view
 
-  alias Malin.Messages.Message
-
   def mount(_params, _sessions, socket) do
     socket =
       socket

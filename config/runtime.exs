@@ -20,6 +20,16 @@ if System.get_env("PHX_SERVER") do
   config :malin, MalinWeb.Endpoint, server: true
 end
 
+config :malin, Malin.Mailer,
+  adapter: Resend.Swoosh.Adapter,
+  api_key: System.get_env("RESEND_API_KEY")
+
+if config_env() == :prod do
+  config :malin, Malin.Mailer,
+    adapter: Resend.Swoosh.Adapter,
+    api_key: System.get_env("RESEND_API_KEY")
+end
+
 if config_env() == :prod do
   database_url =
     System.get_env("DATABASE_URL") ||

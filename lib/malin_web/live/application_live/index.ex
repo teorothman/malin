@@ -2,7 +2,6 @@ defmodule MalinWeb.ApplicationLive.Index do
   use MalinWeb, :live_view
 
   alias Malin.Accounts.User
-  alias AshPhoenix.Form
 
   def mount(_params, _session, socket) do
     form = AshPhoenix.Form.for_create(User, :register, api: Malin.Accounts)

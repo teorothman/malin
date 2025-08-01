@@ -14,14 +14,14 @@
       </p>
       <div class="flex gap-4 mt-8">
         <.link navigate={~p"/ansok"}>
-          <.button class="border-2 border-white text-white px-8 py-4 rounded hover:bg-white hover:text-black transition-all duration-300">
+          <.button class="border-2  text-white px-8 py-4 rounded hover:bg-white hover:text-black transition-all duration-300">
             Jag vill ansöka!
           </.button>
         </.link>
       </div>
     </div>
   </section>
-  
+
 <!-- Problem Section -->
   <section class="min-h-screen bg-white py-20 flex items-center px-4">
     <div class="max-w-6xl mx-auto">
@@ -32,13 +32,11 @@
         <p class="text-lg md:text-xl text-gray-700 leading-relaxed mb-12 max-w-3xl">
           Du har kunder, inkomster, uppdrag. På ytan ser allt ut som det ska. Men inuti dig? Du springer mellan möten, deadlines och andras behov. Du hinner inte tänka färdigt en enda tanke innan nästa grej ska lösas.
         </p>
-        <.button class="bg-black text-white px-8 py-4 rounded font-medium hover:bg-gray-800 transition-colors">
-          Läs mer om lösningen
-        </.button>
+
       </div>
     </div>
   </section>
-  
+
 <!-- Recognition Section -->
   <section class="min-h-screen bg-gray-100 py-20 px-8 flex items-center">
     <div class="max-w-6xl mx-auto text-center">
@@ -46,10 +44,10 @@
         KÄNNER DU <u class="decoration-2 underline-offset-4">IGEN DIG</u>?
       </h2>
 
-      <div class="grid grid-cols-1 md:grid-cols-3 gap-8 mb-16 max-w-5xl mx-auto">
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-8 mb-16 max-w-5xl mx-auto ">
         <div class="bg-white border-2 border-accent rounded-lg p-8 min-h-[250px] flex items-center justify-center">
           <div class="text-center">
-            <span class="text-4xl mb-4 block">👉</span>
+            <.icon name="hero-clock" />
             <p class="text-lg font-semibold text-black leading-relaxed">
               Du har fullt upp, men det känns som att du står och stampar
             </p>
@@ -58,7 +56,7 @@
 
         <div class="bg-white border-2 border-accent rounded-lg p-8 min-h-[250px] flex items-center justify-center">
           <div class="text-center">
-            <span class="text-4xl mb-4 block">👉</span>
+            <.icon name="hero-calendar" />
             <p class="text-lg font-semibold text-black leading-relaxed">
               Kalendern är överfull men allt viktigt skjuts på framtiden
             </p>
@@ -67,7 +65,7 @@
 
         <div class="bg-white border-2 border-accent rounded-lg p-8 min-h-[250px] flex items-center justify-center">
           <div class="text-center">
-            <span class="text-4xl mb-4 block">👉</span>
+            <.icon name="hero-light-bulb" />
             <p class="text-lg font-semibold text-black leading-relaxed">
               När du väl får tid att tänka strategiskt är du för trött
             </p>
@@ -79,12 +77,15 @@
         Du är inte ensam.
       </h3>
 
-      <.button class="border-2 border-black text-black px-8 py-4 rounded font-medium hover:bg-black hover:text-white transition-all duration-300 inline-block">
+      <div class="flex flex-col items-center">
+
+      <.link navigate={~p"/ansok"} class="border-2 border-black text-black px-8 py-4 rounded font-medium hover:bg-black hover:text-white transition-all duration-300 inline-block">
         Ansök om en plats här
-      </.button>
+      </.link>
+      </div>
     </div>
   </section>
-  
+
 <!-- Program Description with Image -->
   <section class="min-h-screen py-20 bg-brand">
     <div class="flex flex-col md:flex-row lg:flex-row items-center">
@@ -129,7 +130,7 @@
       </div>
     </div>
   </section>
-  
+
 <!-- Benefits Section -->
   <section class="min-h-screen bg-white py-20 flex items-center px-4">
     <div class="max-w-6xl mx-auto">
@@ -173,13 +174,14 @@
           </div>
         </div>
 
-        <.button class="bg-black text-white px-8 py-4 rounded font-medium hover:bg-gray-800 transition-colors">
-          Det här är jag!
-        </.button>
+        <.link href="/ansok" class="bg-black text-white px-8 py-4 rounded font-medium hover:bg-gray-800 transition-colors">
+        Det här är jag!
+        </.link>
+
       </div>
     </div>
   </section>
-  
+
 <!-- Testimonials Section -->
   <section class="min-h-screen py-16 px-4 sm:px-6 lg:px-8 flex items-center bg-brand">
     <div class="max-w-7xl mx-auto">
@@ -222,7 +224,7 @@
       </div>
     </div>
   </section>
-  
+
 <!-- Why It Works with Image -->
   <section class="min-h-screen py-20 bg-white">
     <div class="flex flex-col-reverse md:flex-row lg:flex-row items-center">
@@ -249,13 +251,14 @@
             Det är en process som anpassas till dig och som du kan leva med långsiktigt.
           </p>
         </div>
-        <.button class="bg-black text-white px-8 py-4 rounded font-medium hover:bg-gray-800 transition-colors">
-          Skicka in din ansökan redan idag
-        </.button>
+        <.link href="/ansok" class="border-2 text-black border-black px-12 py-6 rounded text-xl font-semibold hover:bg-black hover:text-white transition-all duration-300">
+        Skicka din ansökan redan idag!
+        </.link>
+
       </div>
     </div>
   </section>
-  
+
 <!-- FAQ Section -->
   <section class="min-h-screen bg-gray-100 py-20 px-8 flex items-center">
     <div class="max-w-4xl mx-auto">
@@ -287,7 +290,7 @@
       </div>
     </div>
   </section>
-  
+
 <!-- Final CTA Section -->
   <section class="h-screen relative">
     <img
@@ -303,9 +306,12 @@
         <p class="text-white text-lg md:text-xl mb-8 leading-relaxed">
           Sluta skjuta upp det som känns viktigt. Skapa utrymme för att tänka, växa och utveckla – både dig själv och ditt företag.
         </p>
-        <.button class="border-2 border-white text-white px-12 py-6 rounded text-xl font-semibold hover:bg-white hover:text-black transition-all duration-300">
-          JA, jag vill ansöka nu!
-        </.button>
+        <div class="flex justify-center items-center">
+        <.link href="/ansok" class="border-2 text-white px-12 py-6 rounded text-xl font-semibold hover:bg-white hover:text-black transition-all duration-300">
+          Ja, jag vill ansöka nu!
+
+        </.link>
+        </div>
       </div>
     </div>
   </section>

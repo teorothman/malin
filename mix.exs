@@ -73,7 +73,8 @@ defmodule Malin.MixProject do
       {:dotenv, "~> 3.0.0"},
       {:dotenv_parser, "~> 2.0"},
       {:uuid, "~> 1.1"},
-      {:hackney, "~> 1.18"}
+      {:hackney, "~> 1.18"},
+      {:resend, "~> 0.4.0"}
     ]
   end
 
