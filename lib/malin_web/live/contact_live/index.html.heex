@@ -1,0 +1,62 @@
+<section class="min-h-screen bg-white py-20 flex items-center px-4 mt-48 mb-24">
+  <div class="max-w-6xl mx-auto">
+    <div class="max-w-3xl">
+      <h2 class="text-5xl md:text-6xl font-bold text-black mb-8">
+        Redo att ta nästa steg?
+      </h2>
+
+      <p class="text-lg text-gray-700 leading-relaxed mb-12 max-w-2xl">
+        Berätta om din utmaning – jag hjälper entreprenörer att hitta vägen framåt.
+      </p>
+
+      <.form :let={f} for={@form} phx-submit="submit" phx-change="validate" class="space-y-6">
+        <div>
+          <.input
+            field={f[:first_name]}
+            label="Förnamn"
+            type="text"
+            class="w-full px-4 py-3 border border-gray-300 rounded-sm focus:ring-2 focus:ring-accent focus:border-accent text-gray-900"
+            required
+          />
+          <.input
+            field={f[:last_name]}
+            label="Efternamn"
+            type="text"
+            class="w-full px-4 py-3 border border-gray-300 rounded-sm focus:ring-2 focus:ring-accent focus:border-accent text-gray-900"
+            required
+          />
+          <.input
+            label="E-postadress"
+            field={f[:email]}
+            type="email"
+            placeholder="din@epost.se"
+            class="w-full px-4 py-3 border border-gray-300 rounded-sm focus:ring-2 focus:ring-accent focus:border-accent text-gray-900"
+            required
+          />
+        </div>
+        <div>
+          <!-- Add message field -->
+          <label class="block text-sm font-medium text-gray-700 mb-2">Ditt meddelande</label>
+          <textarea
+            name="form[message]"
+            rows="6"
+            placeholder="Beskriv kort var du är idag och vart du vill komma – så förbereder jag vårt samtal."
+            class="w-full px-4 py-3 border border-gray-300 rounded-sm focus:ring-2 focus:ring-accent focus:border-accent text-gray-900 resize-vertical"
+            required
+          ></textarea>
+        </div>
+
+        <button
+          type="submit"
+          class="bg-black text-white px-8 py-4 rounded-sm font-medium hover:bg-gray-800 transition-colors"
+        >
+        Skicka meddelande
+        </button>
+      </.form>
+    </div>
+    <div class="flex flex-col gap-12 items-center justify-center pt-12">
+      <h1 class="text-3xl font-bold text-gray-900">Eller nå mig på mina sociala medier</h1>
+      <.svg />
+    </div>
+  </div>
+</section>

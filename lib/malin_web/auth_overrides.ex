@@ -7,10 +7,10 @@ defmodule MalinWeb.AuthOverrides do
     set :dark_image_url, nil
     set :image_url, nil
     set :href_url, nil
-    set :text_class, "text-black dark:text-white text-2xl w-1/3 text-center"
+    set :text_class, "text-black dark:text-white text-2xl  text-center"
 
     set :text,
-        "Want to sign up for my newsletter? Enter your email below and submit 🥳 Want to log in and see my exclusive content? Enter your email below and check your mailbox! 🎉"
+        "Skriv in din e-postadress och håll utkik i mejlen!"
   end
 
   override Components.Password.Input do

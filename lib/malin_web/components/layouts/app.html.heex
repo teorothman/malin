@@ -1,39 +1,154 @@
-<div class="h-[100dvh] overflow-y-hidden w-full grid grid-rows-mobile lg:grid-rows-desktop grid-cols-1 lg:grid-cols-[auto_auto]">
-  <div class="order-3 lg:order-2 col-span-2 flex items-center justify-center gap-4 bg-white z-40 min-h-[100px]">
-    <div class="flex items-center">
-      <.link navigate={~p"/"} class="px-8 py-4">
-        <img src={~p"/images/logo.svg"} width="80px" />
+<div class="h-[100dvh] w-full grid grid-rows-mobile lg:grid-rows-desktop grid-cols-1 lg:grid-cols-[auto_auto]">
+  <div class="fixed top-0 left-0 right-0 flex items-center justify-between gap-4 bg-transparent z-40 min-h-[100px] px-8 backdrop-blur-sm rounded">
+    <!-- Logo -->
+    <.link navigate={~p"/"} class="py-4">
+      <img src={~p"/images/logo.svg"} width="60px" />
+    </.link>
+
+    <!-- Desktop Navigation Links -->
+    <div class="hidden lg:flex items-center gap-8">
+      <.link navigate={~p"/kontakta-mig"} class="text-accent font-medium hover:text-gray-300">
+        Kontakta mig
       </.link>
+      <.link navigate={~p"/fokus360"} class="text-accent font-medium hover:text-gray-300">
+        Fokus 360
+      </.link>
+      <.link navigate={~p"/posts"} class="text-accent font-medium hover:text-gray-300">
+        Blog
+      </.link>
+      <.link
+        :if={@current_user == nil}
+        navigate={~p"/sign-in"}
+        class="bg-accent text-white px-6 py-2 rounded-full font-medium hover:from-pink-600 hover:to-purple-700 transition-all"
+      >
+        LOGGA IN
+      </.link>
+      <.link
+        :if={@current_user != nil}
+        navigate={~p"/profil"}
+        class="bg-accent text-white px-6 py-2 rounded-full font-medium hover:from-pink-600 hover:to-purple-700 transition-all"
+      >
+        Min sida
+      </.link>
+      <%= if @current_user do %>
+        <.live_component module={MalinWeb.NotificationsComponent}
+                         id="notifications"
+                         current_user={@current_user} />
+      <% end %>
     </div>
-  </div>
 
-  <main class="order-3 col-span-2 overflow-y-auto flex flex-col justify-stretch">
-    {@inner_content}
-  </main>
+    <!-- Mobile Menu Button -->
+    <div class="lg:hidden relative">
+      <button
+        id="mobile-menu-button"
+        phx-click={
+          JS.remove_class("-translate-y-full", to: "#mobile-menu-overlay")
+          |> JS.add_class("translate-y-0", to: "#mobile-menu-overlay")
+          |> JS.add_class("overflow-hidden", to: "body")
+        }
+      >
+        <div class="relative">
+          <.icon name="hero-bars-3" class="h-10 w-10 text-accent"/>
+        </div>
+      </button>
+    </div>
 
-  <footer class="order-5 col-span-2 lg:pb-[2px] bg-transparent border-t border-divider hidden h-[24px] px-4 lg:flex justify-center">
-    <div class="items-center justify-between text-xs text-grey w-full flex">
-      <div class="flex items-center gap-2">
-        <span>
-          &copy; 2024 Malin H Consulting AB
-        </span>
-        <.link
-          :if={@current_user != nil && @current_user.role == :admin}
-          navigate={~p"/admin"}
-          class="text-xs text-accent font-semibold flex items-center gap-1"
+    <!-- Mobile Menu Overlay -->
+    <div
+      id="mobile-menu-overlay"
+      class="fixed inset-0 bg-black z-50 transform -translate-y-full transition-transform duration-300 ease-in-out overflow-hidden min-h-screen"
+    >
+      <div class="absolute top-4 right-4">
+        <button
+          id="close-menu-button"
+          phx-click={
+            JS.remove_class("translate-y-0", to: "#mobile-menu-overlay")
+            |> JS.add_class("-translate-y-full", to: "#mobile-menu-overlay")
+            |> JS.remove_class("overflow-hidden", to: "body")
+          }
         >
-          <span>Admin</span>
-          <.icon name="hero-arrow-up-right" class="h-3 w-3" />
-        </.link>
+          <.icon name="hero-x-mark" class="h-10 w-10 text-accent" />
+        </button>
       </div>
+      <div class="flex flex-col items-center justify-center h-full text-2xl font-semibold space-y-8">
+        <.link
+          navigate={~p"/kontakta-mig"}
+          class="text-white font-medium hover:text-gray-300 transition-colors"
+          phx-click={
+            JS.remove_class("translate-y-0", to: "#mobile-menu-overlay")
+            |> JS.add_class("-translate-y-full", to: "#mobile-menu-overlay")
+            |> JS.remove_class("overflow-hidden", to: "body")
+          }
+        >
+          Kontakta mig
+        </.link>
+        <.link
+          navigate={~p"/fokus360"}
+          class="text-white font-medium hover:text-gray-300 transition-colors"
+          phx-click={
+            JS.remove_class("translate-y-0", to: "#mobile-menu-overlay")
+            |> JS.add_class("-translate-y-full", to: "#mobile-menu-overlay")
+            |> JS.remove_class("overflow-hidden", to: "body")
+          }
+        >
+          Fokus 360
+        </.link>
+        <.link
+          navigate={~p"/posts"}
+          class="text-white font-medium hover:text-gray-300 transition-colors"
+          phx-click={
+            JS.remove_class("translate-y-0", to: "#mobile-menu-overlay")
+            |> JS.add_class("-translate-y-full", to: "#mobile-menu-overlay")
+            |> JS.remove_class("overflow-hidden", to: "body")
+          }
+        >
+          Blog
+        </.link>
 
-      <div class="flex items-center gap-4 text-brand">
+        <!-- Mobile Login/Profile Logic -->
+        <.link
+          :if={@current_user == nil}
+          navigate={~p"/sign-in"}
+          class="mt-4"
+          phx-click={
+            JS.remove_class("translate-y-0", to: "#mobile-menu-overlay")
+            |> JS.add_class("-translate-y-full", to: "#mobile-menu-overlay")
+            |> JS.remove_class("overflow-hidden", to: "body")
+          }
+        >
+          <div class="bg-accent text-white px-6 py-2 rounded-full font-medium hover:from-pink-600 hover:to-purple-700 transition-all text-xl">
+            LOGGA IN
+          </div>
+        </.link>
+
+        <.link
+          :if={@current_user != nil}
+          navigate={~p"/profil"}
+          class="mt-4"
+          phx-click={
+            JS.remove_class("translate-y-0", to: "#mobile-menu-overlay")
+            |> JS.add_class("-translate-y-full", to: "#mobile-menu-overlay")
+            |> JS.remove_class("overflow-hidden", to: "body")
+          }
+        >
+          <div class="bg-accent text-white px-6 py-2 rounded-full font-medium hover:from-pink-600 hover:to-purple-700 transition-all text-xl">
+            Min sida
+          </div>
+        </.link>
+
+        <!-- Mobile Notifications (if user is logged in) -->
         <%= if @current_user do %>
-          <.link navigate={~p"/sign-out"}>Log out</.link>
-        <% else %>
-          <.link navigate={~p"/sign-in"}>Log In</.link>
+          <div class="mt-4">
+            <.live_component module={MalinWeb.NotificationsComponent}
+                             id="mobile-notifications"
+                             current_user={@current_user} />
+          </div>
         <% end %>
       </div>
     </div>
-  </footer>
+  </div>
+
+  <main class="order-3 col-span-2 overflow-y-auto flex flex-col justify-stretch h-[100dvh]">
+    {@inner_content}
+  </main>
 </div>

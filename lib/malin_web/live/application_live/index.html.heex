@@ -1,0 +1,60 @@
+<section class="min-h-screen bg-white py-20 flex items-center px-4 mt-48 mb-24">
+  <div class="max-w-6xl mx-auto">
+    <div class="max-w-3xl">
+      <h2 class="text-5xl md:text-6xl font-bold text-black mb-8">
+        Redo att ta <span class="text-accent">kontroll</span> över ditt företag?
+      </h2>
+
+      <p class="text-lg text-gray-700 leading-relaxed mb-12 max-w-2xl">
+        Börja din resa mot ett mer fokuserat och framgångsrikt företag. Fyll i formuläret nedan så hör vi av oss för att diskutera hur Fokus 360 kan hjälpa dig att bygga struktur och växa hållbart.
+      </p>
+
+      <.form :let={f} for={@form} phx-submit="submit" phx-change="validate" class="space-y-6">
+        <div>
+          <.input
+            field={f[:first_name]}
+            label="Förnamn"
+            type="text"
+            class="w-full px-4 py-3 border border-gray-300 rounded-sm focus:ring-2 focus:ring-accent focus:border-accent text-gray-900 resize-vertical"
+            required
+          />
+          <.input
+            field={f[:last_name]}
+            label="Efternamn"
+            type="text"
+            class="w-full px-4 py-3 border border-gray-300 rounded-sm focus:ring-2 focus:ring-accent focus:border-accent text-gray-900 resize-vertical"
+            required
+          />
+
+          <.input
+            label="E-postadress"
+            field={f[:email]}
+            type="email"
+            placeholder="din@epost.se"
+            class="w-full px-4 py-3 border border-gray-300 rounded-sm focus:ring-2 focus:ring-accent focus:border-accent text-gray-900"
+            required
+          />
+        </div>
+
+        <div>
+          <.input
+            label="Berätta om ditt företag och dina utmaningar"
+            field={f[:application_note]}
+            type="textarea"
+            rows="6"
+            placeholder="Beskriv kort din bransch, storlek på företaget och de största utmaningarna du står inför..."
+            class="w-full px-4 py-3 border border-gray-300 rounded-sm focus:ring-2 focus:ring-accent focus:border-accent text-gray-900 resize-vertical"
+            required
+          />
+        </div>
+
+        <button
+          type="submit"
+          class="bg-black text-white px-8 py-4 rounded-sm font-medium hover:bg-gray-800 transition-colors"
+        >
+          Skicka ansökan
+        </button>
+      </.form>
+    </div>
+  </div>
+</section>

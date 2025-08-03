@@ -13,11 +13,12 @@ defmodule MalinWeb.HomeLive.Index do
 
   def handle_params(_params, _uri, socket) do
     user = socket.assigns.current_user
-    posts = Posts.list_posts!(actor: user, page: [limit: 3]).results
+    posts = Posts.list_posts!(actor: user, page: [limit: 4]).results
+    testimonies = Malin.Testimonies.list_testimonies!(actor: socket.assigns.current_user)
 
     socket =
       socket
-      |> assign(posts: posts)
+      |> assign(posts: posts, testimonies: testimonies)
 
     {:noreply, socket}
   end

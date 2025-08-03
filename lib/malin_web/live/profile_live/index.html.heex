@@ -1,0 +1,151 @@
+<section class="min-h-screen bg-brand pt-24">
+  <div class="max-w-7xl mx-auto px-4 py-12">
+    <!-- Header -->
+    <div class="text-center mb-16 flex items-center justify-center flex-col">
+      <h1 class="text-4xl md:text-5xl font-bold text-black mb-6">
+        Min sida
+      </h1>
+      <p class="text-xl text-gray-700 max-w-3xl mx-auto mb-4">
+        Välj hur du vill komma igång - utforska mina gratisresurser eller skicka ett meddelande direkt
+      </p>
+      <div :if={@current_user.role == :admin} class="p-4">
+        <.link navigate={~p"/admin"} class="bg-blue-500 hover:bg-blue-600 text-white p-2 rounded ">
+      Växla till admin-läge
+      </.link>
+      </div>
+      <.link navigate={~p"/sign-out"} class="bg-red-500 hover:bg-red-600 text-white p-2 rounded ">
+      Logga ut
+      </.link>
+    </div>
+
+    <!-- Two-column layout -->
+    <div class="grid lg:grid-cols-2 gap-12 lg:gap-16">
+
+      <!-- Free Resources Column -->
+      <div class="bg-white rounded-xl p-8 shadow-lg">
+        <div class="flex items-center gap-4 mb-8">
+          <img src={~p"/images/guide_image.jpg"} class="w-16 h-16 rounded-lg object-cover flex-shrink-0" />
+          <h2 class="text-2xl font-semibold text-black">
+            Gratisresurser
+          </h2>
+        </div>
+
+        <p class="text-gray-700 mb-8">
+          Ta första steget redan idag med mina mest populära gratisresurser:
+        </p>
+
+        <div class="space-y-6">
+          <div class="flex items-start gap-4">
+            <.icon name="hero-document-check" class="h-8 w-8 mt-1 flex-shrink-0 text-accent" />
+            <div>
+              <a
+                href="https://malinhgg.myflodesk.com/kaos"
+                target="_blank"
+                class="font-semibold hover:underline text-black"
+              >
+                Från kaos till kontroll
+              </a>
+              <p class="text-gray-600 text-sm mt-1">
+                PDF-guide som hjälper dig ta kontroll över din tid.
+              </p>
+            </div>
+          </div>
+
+          <div class="flex items-start gap-4">
+            <.icon name="hero-sun" class="h-8 w-8 mt-1 flex-shrink-0 text-accent" />
+            <div>
+              <a
+                href="https://malinhgg.myflodesk.com/walktalk"
+                target="_blank"
+                class="font-semibold hover:underline text-black"
+              >
+                Promenadguide
+              </a>
+              <p class="text-gray-600 text-sm mt-1">
+                Reflekterande ljudguide som du kan ta med dig ut på en promenad.
+              </p>
+            </div>
+          </div>
+
+          <div class="flex items-start gap-4">
+            <.icon name="hero-bolt" class="h-8 w-8 mt-1 flex-shrink-0 text-accent" />
+            <div>
+              <a
+                href="https://malinhgg.myflodesk.com/energi"
+                target="_blank"
+                class="font-semibold hover:underline text-black"
+              >
+                Energikartläggning
+              </a>
+              <p class="text-gray-600 text-sm mt-1">
+                Ta reda på den ultimata arbetsdagen för din unika tid genom en mall för energikartläggning.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Contact Form Column -->
+      <div class="bg-white rounded-xl p-8 shadow-lg">
+        <div class="flex items-center gap-4 mb-8">
+          <.icon name="hero-chat-bubble-left-right" class="h-12 w-12 text-accent flex-shrink-0" />
+          <h2 class="text-2xl font-semibold text-black">
+            Skicka ett meddelande
+          </h2>
+        </div>
+
+        <p class="text-gray-700 mb-8">
+        Skicka ett meddelande så kontaktar jag dig så fort som möjligt!
+        </p>
+
+        <.form :let={f} for={@form} phx-submit="submit" phx-change="validate" class="space-y-6">
+          <div class="grid md:grid-cols-2 gap-4">
+            <.input
+              field={f[:first_name]}
+              label="Förnamn"
+              type="text"
+              class="w-full px-4 py-3 border border-gray-300 rounded-sm focus:ring-2 focus:ring-accent focus:border-accent text-gray-900"
+              required
+            />
+            <.input
+              field={f[:last_name]}
+              label="Efternamn"
+              type="text"
+              class="w-full px-4 py-3 border border-gray-300 rounded-sm focus:ring-2 focus:ring-accent focus:border-accent text-gray-900"
+              required
+            />
+          </div>
+
+          <.input
+            label="E-postadress"
+            field={f[:email]}
+            type="email"
+            placeholder="din@epost.se"
+            class="w-full px-4 py-3 border border-gray-300 rounded-sm focus:ring-2 focus:ring-accent focus:border-accent text-gray-900"
+            required
+          />
+
+          <div>
+            <label class="block text-sm font-medium text-gray-700 mb-2">Ditt meddelande</label>
+            <textarea
+              name="form[message]"
+              rows="4"
+              placeholder="Meddelande."
+              class="w-full px-4 py-3 border border-gray-300 rounded-sm focus:ring-2 focus:ring-accent focus:border-accent text-gray-900 resize-vertical"
+              required
+            ></textarea>
+          </div>
+
+
+
+          <button
+            type="submit"
+            class="w-full bg-black text-white px-8 py-4 rounded-sm font-medium hover:bg-gray-800 transition-colors"
+          >
+          Skicka ett meddelande
+          </button>
+        </.form>
+      </div>
+    </div>
+  </div>
+</section>

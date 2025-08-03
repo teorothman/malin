@@ -22,12 +22,37 @@ defmodule Malin.Accounts.User do
 
     attribute :role, :atom do
       allow_nil? false
-      constraints one_of: [:user, :admin]
-      default :user
-      writable? false
+      constraints one_of: [:user, :admin, :applicant]
+      default :applicant
       sortable? false
       public? false
     end
+
+    attribute :application_note, :string do
+      allow_nil? true
+      public? false
+    end
+
+    attribute :first_name, :string do
+      allow_nil? true
+      public? false
+    end
+
+    attribute :last_name, :string do
+      allow_nil? true
+      public? false
+    end
+
+    create_timestamp :inserted_at
+    update_timestamp :updated_at
+  end
+
+  calculations do
+    calculate :name, :string, expr(first_name <> " " <> last_name), public?: true, sortable?: true
+  end
+
+  relationships do
+    has_many :messages, Malin.Messages.Message
   end
 
   identities do
@@ -41,7 +66,7 @@ defmodule Malin.Accounts.User do
     end
 
     policy always() do
-      forbid_if always()
+      authorize_if always()
     end
   end
 
@@ -73,7 +98,7 @@ defmodule Malin.Accounts.User do
     end
 
     create :register do
-      accept [:email]
+      accept [:email, :application_note, :first_name, :last_name]
       upsert? true
       upsert_identity :unique_email
     end
@@ -81,7 +106,43 @@ defmodule Malin.Accounts.User do
     update :update do
       primary? true
       require_atomic? false
-      accept [:email]
+      accept [:email, :role]
+    end
+
+    read :list_for_admin do
+      description "List users with optional email search and role filtering for admin"
+
+      argument :search_email, :string do
+        allow_nil? true
+        description "Search users by email"
+      end
+
+      argument :filter_role, :atom do
+        allow_nil? true
+        constraints one_of: [:user, :admin, :applicant]
+        description "Filter users by role"
+      end
+
+      filter expr(
+               if is_nil(^arg(:search_email)) or ^arg(:search_email) == "" do
+                 true
+               else
+                 contains(email, ^arg(:search_email))
+               end and
+                 if is_nil(^arg(:filter_role)) do
+                   true
+                 else
+                   role == ^arg(:filter_role)
+                 end
+             )
+
+      prepare build(load: [:name, :messages], sort: [inserted_at: :desc])
+    end
+
+    read :list_this_week do
+      filter expr(inserted_at >= ago(7, :day))
+
+      prepare build(load: :name, sort: [inserted_at: :desc])
     end
 
     read :get_by_subject do
@@ -89,6 +150,7 @@ defmodule Malin.Accounts.User do
       argument :subject, :string, allow_nil?: false
       get? true
       prepare AshAuthentication.Preparations.FilterBySubject
+      prepare build(sort: [inserted_at: :desc])
     end
 
     read :get_by_email do

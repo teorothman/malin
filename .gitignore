@@ -35,3 +35,7 @@ malin-*.tar
 npm-debug.log
 /assets/node_modules/
 
+*.duckdb
+*.duckdb.*
+
+.env

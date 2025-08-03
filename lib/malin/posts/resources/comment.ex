@@ -13,6 +13,8 @@ defmodule Malin.Posts.Comment do
   attributes do
     uuid_primary_key :id, writable?: true
     attribute :text, :string, allow_nil?: false
+
+    timestamps()
   end
 
   relationships do

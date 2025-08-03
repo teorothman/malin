@@ -1,0 +1,237 @@
+<!-- Analytics Dashboard -->
+<section class="min-h-screen bg-white py-12 px-4 mt-24">
+  <div class="max-w-6xl mx-auto">
+    <!-- Dashboard Title -->
+    <div class="mb-12">
+      <h2 class="text-4xl md:text-5xl font-bold text-black mb-4">
+        Analytics <span class="text-accent">översikt</span>
+      </h2>
+      <p class="text-lg text-gray-700 leading-relaxed max-w-2xl">
+        Djupgående inblick i hur besökare interagerar med din webbplats. Spåra trender och förstå dina användare bättre.
+      </p>
+    </div>
+
+    <!-- Date Range Selector -->
+    <div class="mb-8 flex flex-col sm:flex-row gap-4 items-start sm:items-center justify-between">
+      <div class="flex items-center gap-4">
+        <label for="date_range" class="text-sm font-medium text-gray-700">Tidsperiod:</label>
+        <select
+          id="date_range"
+          phx-change="change_date_range"
+          name="date_range"
+          class="border border-gray-300 rounded-sm px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-accent"
+        >
+          <option value="7">Senaste 7 dagarna</option>
+          <option value="30" selected>Senaste 30 dagarna</option>
+          <option value="90">Senaste 90 dagarna</option>
+          <option value="365">Senaste året</option>
+        </select>
+      </div>
+
+      <button
+        phx-click="refresh_data"
+        class="bg-black text-white px-6 py-2 rounded-sm font-medium hover:bg-gray-800 transition-colors flex items-center gap-2"
+      >
+        <.icon name="hero-arrow-path" class="w-4 h-4" />
+        Uppdatera
+      </button>
+    </div>
+
+    <!-- Loading State -->
+    <%= if assigns[:loading] == true do %>
+      <div class="flex items-center justify-center py-12">
+        <div class="animate-spin rounded-full h-12 w-12 border-b-2 border-accent"></div>
+      </div>
+    <% end %>
+
+    <!-- Main Stats Grid -->
+    <%= if assigns[:loading] != true do %>
+      <div class="grid grid-cols-1 md:grid-cols-4 gap-6 mb-12">
+        <!-- Total Views -->
+        <div class="bg-gradient-to-br from-blue-50 to-blue-100 p-6 rounded-sm border-l-4 border-accent">
+          <div class="flex items-center justify-between mb-4">
+            <h3 class="text-sm font-medium text-gray-700 uppercase tracking-wide">Totala visningar</h3>
+            <div class="w-8 h-8 bg-accent/20 rounded-sm flex items-center justify-center">
+              <.icon name="hero-eye" class="w-4 h-4 text-accent" />
+            </div>
+          </div>
+          <div class="text-2xl font-bold text-black mb-1"><%= assigns[:total_views] || 0 %></div>
+          <p class="text-xs text-gray-600">Senaste <%= assigns[:date_range] || 30 %> dagarna</p>
+        </div>
+
+        <!-- Unique Pages -->
+        <div class="bg-gradient-to-br from-green-50 to-green-100 p-6 rounded-sm border-l-4 border-green-500">
+          <div class="flex items-center justify-between mb-4">
+            <h3 class="text-sm font-medium text-gray-700 uppercase tracking-wide">Unika sidor</h3>
+            <div class="w-8 h-8 bg-green-500/20 rounded-sm flex items-center justify-center">
+              <.icon name="hero-document-text" class="w-4 h-4 text-green-500" />
+            </div>
+          </div>
+          <div class="text-2xl font-bold text-black mb-1"><%= assigns[:unique_paths] || 0 %></div>
+          <p class="text-xs text-gray-600">Olika sidor besökta</p>
+        </div>
+
+        <!-- Average Daily Views -->
+        <div class="bg-gradient-to-br from-purple-50 to-purple-100 p-6 rounded-sm border-l-4 border-purple-500">
+          <div class="flex items-center justify-between mb-4">
+            <h3 class="text-sm font-medium text-gray-700 uppercase tracking-wide">Dagligt snitt</h3>
+            <div class="w-8 h-8 bg-purple-500/20 rounded-sm flex items-center justify-center">
+              <.icon name="hero-chart-bar" class="w-4 h-4 text-purple-500" />
+            </div>
+          </div>
+          <div class="text-2xl font-bold text-black mb-1">
+            <%= if (assigns[:date_range] || 30) > 0 do %>
+              <%= Float.round((assigns[:total_views] || 0) / (assigns[:date_range] || 30), 1) %>
+            <% else %>
+              0
+            <% end %>
+          </div>
+          <p class="text-xs text-gray-600">Visningar per dag</p>
+        </div>
+
+        <!-- Most Popular Page -->
+        <div class="bg-gradient-to-br from-orange-50 to-orange-100 p-6 rounded-sm border-l-4 border-orange-500">
+          <div class="flex items-center justify-between mb-4">
+            <h3 class="text-sm font-medium text-gray-700 uppercase tracking-wide">Populäraste sida</h3>
+            <div class="w-8 h-8 bg-orange-500/20 rounded-sm flex items-center justify-center">
+              <.icon name="hero-fire" class="w-4 h-4 text-orange-500" />
+            </div>
+          </div>
+          <div class="text-lg font-bold text-black mb-1 truncate">
+            <%= if is_list(assigns[:top_pages]) and length(assigns[:top_pages]) > 0 do %>
+              <%= List.first(assigns[:top_pages]).path %>
+            <% else %>
+              Ingen data
+            <% end %>
+          </div>
+          <p class="text-xs text-gray-600">
+            <%= if is_list(assigns[:top_pages]) and length(assigns[:top_pages]) > 0 do %>
+              <%= List.first(assigns[:top_pages]).count %> visningar
+            <% end %>
+          </p>
+        </div>
+      </div>
+
+      <!-- Charts Section -->
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 mb-12">
+        <!-- Daily Views Chart -->
+        <div class="bg-white p-6 rounded-sm shadow-sm border">
+          <h3 class="text-xl font-bold text-black mb-6">Dagliga visningar</h3>
+          <div class="h-64 relative">
+            <%= if is_list(assigns[:daily_views]) and length(assigns[:daily_views]) > 0 do %>
+              <div class="flex items-end justify-between h-full space-x-1">
+                <%= for view_data <- assigns[:daily_views] do %>
+                  <div class="flex-1 flex flex-col items-center group">
+                    <div
+                      class="bg-accent hover:bg-blue-600 transition-colors w-full rounded-t-sm relative cursor-pointer"
+                      style={"height: #{if length(assigns[:daily_views]) > 0, do: (view_data.views / Enum.max_by(assigns[:daily_views], & &1.views).views * 100), else: 0}%"}
+                      title={"#{view_data.date}: #{view_data.views} visningar"}
+                    >
+                    </div>
+                    <span class="text-xs text-gray-500 mt-2 transform -rotate-45 origin-left whitespace-nowrap">
+                      <%= String.slice(view_data.date, -5, 5) %>
+                    </span>
+                  </div>
+                <% end %>
+              </div>
+            <% else %>
+              <div class="flex items-center justify-center h-full text-gray-500">
+                <div class="text-center">
+                  <.icon name="hero-chart-bar" class="w-12 h-12 mx-auto mb-4 opacity-50" />
+                  <p>Ingen data tillgänglig</p>
+                </div>
+              </div>
+            <% end %>
+          </div>
+        </div>
+
+        <!-- Top Pages -->
+        <div class="bg-white p-6 rounded-sm shadow-sm border">
+          <h3 class="text-xl font-bold text-black mb-6">Populäraste sidor</h3>
+          <div class="space-y-4">
+            <%= if is_list(assigns[:top_pages]) and length(assigns[:top_pages]) > 0 do %>
+              <%= for {page, index} <- Enum.with_index(assigns[:top_pages]) do %>
+                <div class="flex items-center justify-between p-3 bg-gray-50 rounded-sm hover:bg-gray-100 transition-colors">
+                  <div class="flex items-center gap-3">
+                    <div class="w-8 h-8 bg-accent/10 rounded-sm flex items-center justify-center text-accent font-bold text-sm">
+                      <%= index + 1 %>
+                    </div>
+                    <div>
+                      <div class="font-medium text-black truncate max-w-xs"><%= page.path %></div>
+                      <div class="text-sm text-gray-500"><%= page.count %> visningar</div>
+                    </div>
+                  </div>
+                  <div class="text-right">
+                    <div class="w-20 bg-gray-200 rounded-full h-2">
+                      <div
+                        class="bg-accent h-2 rounded-full"
+                        style={"width: #{if is_list(assigns[:top_pages]) and length(assigns[:top_pages]) > 0, do: (page.count / List.first(assigns[:top_pages]).count * 100), else: 0}%"}
+                      ></div>
+                    </div>
+                  </div>
+                </div>
+              <% end %>
+            <% else %>
+              <div class="text-center py-8 text-gray-500">
+                <.icon name="hero-document-text" class="w-12 h-12 mx-auto mb-4 opacity-50" />
+                <p>Inga sidvisningar ännu</p>
+              </div>
+            <% end %>
+          </div>
+        </div>
+      </div>
+
+      <!-- Quick Insights -->
+      <div class="bg-gray-50 p-8 rounded-sm">
+        <h3 class="text-2xl font-bold text-black mb-6">Snabba insikter</h3>
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+          <div class="bg-white p-4 rounded-sm border">
+            <div class="flex items-center gap-3 mb-2">
+              <.icon name="hero-clock" class="w-5 h-5 text-accent" />
+              <span class="font-medium text-black">Mest aktiv dag</span>
+            </div>
+            <p class="text-sm text-gray-600">
+              <%= if is_list(assigns[:daily_views]) and length(assigns[:daily_views]) > 0 do %>
+                <%= Enum.max_by(assigns[:daily_views], & &1.views).date %>
+                (<%= Enum.max_by(assigns[:daily_views], & &1.views).views %> visningar)
+              <% else %>
+                Ingen data tillgänglig
+              <% end %>
+            </p>
+          </div>
+
+          <div class="bg-white p-4 rounded-sm border">
+            <div class="flex items-center gap-3 mb-2">
+              <.icon name="hero-globe-alt" class="w-5 h-5 text-green-500" />
+              <span class="font-medium text-black">Status</span>
+            </div>
+            <p class="text-sm text-gray-600">
+              Analytics fungerar!
+            </p>
+          </div>
+
+          <div class="bg-white p-4 rounded-sm border">
+            <div class="flex items-center gap-3 mb-2">
+              <.icon name="hero-chart-bar" class="w-5 h-5 text-purple-500" />
+              <span class="font-medium text-black">Totalt</span>
+            </div>
+            <p class="text-sm text-gray-600">
+              <%= assigns[:total_views] || 0 %> sidvisningar totalt
+            </p>
+          </div>
+        </div>
+      </div>
+    <% end %>
+
+    <!-- Back to Admin -->
+    <div class="mt-12 text-center">
+      <.link
+        navigate={~p"/admin"}
+        class="inline-flex items-center gap-2 bg-gray-200 text-black px-6 py-3 rounded-sm font-medium hover:bg-gray-300 transition-colors"
+      >
+        <.icon name="hero-arrow-left" class="w-4 h-4" />
+        Tillbaka till admin
+      </.link>
+    </div>
+  </div>
+</section>

@@ -219,8 +219,7 @@ defmodule MalinWeb.CoreComponents do
 
       <.button>Send!</.button>
       <.button phx-click="go" class="ml-2">Send!</.button>
-  """
-  @doc """
+
   Renders a button.
 
   ## Examples

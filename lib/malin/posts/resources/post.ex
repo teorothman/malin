@@ -18,6 +18,7 @@ defmodule Malin.Posts.Post do
     attribute :intro, :string, allow_nil?: false, public?: true
     attribute :text, :string, allow_nil?: false, public?: true
     attribute :publish_at, :datetime, allow_nil?: true, public?: true
+    attribute :image_url, :string, allow_nil?: true, public?: true
 
     attribute :state, :atom do
       allow_nil? false
@@ -87,7 +88,7 @@ defmodule Malin.Posts.Post do
 
     create :create do
       primary? true
-      accept [:title, :intro, :text, :publish_at, :state, :category_id]
+      accept [:title, :intro, :text, :publish_at, :state, :category_id, :image_url]
 
       argument :tags, {:array, :map}, allow_nil?: true
 
@@ -98,10 +99,14 @@ defmodule Malin.Posts.Post do
 
     update :update do
       require_atomic? false
-      accept [:title, :intro, :text, :publish_at, :state, :category_id]
+      accept [:title, :intro, :text, :publish_at, :state, :category_id, :image_url]
 
       argument :tags, {:array, :map}, allow_nil?: true
       change manage_relationship(:tags, type: :append_and_remove, on_no_match: :create)
     end
+  end
+
+  changes do
+    change Malin.Accounts.Changes.SendNewPostNotifications, on: [:create]
   end
 end

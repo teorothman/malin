@@ -1,11 +1,142 @@
-<div class="flex gap-2 justify-center mt-4 ">
-  <.link navigate={~p"/admin/post/new"}>
-    <div class="rounded-lg px-2 py-4 bg-brand">Create a post</div>
-  </.link>
-  <.link navigate={~p"/admin/posts"}>
-    <div class="rounded-lg px-2 py-4 bg-brand">Handle posts</div>
-  </.link>
-  <.link navigate={~p"/admin/users"}>
-    <div class="rounded-lg px-2 py-4 bg-brand">Handle users</div>
-  </.link>
-</div>
+<!-- Main Dashboard -->
+<section class="min-h-screen bg-white py-12 px-4 mt-24">
+  <div class="max-w-6xl mx-auto">
+    <!-- Dashboard Title -->
+    <div class="mb-12">
+      <h2 class="text-4xl md:text-5xl font-bold text-black mb-4">
+        Översikt av ditt <span class="text-accent">system</span>
+      </h2>
+      <p class="text-lg text-gray-700 leading-relaxed max-w-2xl">
+        Håll koll på dina användare och innehåll. Här får du en tydlig bild av aktiviteten i ditt system.
+      </p>
+    </div>
+
+<!-- Stats Grid -->
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-8 mb-12">
+      <!-- Total News -->
+      <div class="bg-gray-50 p-8 rounded-sm border-l-4 border-accent">
+        <div class="flex items-center justify-between mb-4">
+          <h3 class="text-lg font-medium text-gray-900">Antal nyheter</h3>
+          <div class="w-10 h-10 bg-accent/10 rounded-sm flex items-center justify-center">
+            <.icon name="hero-newspaper" class="w-5 h-5 text-accent" />
+          </div>
+        </div>
+        <div class="text-3xl font-bold text-black mb-2">{@total_posts}</div>
+        <p class="text-sm text-gray-600">Totalt antal publicerade nyheter</p>
+      </div>
+
+<!-- Total Users -->
+      <div class="bg-gray-50 p-8 rounded-sm border-l-4 border-black">
+        <div class="flex items-center justify-between mb-4">
+          <h3 class="text-lg font-medium text-gray-900">Antal användare</h3>
+          <div class="w-10 h-10 bg-black/10 rounded-sm flex items-center justify-center">
+            <.icon name="hero-users" class="w-5 h-5 text-black" />
+          </div>
+        </div>
+        <div class="text-3xl font-bold text-black mb-2">{@total_users}</div>
+        <p class="text-sm text-gray-600">Registrerade användare totalt</p>
+      </div>
+
+<!-- New Users This Week -->
+      <div class="bg-gray-50 p-8 rounded-sm border-l-4 border-green-500">
+        <div class="flex items-center justify-between mb-4">
+          <h3 class="text-lg font-medium text-gray-900">Nya användare</h3>
+          <div class="w-10 h-10 bg-green-500/10 rounded-sm flex items-center justify-center">
+            <.icon name="hero-user-plus" class="w-5 h-5 text-green-500" />
+          </div>
+        </div>
+        <div class="text-3xl font-bold text-black mb-2">{@new_users_this_week}</div>
+        <p class="text-sm text-gray-600">Nya användare denna vecka</p>
+      </div>
+
+      <div class="bg-gray-50 p-8 rounded-sm border-l-4 border-brand">
+        <div class="flex items-center justify-between mb-4">
+          <h3 class="text-lg font-medium text-gray-900">Olästa meddelanden</h3>
+          <div class="w-10 h-10 bg-brand rounded-sm flex items-center justify-center">
+            <.icon name="hero-chat-bubble-left-ellipsis" class="w-5 h-5 text-white" />
+          </div>
+        </div>
+        <div class="text-3xl font-bold text-black mb-2">{@total_unread}</div>
+        <p class="text-sm text-gray-600">Olösta meddelanden</p>
+      </div>
+
+      <div class="bg-gray-50 p-8 rounded-sm border-l-4 border-brand">
+        <div class="flex items-center justify-between mb-4">
+          <h3 class="text-lg font-medium text-gray-900">Antal meddelanden</h3>
+          <div class="w-10 h-10 bg-brand rounded-sm flex items-center justify-center">
+            <.icon name="hero-chat-bubble-left-ellipsis" class="w-5 h-5 text-white" />
+          </div>
+        </div>
+        <div class="text-3xl font-bold text-black mb-2">{@total_messages}</div>
+        <p class="text-sm text-gray-600">Antal meddelanden</p>
+      </div>
+    </div>
+
+<!-- Action Buttons -->
+    <div class="flex flex-col sm:flex-row gap-4">
+      <button
+        phx-click="refresh_data"
+        class="bg-black text-white px-8 py-4 rounded-sm font-medium hover:bg-gray-800 transition-colors"
+      >
+        Uppdatera data
+      </button>
+      <.link
+        navigate={~p"/admin/users"}
+        class="bg-accent text-white px-8 py-4 rounded-sm font-medium hover:bg-blue-600 transition-colors text-center"
+      >
+        Hantera användare
+      </.link>
+      <.link
+        navigate={~p"/admin/posts"}
+        class="bg-gray-200 text-black px-8 py-4 rounded-sm font-medium hover:bg-gray-300 transition-colors text-center"
+      >
+        Hantera nyheter
+      </.link>
+      <.link
+        navigate={~p"/admin/messages"}
+        class="bg-gray-200 text-black px-8 py-4 rounded-sm font-medium hover:bg-gray-300 transition-colors text-center"
+      >
+        Meddelanden
+      </.link>
+    </div>
+
+<!-- Quick Actions -->
+    <div class="mt-16 bg-gray-50 p-8 rounded-sm">
+      <h3 class="text-2xl font-bold text-black mb-6">Snabbåtgärder</h3>
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
+        <.link
+          navigate={~p"/admin/post/new"}
+          class="text-left p-4 bg-white rounded-sm hover:bg-gray-50 transition-colors border block"
+        >
+          <div class="text-accent mb-2">
+            <.icon name="hero-plus" class="w-6 h-6" />
+          </div>
+          <div class="font-medium text-black">Skapa nyhet</div>
+          <div class="text-sm text-gray-600">Lägg till ny artikel</div>
+        </.link>
+
+        <.link
+          navigate={~p"/admin/users"}
+          class="text-left p-4 bg-white rounded-sm hover:bg-gray-50 transition-colors border block"
+        >
+          <div class="text-accent mb-2">
+            <.icon name="hero-user-group" class="w-6 h-6" />
+          </div>
+          <div class="font-medium text-black">Alla användare</div>
+          <div class="text-sm text-gray-600">Se användarlista</div>
+        </.link>
+
+        <.link
+          navigate={~p"/admin/analytics"}
+          class="text-left p-4 bg-white rounded-sm hover:bg-gray-50 transition-colors border block"
+        >
+          <div class="text-accent mb-2">
+            <.icon name="hero-chart-bar" class="w-6 h-6" />
+          </div>
+          <div class="font-medium text-black">Analytics</div>
+          <div class="text-sm text-gray-600">Kommer snart!</div>
+        </.link>
+      </div>
+    </div>
+  </div>
+</section>
