@@ -1,12 +1,95 @@
-<div class="flex flex-col items-center space-y-6 lg:space-y-12 mb-12">
-  <div class="w-full bg-cover bg-center bg-neutral-800 aspect-news-card "></div>
-  <div class="prose p-3 lg:p-0 w-full max-w-4xl flex flex-col space-y-2 items-start ">
-    <.link patch={~p"/"} class="text-accent text-sm -mt-4 flex items-center gap-1">
-      <.icon name="hero-arrow-left" class="w-4 h-4" /> Tillbaka
-    </.link>
+<div class="w-full pt-20">
+  <section class="min-h-screen bg-white py-20 flex items-center px-4">
+    <div class="max-w-6xl mx-auto">
+      <div class="max-w-4xl">
+        <h1 class="text-5xl md:text-6xl font-bold text-black mb-12">
+          Hej, det är jag som är <span class="text-accent">Malin</span>.
+        </h1>
 
-    <h1 class="text-2xl lg:text-4xl">Malin Hägg</h1>
-    <span class="text-zinc-500"></span>
-    <p class="text-lg text-black/70 pt-4">Text om Malin Hägg</p>
-  </div>
+        <div class="space-y-6 text-lg text-gray-700 leading-relaxed">
+          <p>
+            I mitt företag hjälper jag frilansare, konsulter och andra egenföretagare att gå från stressade soloprenörer till strategiska företagsledare.
+          </p>
+
+          <p>
+            Min egen resa hit har inte varit spikrak.
+          </p>
+
+          <p>
+            Jag började min karriär inom kommunikation och marknadsföring, och har arbetat både som anställd och konsult med såväl små familjeföretag som stora internationella koncerner.
+          </p>
+
+          <p>
+            Under mer än 15 år har jag arbetat med kommunikation, projektledning, affärsutveckling och ledarskap, både operativt och strategiskt. Jag har erfarenhet från roller som marknadsansvarig, kommunikatör och projektledare, och har bland annat byggt upp digitala marknadsstrategier, ansvarat för stora event, lett workshops och drivit komplexa projekt i Sverige och internationellt.
+          </p>
+
+          <p>
+            När jag 2017 startade mitt eget företag jobbade jag under flera år som frilansande kommunikationskonsult med uppdrag inom copywriting, contentproduktion, grafisk formgivning, sociala medier och strategisk kommunikation.
+          </p>
+
+          <p>
+            Samtidigt var jag precis som många av mina nuvarande kunder: jag jobbade jämt, var aldrig ledig på riktigt och företaget gick runt men inte framåt. Efter många år i högt tempo och ständig prestation blev jag utmattad. Under pandemin fick jag tid att stanna upp och tänka om. Jag insåg att friheten som egenföretagare kräver något annat än frihet i kalendern: den kräver aktiva val, struktur och respekt för min egen tid. Jag började bygga en ny typ av företag och ett nytt sätt att arbeta.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="min-h-screen py-20 bg-brand">
+    <div class="flex flex-col md:flex-row lg:flex-row items-center">
+      <div class="md:w-1/2 p-8">
+        <img
+          src="/images/about_image.jpg"
+          class="w-full h-auto object-cover rounded-xl max-h-[600px]"
+          alt="Malin"
+        />
+      </div>
+      <div class="flex flex-col justify-center gap-8 px-10 lg:px-20 md:w-1/2">
+        <h2 class="text-3xl md:text-4xl font-bold text-black">
+          Idag hjälper jag andra att göra samma resa.
+        </h2>
+        <div class="space-y-6 text-lg leading-relaxed">
+          <p>
+            Genom coaching, program och workshops stöttar jag erfarna egenföretagare som vill sluta driva sitt företag på andras villkor och istället ta plats som ledare i sitt eget bolag. Tillsammans skapar vi hållbara arbetsvanor, en tydlig struktur och strategisk riktning så att du både kan leverera till dina kunder och bygga det företag du faktiskt drömmer om.
+          </p>
+          <p>
+            För mig är det viktigt att driva ett värdegrundsbaserat företag där jag vågar stå för det jag tror på. Parallellt med mitt företag är jag verksamhetschef i föreningen Bara Vanlig, som skapar rörelseglädje för personer med funktionsnedsättning. Jag är också ordförande i Arsenal Sweden, Sveriges officiella supporterförening för Arsenal FC, med över 8 000 medlemmar.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="min-h-screen bg-white py-20 flex items-center px-4">
+    <div class="max-w-6xl mx-auto">
+      <div class="max-w-4xl">
+        <div class="space-y-6 text-lg text-gray-700 leading-relaxed">
+          <p>
+            Genom mina engagemang har jag lärt mig att våga vara i obekväma rum, stå upp mot orättvisor och leda med integritet, erfarenheter som också präglar mitt arbete i företaget. Mitt engagemang är en naturlig förlängning av min vilja att bidra till ett mer inkluderande samhälle där alla får ta plats, oavsett förutsättningar.
+          </p>
+
+          <p>
+            Jag har bott i Edinburgh, London och Brighton, erfarenheter som lärt mig att våga tänka större, följa mina drömmar och bygga livet på mina egna villkor. Det är precis det jag vill hjälpa dig att göra i ditt företagande.
+          </p>
+        </div>
+
+        <div class="mt-12">
+          <.link
+            navigate={~p"/fokus360"}
+            class="border-2 border-black text-black px-8 py-4 rounded-sm font-medium hover:bg-black hover:text-white transition-all duration-300 inline-block"
+          >
+            Läs mer om hur vi kan jobba tillsammans
+          </.link>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div id="fd-form-67e7e2531b159ac3de2ab264"></div>
+  <script>
+    window.fd('form', {
+      formId: '67e7e2531b159ac3de2ab264',
+      containerEl: '#fd-form-67e7e2531b159ac3de2ab264'
+    });
+  </script>
 </div>

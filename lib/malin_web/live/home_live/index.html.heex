@@ -7,7 +7,7 @@
     />
     <div class="relative z-10 flex flex-col justify-center items-center h-full bg-black/20">
       <h1 class="text-white text-3xl md:text-6xl font-bold text-center max-w-4xl px-4">
-        Struktur och planering som ger dig frihet <span class="italic">och</span> resultat
+      Mer flow. Mindre motstånd.
       </h1>
 
       <div class="flex gap-4 mt-8">
@@ -27,19 +27,22 @@
 
   <section class="min-h-screen bg-white py-20 flex items-center px-4">
     <div class="max-w-6xl mx-auto">
-      <div class="max-w-3xl">
+      <div class="flex flex-col gap-4 max-w-3xl">
         <h2 class="text-5xl md:text-6xl font-bold text-black mb-8">
-          Går ditt företag runt men inte <span class="text-accent">framåt?</span>
+        Upplever du att du står och stampar när alla andra rör sig <span class="text-accent">framåt?</span>
         </h2>
 
-        <p class="text-lg text-gray-700 leading-relaxed mb-12 max-w-2xl">
+        <div class="flex flex-col gap-2">
+          <p class="text-lg text-gray-700 leading-relaxed mb-12 max-w-2xl">
           Du har kunder och du levererar men du har aldrig tid att lyfta blicken. Kalendern med färgglada block känns som ett fängelse och du vet inte hur du ska ha tid eller utrymme till att växa ditt företag.
-          Fokus <span class="text-accent">360</span>
-          hjälper dig att ta kontroll över ditt företag. Du bygger en vardag där du har tid, fokus och struktur för att utveckla ditt företag och för att må bra längs vägen.
-        </p>
+          </p>
+          <p>
+          Föreställ dig istället att du tar beslut med självklarhet och att ditt företag känns enkelt och roligt att driva. Det är där jag kommer in i bilden, jag hjälper dig att skapa en business anpassad efter livet du vill leva.
+          </p>
+        </div>
 
         <.link navigate={~p"/fokus360"}>
-          <button class="bg-black text-white px-8 py-4 rounded-sm font-medium hover:bg-gray-800 transition-colors">
+          <button class="bg-black text-white px-8 py-4 rounded-sm font-medium hover:bg-gray-800 transition-colors mt-8">
             Läs mer om Fokus 360
           </button>
         </.link>
@@ -52,10 +55,14 @@
       <div class="flex flex-col items-center justify-center gap-8 px-10">
         <h1 class="text-3xl font-semibold">OM MIG</h1>
         <p>
-          Jag hjälper frilansare och konsulter som vill ta sitt företag till nästa nivå genom att jobba smartare – inte mer. Med min bakgrund inom kommunikation och verksamhetsutveckling i kombination med min expertis inom time management, struktur och självledarskap, hjälper jag egenföretagare att skapa en hållbar vardag och ett företag som utvecklas.
-          <br /><br />
-          Resultatet? De vågar ta betalt, de får utrymme att tänka strategiskt och de bygger företag som de faktiskt vill leva med – länge.
+        Jag hjälper frilansare och konsulter som vill ta sitt företag till nästa nivå genom att jobba smartare, inte mer. Med min bakgrund inom kommunikation och verksamhetsutveckling i kombination med min expertis inom time management, struktur och självledarskap, hjälper jag egenföretagare att skapa en hållbar vardag och ett företag som hela tiden utvecklas.
         </p>
+        <.link
+          navigate={~p"/about"}
+          class="border-2 border-black text-black px-8 py-4 rounded-sm font-medium hover:bg-black hover:text-white transition-all duration-300"
+        >
+          Läs mer om mig
+        </.link>
       </div>
       <img src={~p"/images/about_image.jpg"} class="max-h-[600px] object-cover rounded-xl pt-8" />
     </div>
@@ -82,21 +89,73 @@
 
         <div class="bg-white border-2 border-accent rounded-lg p-8 min-h-[200px] flex items-center justify-center">
           <p class="text-lg font-semibold text-black text-center leading-relaxed">
-            Du vet att du borde jobba smartare och mer strategiskt, men du har ingen aning om hur du ska få loss tiden.
+          Du vet vilka mål du vill nå men har svårt att se hur vägen dit ser ut.
           </p>
         </div>
       </div>
 
       <h2 class="text-4xl md:text-5xl font-bold text-black mb-16">
-        Då är Fokus <span class="text-accent">360</span> för dig
+        Då borde <span class="text-accent">vi</span> jobba tillsammans.
       </h2>
+    </div>
+  </section>
 
+  <section class="min-h-screen py-16 px-4 sm:px-6 lg:px-8 flex items-center bg-white">
+
+  <div class="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-5xl mx-auto">
+    <div class="rounded-lg p-8 shadow-sm border-2 border-accent">
+      <h3 class="text-2xl font-bold text-black mb-4">Fokus 360</h3>
+      <p class="text-gray-700 leading-relaxed mb-6">
+        Ett 6 veckor långt program med fokus på hur du skapar det optimala företaget för dig och livet du vill leva. Vi jobbar tillsammans utifrån just din situation, dina mål och dina styrkor. Inget fluff, bara verklig förändring byggd på dina förutsättningar.
+      </p>
       <.link
         navigate={~p"/fokus360"}
-        class="border-2 border-black text-black px-8 py-4 rounded-sm font-medium hover:bg-black hover:text-white transition-all duration-300 inline-block"
+        class="border-2 border-black text-black px-6 py-3 rounded-sm font-medium hover:bg-black hover:text-white transition-all duration-300 inline-block"
       >
-        Mer om Fokus 360
+        Läs mer om Fokus 360
       </.link>
+    </div>
+
+
+
+    <div class="rounded-lg p-8 shadow-sm border-2 border-accent">
+      <h3 class="text-2xl font-bold text-black mb-4">Flowmakers</h3>
+      <p class="text-gray-700 leading-relaxed mb-6">
+        16 veckor till klarhet i vilka dina styrkor är och hur du paketerar dem för att attrahera dina drömkunder. Om fyra månader har du en ny riktning för dig själv och ditt företag så att du kan skapa den vardagen du drömmer om samtidigt som du har en business du älskar att driva.
+      </p>
+      <.link
+        navigate={~p"/flowmakers"}
+        class="border-2 border-black text-black px-6 py-3 rounded-sm font-medium hover:bg-black hover:text-white transition-all duration-300 inline-block"
+      >
+        Läs mer om Flowmakers
+      </.link>
+    </div>
+  </div>
+</section>
+  <section class="min-h-screen py-16 px-4 sm:px-6 lg:px-8 flex items-center bg-brand">
+    <div class="max-w-7xl mx-auto">
+      <h1 class="text-2xl md:text-4xl font-bold text-black mb-8">
+        Här är några röster från tidigare kunder
+      </h1>
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+        <div :for={testimony <- @testimonies} class="group">
+          <div class="bg-white border border-gray-200 rounded-xl p-8 shadow-sm hover:shadow-lg transition-shadow duration-300 h-full flex flex-col">
+            <div class="flex-grow">
+              <h3 class="text-xl font-bold mb-4 leading-tight">
+                {testimony.title}
+              </h3>
+              <blockquote class="text-gray-700 text-base leading-relaxed mb-6 italic">
+                "{testimony.content}"
+              </blockquote>
+            </div>
+            <footer class="mt-auto pt-4 border-t border-gray-100">
+              <cite class="text-sm font-medium text-gray-900 not-italic">
+                — {testimony.author}
+              </cite>
+            </footer>
+          </div>
+        </div>
+      </div>
     </div>
   </section>
 
@@ -104,11 +163,18 @@
     <div class="flex flex-col md:flex-row lg:flex-row">
       <div class="flex flex-col items-center justify-center gap-8 px-10">
         <p>
-          Jag vet hur det är. Jag har själv gjort resan från stressad karriärist till frilansare, bara för att inse att jakten på “frihet” blev en ny sorts stress. När pandemin tvingade mig till en paus insåg jag plötsligt: jag hade byggt ett liv där mitt företag styrde mig, inte tvärt om.
-          <br /><br /> Det blev vändningen. <br /><br />
-          Idag driver jag ett företag och har en vardag som är hållbar för mig. Jag jobbar varifrån jag vill, har tydliga gränser kring mitt företagande, tar rätt betalt och har skapat det utrymme jag behöver för att både utveckla mig själv och mitt företag.
+        För mig finns det en enkel anledning till varför jag gör det jag gör idag: jag har varit där du är nu. När jag startade mitt företag gjorde jag det som konsult som sålde timmar. Det tog inte lång tid innan jag skapat mig en vardag som kändes precis lika inrutad som en anställning. Det gick bra; jag hade återkommande kunder och fakturerade för omkring 100 000 kr i månaden, men jag hade helt tappat bort friheten och flexibiliteten som jag drömt om
+           <br /><br />
+          Idag driver jag ett företag och har en vardag som är hållbar för mig. Jag jobbar varifrån jag vill, har tydliga gränser kring mitt företagande, tar rätt betalt utan att sälja enskilda timmar och har skapat det utrymme jag behöver för att både utveckla mig själv och mitt företag.
+
           <br /><br /> Nu hjälper jag andra att göra samma resa.
         </p>
+        <.link
+          navigate={~p"/about"}
+          class="border-2 border-black text-black px-8 py-4 rounded-sm font-medium hover:bg-black hover:text-white transition-all duration-300"
+        >
+          Läs mer om min resa
+        </.link>
       </div>
       <img src={~p"/images/about_image2.jpg"} class="max-h-[600px] object-cover rounded-xl pt-8" />
     </div>
@@ -116,7 +182,7 @@
 
   <section class="min-h-screen bg-brand ">
     <div class="flex flex-col-reverse md:flex-row lg:flex-row">
-      <img src={~p"/images/guide_image.jpg"} class=" h-auto object-fit rounded-xl max-h-screen" />
+      <img src={~p"/images/guide_image.jpg"} class="w-full md:w-1/2 h-auto object-cover rounded-xl max-h-[600px] md:max-h-screen" />
       <div class="flex flex-col items-start justify-center gap-8 px-8 py-8 lg:px-20">
         <h1 class="text-3xl font-semibold text-black">
           Vill du ta första steget redan idag? Här hittar du mina mest populära gratisresurser:
@@ -126,11 +192,11 @@
           <.icon name="hero-document-check" class="h-8 w-8 mt-1 flex-shrink-0" />
           <p class="text-left">
             <a
-              href="https://malinhgg.myflodesk.com/kaos"
+              href="https://malinhgg.myflodesk.com/flow"
               target="_blank"
               class="font-semibold hover:underline"
             >
-              Från kaos till kontroll
+            Mer flow, mindre motstånd
             </a>
             – PDF-guide som hjälper dig ta kontroll över din tid.
           </p>
@@ -193,32 +259,7 @@
     </div>
   </section>
 
-  <section class="min-h-screen py-16 px-4 sm:px-6 lg:px-8 flex items-center bg-brand">
-    <div class="max-w-7xl mx-auto">
-      <h1 class="text-2xl md:text-4xl font-bold text-black mb-8">
-        Här är några röster från tidigare kunder
-      </h1>
-      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-        <div :for={testimony <- @testimonies} class="group">
-          <div class="bg-white border border-gray-200 rounded-xl p-8 shadow-sm hover:shadow-lg transition-shadow duration-300 h-full flex flex-col">
-            <div class="flex-grow">
-              <h3 class="text-xl font-bold mb-4 leading-tight">
-                {testimony.title}
-              </h3>
-              <blockquote class="text-gray-700 text-base leading-relaxed mb-6 italic">
-                "{testimony.content}"
-              </blockquote>
-            </div>
-            <footer class="mt-auto pt-4 border-t border-gray-100">
-              <cite class="text-sm font-medium text-gray-900 not-italic">
-                — {testimony.author}
-              </cite>
-            </footer>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
+
 
   <section class="min-h-screen bg-white py-20 px-8">
     <div class="max-w-7xl mx-auto">
@@ -228,7 +269,7 @@
           Här hittar du mina reflektioner och tankar kring hållbart och värderingsstyrt företagande.
         </h2>
       </div>
-      
+
 <!-- Blog Grid -->
       <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
         <article
@@ -267,14 +308,12 @@
   </section>
 
   <section class="h-24 py-24 bg-white flex items-center justify-center">
-    <div class="flex flex-col md:flex-row lg:flex-row">
-      <div class="flex flex-col items-center justify-center gap-8 px-10">
-        <h1 class="text-3xl">Nyhetsbrev</h1>
-        <p>
-          THIS IS WHERE I EMBED YOUR NEWSLETTER SIGNUP FORM
-        </p>
-        <.svg />
-      </div>
-    </div>
+  <div id="fd-form-67e7e2531b159ac3de2ab264"></div>
+  <script>
+    window.fd('form', {
+      formId: '67e7e2531b159ac3de2ab264',
+      containerEl: '#fd-form-67e7e2531b159ac3de2ab264'
+    });
+  </script>
   </section>
 </div>

@@ -51,6 +51,9 @@ defmodule MalinWeb.Router do
       live "/", AdminLive.Index
       live "/messages", MessageLive.Index
       live "analytics", AnalyticsLive.Index
+      live "/testimonials", TestimoniesLive.Index, :index
+      live "/testimonials/new", TestimoniesLive.Form, :new
+      live "/testimonials/:id/edit", TestimoniesLive.Form, :edit
     end
   end
 
@@ -74,6 +77,7 @@ defmodule MalinWeb.Router do
       live "/posts", PostLive.Index, :index
       live "/about", AboutLive.Index, :index
       live "/fokus360", CourseLive.Index
+      live "/flowmakers", FlowLive.Index
       live "/kontakta-mig", ContactLive.Index
       live "/ansok", ApplicationLive.Index
       live "/ansok/success", ApplicationLive.Success

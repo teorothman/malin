@@ -83,3 +83,6 @@ config :phoenix_live_view,
 
 # Disable swoosh api client as it is only required for production adapters.
 config :swoosh, :api_client, false
+
+# Configure mailer for development - emails go to the mailbox
+config :malin, Malin.Mailer, adapter: Swoosh.Adapters.Local

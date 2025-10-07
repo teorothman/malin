@@ -7,14 +7,14 @@
     />
     <div class="relative z-10 flex flex-col justify-center items-center h-full bg-black/40 px-4">
       <h1 class="text-white text-3xl md:text-6xl font-bold text-center max-w-5xl leading-tight">
-        Från fullbokad och frustrerad till <span class="italic">fokuserad</span> och fri
+        Fokus 360
       </h1>
       <p class="text-white text-lg md:text-xl text-center max-w-3xl mt-6 leading-relaxed">
         6 veckor som förändrar hur du driver ditt företag
       </p>
       <div class="flex gap-4 mt-8">
-        <.link navigate={~p"/ansok"}>
-          <.button class="border-2  text-white px-8 py-4 rounded hover:bg-white hover:text-black transition-all duration-300">
+        <.link navigate={~p"/ansok?course=focus_360"}>
+          <.button class="border-2 text-white px-8 py-4 rounded hover:bg-white hover:text-black transition-all duration-300">
             Jag vill ansöka!
           </.button>
         </.link>
@@ -22,103 +22,205 @@
     </div>
   </section>
 
-<!-- Problem Section -->
+  <!-- Intro Section -->
   <section class="min-h-screen bg-white py-20 flex items-center px-4">
     <div class="max-w-6xl mx-auto">
       <div class="max-w-4xl">
-        <h2 class="text-4xl md:text-6xl font-bold text-black mb-8">
-          Går ditt företag runt men inte <span class="text-accent">framåt?</span>
-        </h2>
-        <p class="text-lg md:text-xl text-gray-700 leading-relaxed mb-12 max-w-3xl">
-          Du har kunder, inkomster, uppdrag. På ytan ser allt ut som det ska. Men inuti dig? Du springer mellan möten, deadlines och andras behov. Du hinner inte tänka färdigt en enda tanke innan nästa grej ska lösas.
+        <p class="text-lg md:text-xl text-gray-700 leading-relaxed mb-6">
+          Du driver ett företag som fungerar; du har kunder, inkomster, uppdrag. På ytan ser allt ut som det ska.
         </p>
-
+        <p class="text-lg md:text-xl text-gray-700 leading-relaxed mb-6">
+          Men inuti är det en annan verklighet. Du springer mellan möten, deadlines och andras behov. Du hinner inte tänka färdigt en enda tanke innan nästa grej ska lösas. När du väl får en lucka för att ta tag i något viktigt i ditt företag är du för trött.
+        </p>
+        <p class="text-lg md:text-xl text-gray-700 leading-relaxed mb-12">
+          Du vet att du behöver göra en förändring men när ska du hinna det?
+        </p>
+        <h2 class="text-4xl md:text-6xl font-bold text-black mb-8">
+          Fokus 360 är för dig som är redo att ta tillbaka kontrollen över din tid, din riktning och ditt företag.
+        </h2>
+        <.link navigate={~p"/ansok?course=focus_360"} class="bg-black text-white px-8 py-4 rounded font-medium hover:bg-gray-800 transition-colors inline-block">
+          Jag vill ansöka!
+        </.link>
       </div>
     </div>
   </section>
 
-<!-- Recognition Section -->
+  <!-- Just nu känns allt såhär Section -->
   <section class="min-h-screen bg-gray-100 py-20 px-8 flex items-center">
-    <div class="max-w-6xl mx-auto text-center">
-      <h2 class="text-4xl md:text-5xl font-bold text-black mb-16">
-        KÄNNER DU <u class="decoration-2 underline-offset-4">IGEN DIG</u>?
+    <div class="max-w-6xl mx-auto">
+      <h2 class="text-4xl md:text-5xl font-bold text-black mb-16 text-center">
+        Just nu känns allt såhär:
       </h2>
 
-      <div class="grid grid-cols-1 md:grid-cols-3 gap-8 mb-16 max-w-5xl mx-auto ">
-        <div class="bg-white border-2 border-accent rounded-lg p-8 min-h-[250px] flex items-center justify-center">
-          <div class="text-center">
-            <.icon name="hero-clock" />
-            <p class="text-lg font-semibold text-black leading-relaxed">
-              Du har fullt upp, men det känns som att du står och stampar
-            </p>
-          </div>
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-16 max-w-6xl mx-auto">
+        <div class="bg-white border-2 border-accent rounded-lg p-8 min-h-[200px] flex items-center justify-center">
+          <p class="text-lg font-semibold text-black text-center leading-relaxed">
+            Du har fullt upp, men det känns inte som att du rör dig framåt med ditt företag.
+          </p>
         </div>
 
-        <div class="bg-white border-2 border-accent rounded-lg p-8 min-h-[250px] flex items-center justify-center">
-          <div class="text-center">
-            <.icon name="hero-calendar" />
-            <p class="text-lg font-semibold text-black leading-relaxed">
-              Kalendern är överfull men allt viktigt skjuts på framtiden
-            </p>
-          </div>
+        <div class="bg-white border-2 border-accent rounded-lg p-8 min-h-[200px] flex items-center justify-center">
+          <p class="text-lg font-semibold text-black text-center leading-relaxed">
+            Kalendern är överfull men allt som är viktigt för DITT företags utveckling skjuts på framtiden.
+          </p>
         </div>
 
-        <div class="bg-white border-2 border-accent rounded-lg p-8 min-h-[250px] flex items-center justify-center">
-          <div class="text-center">
-            <.icon name="hero-light-bulb" />
-            <p class="text-lg font-semibold text-black leading-relaxed">
-              När du väl får tid att tänka strategiskt är du för trött
-            </p>
-          </div>
+        <div class="bg-white border-2 border-accent rounded-lg p-8 min-h-[200px] flex items-center justify-center">
+          <p class="text-lg font-semibold text-black text-center leading-relaxed">
+            Du levererar till kunder, svarar på mejl, tar möten… men du har svårt att se helheten i företaget.
+          </p>
+        </div>
+
+        <div class="bg-white border-2 border-accent rounded-lg p-8 min-h-[200px] flex items-center justify-center">
+          <p class="text-lg font-semibold text-black text-center leading-relaxed">
+            När du väl får tid att tänka strategiskt är du för trött för att orka.
+          </p>
+        </div>
+
+        <div class="bg-white border-2 border-accent rounded-lg p-8 min-h-[200px] flex items-center justify-center">
+          <p class="text-lg font-semibold text-black text-center leading-relaxed">
+            Du har testat system, appar och mallar, men inget håller i längden.
+          </p>
+        </div>
+
+        <div class="bg-white border-2 border-accent rounded-lg p-8 min-h-[200px] flex items-center justify-center">
+          <p class="text-lg font-semibold text-black text-center leading-relaxed">
+            Innerst inne är du rädd att allt rasar om du saktar ner, och samtidigt vet du att det inte håller att fortsätta så här.
+          </p>
         </div>
       </div>
 
-      <h3 class="text-3xl md:text-4xl font-bold text-black mb-8">
-        Du är inte ensam.
-      </h3>
-
-      <div class="flex flex-col items-center">
-
-      <.link navigate={~p"/ansok"} class="border-2 border-black text-black px-8 py-4 rounded font-medium hover:bg-black hover:text-white transition-all duration-300 inline-block">
-        Ansök om en plats här
-      </.link>
+      <div class="text-center">
+        <h3 class="text-3xl md:text-4xl font-bold text-black mb-8">
+          Du är inte ensam.
+        </h3>
+        <p class="text-lg text-gray-700 leading-relaxed mb-8 max-w-3xl mx-auto">
+          Det här är den verklighet jag ser hos så många drivna entreprenörer som kommer till mig. Och det är precis den vi jobbar med att förändra i Fokus 360.
+        </p>
       </div>
     </div>
   </section>
 
-<!-- Program Description with Image -->
-  <section class="min-h-screen py-20 bg-brand">
+  <!-- Tänk om det istället Section -->
+  <section class="min-h-screen bg-white py-20 flex items-center px-4">
+    <div class="max-w-6xl mx-auto">
+      <div class="max-w-4xl mx-auto text-center">
+        <h2 class="text-4xl md:text-5xl font-bold text-black mb-16">
+          Tänk om det istället kunde kännas såhär:
+        </h2>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-8 mb-12 text-left">
+          <div class="space-y-6">
+            <div class="flex items-start gap-3">
+              <span class="text-xl font-bold text-accent">✔</span>
+              <p class="text-lg">Du har en vardag där du styr över din tid, inte tvärtom.</p>
+            </div>
+            <div class="flex items-start gap-3">
+              <span class="text-xl font-bold text-accent">✔</span>
+              <p class="text-lg">Du vet exakt vad du ska fokusera på varje vecka för att ta ditt företag framåt.</p>
+            </div>
+            <div class="flex items-start gap-3">
+              <span class="text-xl font-bold text-accent">✔</span>
+              <p class="text-lg">Du har ett system som hjälper dig hålla koll, utan att du behöver uppfinna hjulet varje dag.</p>
+            </div>
+            <div class="flex items-start gap-3">
+              <span class="text-xl font-bold text-accent">✔</span>
+              <p class="text-lg">Du har skapat utrymme för det som är viktigt för dig privat, utan dåligt samvete.</p>
+            </div>
+          </div>
+          <div class="space-y-6">
+            <div class="flex items-start gap-3">
+              <span class="text-xl font-bold text-accent">✔</span>
+              <p class="text-lg">Du har en plan som känns hållbar, anpassad efter DIG, inte efter någon mall.</p>
+            </div>
+            <div class="flex items-start gap-3">
+              <span class="text-xl font-bold text-accent">✔</span>
+              <p class="text-lg">Du känner dig stolt och trygg i din roll som företagare och ledare i ditt företag.</p>
+            </div>
+            <div class="flex items-start gap-3">
+              <span class="text-xl font-bold text-accent">✔</span>
+              <p class="text-lg">Du har återfunnit glädjen, drivet och riktningen i ditt företagande.</p>
+            </div>
+          </div>
+        </div>
+
+        <p class="text-xl font-semibold text-black mb-6">
+          Det här är inte en till metod du måste anpassa dig till.
+        </p>
+        <p class="text-xl font-semibold text-black mb-8">
+          Det är en process som anpassas till dig och som du kan leva med långsiktigt.
+        </p>
+
+        <.link navigate={~p"/ansok"} class="border-2 border-black text-black px-8 py-4 rounded font-medium hover:bg-black hover:text-white transition-all duration-300 inline-block">
+          Ansök om en plats här
+        </.link>
+      </div>
+    </div>
+  </section>
+
+  <!-- Testimonial 1 -->
+  <section class="min-h-screen py-16 px-4 sm:px-6 lg:px-8 flex items-center bg-brand">
+    <div class="max-w-4xl mx-auto text-center">
+      <h2 class="text-3xl md:text-4xl font-bold text-black mb-12">
+        Vad tidigare deltagare säger:
+      </h2>
+      <div class="bg-white border border-gray-200 rounded-xl p-8 shadow-sm">
+        <blockquote class="text-gray-700 text-lg leading-relaxed mb-6 italic">
+          "Jag fick handfasta tips och nya synsätt. Jag kände mig lite dum för att jag inte fått ihop det tidigare men Malin mötte mig med lugn och hjälpte mig att se vad jag behövde. Nu har jag en morgonrutin som fungerar och ett sätt att planera utan stress."
+        </blockquote>
+        <footer class="pt-4 border-t border-gray-100">
+          <cite class="text-sm font-medium text-gray-900 not-italic">
+            – Sara-Lisa, Webbdesigner
+          </cite>
+        </footer>
+      </div>
+    </div>
+  </section>
+
+  <!-- Det här är Fokus 360 -->
+  <section class="min-h-screen py-20 bg-white">
     <div class="flex flex-col md:flex-row lg:flex-row items-center">
       <div class="flex flex-col justify-center gap-8 px-10 lg:px-20 md:w-1/2">
         <h2 class="text-3xl md:text-4xl font-bold text-black">
-          Fokus 360 Kickstart
+          Det här är Fokus 360
         </h2>
-        <div class="space-y-6">
-          <p class="text-lg leading-relaxed">
-            <strong>6 veckor långt 1:1-program</strong>
-            där du får min fulla uppmärksamhet. Det är inte en kurs. Det är inte en mall. Det är ett samarbete.
-          </p>
-          <div class="space-y-4">
-            <div class="flex items-start gap-3">
-              <span class="text-xl font-bold text-accent">✔</span>
-              <p>
-                <strong>3 individuella coachsamtal (Zoom):</strong>
-                Uppstart, uppföljning och avslut
-              </p>
-            </div>
-            <div class="flex items-start gap-3">
-              <span class="text-xl font-bold text-accent">✔</span>
-              <p><strong>Löpande textsupport</strong> under hela perioden</p>
-            </div>
-            <div class="flex items-start gap-3">
-              <span class="text-xl font-bold text-accent">✔</span>
-              <p><strong>Verktyg och övningar</strong> anpassade efter just dig</p>
-            </div>
+        <p class="text-lg leading-relaxed">
+          Fokus 360 är ett 6 veckor långt program med fokus på hur du skapar det optimala företaget för dig och livet du vill leva. Vi jobbar tillsammans utifrån just din situation, dina mål och dina styrkor. Inget fluff, bara verklig förändring byggd på verkliga förutsättningar.
+        </p>
+
+        <h3 class="text-2xl font-bold text-black">Du får:</h3>
+
+        <div class="space-y-4">
+          <div class="flex items-start gap-3">
+            <span class="text-xl font-bold text-accent">✔</span>
+            <p>6 veckor tillsammans med mig för att du ska ha tid att ta till dig av informationen börja implementera dina förändringar.</p>
+          </div>
+          <div class="flex items-start gap-3">
+            <span class="text-xl font-bold text-accent">✔</span>
+            <p>Livesessioner via Zoom där vi kan fördjupa oss i veckans ämne och du får möjlighet att ställa frågor eller lyfta funderingar.</p>
+          </div>
+          <div class="flex items-start gap-3">
+            <span class="text-xl font-bold text-accent">✔</span>
+            <p>Tillgång till slack-support under hela perioden där du får nära tillgång till support och pepp löpande från mig. Du får också tillgång till kanaler med andra deltagare där ni kan utbyta tankar och erfarenheter.</p>
+          </div>
+          <div class="flex items-start gap-3">
+            <span class="text-xl font-bold text-accent">✔</span>
+            <p>Accountability buddy genom hela programmet där du och en annan deltagare hjälper varandra att hålla kursen under programmets gång.</p>
+          </div>
+          <div class="flex items-start gap-3">
+            <span class="text-xl font-bold text-accent">✔</span>
+            <p>Verktyg och övningar anpassade efter just dig och dina behov.</p>
+          </div>
+          <div class="flex items-start gap-3">
+            <span class="text-xl font-bold text-accent">✔</span>
+            <p>Ett hållbart system för att hantera vardagen och utveckla företaget – samtidigt.</p>
           </div>
         </div>
+
         <div class="text-center bg-white border-2 border-gray-800 rounded-lg p-6">
-          <p class="text-2xl font-bold">12 000 kr ex moms</p>
-          <p class="text-sm text-gray-600 mt-2">Begränsat antal platser varje månad</p>
+          <p class="text-2xl font-bold">Din investering är 7 900 kr ex moms.</p>
+          <p class="text-sm text-gray-600 mt-2">Delbetalning är möjlig.</p>
+          <p class="text-lg font-semibold text-accent mt-4">De första sex som bokar har tillgång till ett specialerbjudande: 3 950 kr ex moms.</p>
         </div>
       </div>
       <div class="md:w-1/2 p-8">
@@ -131,101 +233,103 @@
     </div>
   </section>
 
-<!-- Benefits Section -->
+  <!-- Testimonial 2 -->
+  <section class="min-h-screen py-16 px-4 sm:px-6 lg:px-8 flex items-center bg-brand">
+    <div class="max-w-4xl mx-auto text-center">
+      <h2 class="text-3xl md:text-4xl font-bold text-black mb-12">
+        Tidigare röster:
+      </h2>
+      <div class="bg-white border border-gray-200 rounded-xl p-8 shadow-sm">
+        <blockquote class="text-gray-700 text-lg leading-relaxed mb-6 italic">
+          "Veckorna med Malin har hjälpt mig att se klarare och bli säkrare på min sak. Hon hjälpte mig att strukturera upp både tiden men framför allt visionen. Hon ser helheten hos den person hon hjälper, ställer rätt frågor och får en att ta modiga beslut"
+        </blockquote>
+        <footer class="pt-4 border-t border-gray-100">
+          <cite class="text-sm font-medium text-gray-900 not-italic">
+            – Sofia, Konsult
+          </cite>
+        </footer>
+      </div>
+      <div class="mt-8">
+        <.link navigate={~p"/ansok?course=focus_360"} class="bg-black text-white px-8 py-4 rounded font-medium hover:bg-gray-800 transition-colors inline-block">
+          Ansök nu för att säkra din plats
+        </.link>
+      </div>
+    </div>
+  </section>
+
+  <!-- Det här är för dig som -->
   <section class="min-h-screen bg-white py-20 flex items-center px-4">
     <div class="max-w-6xl mx-auto">
-      <div class="max-w-4xl mx-auto text-center">
-        <h2 class="text-4xl md:text-5xl font-bold text-black mb-16">
-          Tänk dig att du, efter Fokus 360 Kickstart:
+      <div class="max-w-4xl mx-auto">
+        <h2 class="text-4xl md:text-5xl font-bold text-black mb-12 text-center">
+          Det här är för dig som:
         </h2>
 
-        <div class="grid grid-cols-1 md:grid-cols-2 gap-8 mb-12">
-          <div class="text-left space-y-6">
-            <div class="flex items-start gap-3">
-              <span class="text-xl font-bold text-accent">✔</span>
-              <p class="text-lg">Har en vardag där du styr över din tid, inte tvärtom</p>
-            </div>
-            <div class="flex items-start gap-3">
-              <span class="text-xl font-bold text-accent">✔</span>
-              <p class="text-lg">Vet exakt vad du ska fokusera på varje vecka</p>
-            </div>
-            <div class="flex items-start gap-3">
-              <span class="text-xl font-bold text-accent">✔</span>
-              <p class="text-lg">Har ett system som hjälper dig hålla koll</p>
-            </div>
-            <div class="flex items-start gap-3">
-              <span class="text-xl font-bold text-accent">✔</span>
-              <p class="text-lg">Har skapat utrymme för det viktiga utan dåligt samvete</p>
-            </div>
+        <div class="space-y-4 mb-12">
+          <div class="flex items-start gap-3">
+            <span class="text-xl font-bold text-accent">✔</span>
+            <p class="text-lg">Är erfaren nog att veta att du inte behöver fler quick fixes.</p>
           </div>
-          <div class="text-left space-y-6">
-            <div class="flex items-start gap-3">
-              <span class="text-xl font-bold text-accent">✔</span>
-              <p class="text-lg">Har en plan som känns hållbar, anpassad efter DIG</p>
-            </div>
-            <div class="flex items-start gap-3">
-              <span class="text-xl font-bold text-accent">✔</span>
-              <p class="text-lg">Känner dig stolt och trygg i din roll som företagare</p>
-            </div>
-            <div class="flex items-start gap-3">
-              <span class="text-xl font-bold text-accent">✔</span>
-              <p class="text-lg">Har återfunnit glädjen och riktningen</p>
-            </div>
+          <div class="flex items-start gap-3">
+            <span class="text-xl font-bold text-accent">✔</span>
+            <p class="text-lg">Inte vill ha en färdig mall att trycka in ditt liv i utan vill ha struktur som funkar för dig.</p>
+          </div>
+          <div class="flex items-start gap-3">
+            <span class="text-xl font-bold text-accent">✔</span>
+            <p class="text-lg">Är redo att leda dig själv lika fokuserat som du leder dina kundprojekt.</p>
+          </div>
+          <div class="flex items-start gap-3">
+            <span class="text-xl font-bold text-accent">✔</span>
+            <p class="text-lg">Har ett företag som går runt men inte framåt.</p>
+          </div>
+          <div class="flex items-start gap-3">
+            <span class="text-xl font-bold text-accent">✔</span>
+            <p class="text-lg">Jobbar hela tiden men inte vet vart tiden tar vägen.</p>
+          </div>
+          <div class="flex items-start gap-3">
+            <span class="text-xl font-bold text-accent">✔</span>
+            <p class="text-lg">Har tappat bort riktning och glädje i det dagliga harvandet.</p>
+          </div>
+          <div class="flex items-start gap-3">
+            <span class="text-xl font-bold text-accent">✔</span>
+            <p class="text-lg">Känner att: "Det här är precis vad jag behöver för att ta nästa steg i mitt företagande".</p>
           </div>
         </div>
 
-        <.link href="/ansok" class="bg-black text-white px-8 py-4 rounded font-medium hover:bg-gray-800 transition-colors">
-        Det här är jag!
-        </.link>
-
+        <div class="text-center">
+          <.link navigate={~p"/ansok?course=focus_360"} class="border-2 border-black text-black px-8 py-4 rounded font-medium hover:bg-black hover:text-white transition-all duration-300 inline-block">
+            Det här är jag!
+          </.link>
+        </div>
       </div>
     </div>
   </section>
 
-<!-- Testimonials Section -->
+  <!-- Testimonial 3 -->
   <section class="min-h-screen py-16 px-4 sm:px-6 lg:px-8 flex items-center bg-brand">
-    <div class="max-w-7xl mx-auto">
-      <h2 class="text-3xl md:text-4xl font-bold text-black mb-12 text-center">
-        Vad tidigare deltagare säger
+    <div class="max-w-4xl mx-auto text-center">
+      <h2 class="text-3xl md:text-4xl font-bold text-black mb-12">
+        Fler röster om programmet:
       </h2>
-      <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-        <div class="bg-white border border-gray-200 rounded-xl p-8 shadow-sm hover:shadow-lg transition-shadow duration-300 h-full flex flex-col">
-          <blockquote class="text-gray-700 text-base leading-relaxed mb-6 italic flex-grow">
-            "Veckorna med Malin har hjälpt mig att se klarare och bli säkrare på min sak. Hon hjälpte mig att strukturera upp både tiden men framför allt visionen."
-          </blockquote>
-          <footer class="mt-auto pt-4 border-t border-gray-100">
-            <cite class="text-sm font-medium text-gray-900 not-italic">
-              — Sofia, Konsult
-            </cite>
-          </footer>
-        </div>
-
-        <div class="bg-white border border-gray-200 rounded-xl p-8 shadow-sm hover:shadow-lg transition-shadow duration-300 h-full flex flex-col">
-          <blockquote class="text-gray-700 text-base leading-relaxed mb-6 italic flex-grow">
-            "Jag fick handfasta tips och nya synsätt. Nu har jag en morgonrutin som fungerar och ett sätt att planera utan stress."
-          </blockquote>
-          <footer class="mt-auto pt-4 border-t border-gray-100">
-            <cite class="text-sm font-medium text-gray-900 not-italic">
-              — Sara-Lisa, Webbdesigner
-            </cite>
-          </footer>
-        </div>
-
-        <div class="bg-white border border-gray-200 rounded-xl p-8 shadow-sm hover:shadow-lg transition-shadow duration-300 h-full flex flex-col">
-          <blockquote class="text-gray-700 text-base leading-relaxed mb-6 italic flex-grow">
-            "Programmet förändrade inte bara mitt företag utan hela min vardag. Jag är mer fokuserad, och plötsligt började även barnen planera sina veckor bättre."
-          </blockquote>
-          <footer class="mt-auto pt-4 border-t border-gray-100">
-            <cite class="text-sm font-medium text-gray-900 not-italic">
-              — Ilana, Intimitetscoach
-            </cite>
-          </footer>
-        </div>
+      <div class="bg-white border border-gray-200 rounded-xl p-8 shadow-sm">
+        <blockquote class="text-gray-700 text-lg leading-relaxed mb-6 italic">
+          "Programmet förändrade inte bara mitt företag utan hela min vardag. När jag fick ordning på min egen planering blev också familjens vardag enklare. Jag är mer fokuserad, och plötsligt började även barnen planera sina veckor bättre."
+        </blockquote>
+        <footer class="pt-4 border-t border-gray-100">
+          <cite class="text-sm font-medium text-gray-900 not-italic">
+            – Ilana, Intimitetscoach
+          </cite>
+        </footer>
+      </div>
+      <div class="mt-8">
+        <.link navigate={~p"/ansok?course=focus_360"} class="bg-black text-white px-8 py-4 rounded font-medium hover:bg-gray-800 transition-colors inline-block">
+          Jag vill ansöka!
+        </.link>
       </div>
     </div>
   </section>
 
-<!-- Why It Works with Image -->
+  <!-- Därför fungerar det -->
   <section class="min-h-screen py-20 bg-white">
     <div class="flex flex-col-reverse md:flex-row lg:flex-row items-center">
       <div class="md:w-1/2 p-8">
@@ -241,25 +345,20 @@
         </h2>
         <div class="space-y-6">
           <p class="text-lg leading-relaxed">
-            Det här är inte ett generiskt produktivitetsprogram. Det är ett nära samarbete där vi utgår från hur du faktiskt lever, jobbar och tänker.
+            Det här är inte ett generiskt produktivitetsprogram. Det är ett samarbete där vi utgår från hur du faktiskt lever, jobbar och tänker. Jag har själv gjort samma resa och jag vet vad som krävs.
           </p>
           <p class="text-lg leading-relaxed">
-            Jag har själv gjort resan från utbränd och splittrad till strukturerad och fri – och jag vet vad som krävs.
-          </p>
-          <p class="text-lg leading-relaxed">
-            <strong>Det här är inte en till metod du måste anpassa dig till.</strong>
-            Det är en process som anpassas till dig och som du kan leva med långsiktigt.
+            Jag hjälper dig att fatta kloka beslut, prioritera det som faktiskt spelar roll, och skapa en vardag där du har utrymme att växa både som människa och företagare.
           </p>
         </div>
-        <.link href="/ansok" class="border-2 text-black border-black px-12 py-6 rounded text-xl font-semibold hover:bg-black hover:text-white transition-all duration-300">
-        Skicka din ansökan redan idag!
+        <.link navigate={~p"/ansok"} class="border-2 border-black text-black px-8 py-4 rounded font-medium hover:bg-black hover:text-white transition-all duration-300 inline-block">
+          Skicka in din ansökan redan idag
         </.link>
-
       </div>
     </div>
   </section>
 
-<!-- FAQ Section -->
+  <!-- FAQ Section -->
   <section class="min-h-screen bg-gray-100 py-20 px-8 flex items-center">
     <div class="max-w-4xl mx-auto">
       <h2 class="text-3xl md:text-4xl font-bold text-black mb-12 text-center">
@@ -270,28 +369,48 @@
         <div class="bg-white rounded-lg p-8 shadow-sm">
           <h3 class="text-xl font-bold mb-4">Hur vet jag om det här passar mig?</h3>
           <p class="text-lg text-gray-700">
-            Om du läser detta och känner "det här är jag": då är det antagligen rätt. Fokus 360 Kickstart är för dig som vill ta tillbaka kontrollen över din tid, sluta släcka bränder och börja leda ditt företag mer medvetet.
+            Om du läser detta och känner "det här är jag": då är det antagligen rätt. Fokus 360 är för dig som vill ta tillbaka kontrollen över din tid, sluta släcka bränder och börja leda ditt företag mer medvetet.
+          </p>
+        </div>
+
+        <div class="bg-white rounded-lg p-8 shadow-sm">
+          <h3 class="text-xl font-bold mb-4">Hur mycket tid kommer det ta?</h3>
+          <p class="text-lg text-gray-700">
+            Målet med programmet är att du ska få MER tid, inte mindre. Med det sagt kommer det kräva en insats från dig då det bara är du som kan skapa dina nya rutiner. Varje måndag kommer vi att ha en workshop med tillhörande övningar och varannan torsdag har vi en livesession via Zoom där du har möjlighet att ställer frågor som dykt upp. Även om det alltid är bäst att vara med live så kommer allt att spelas in och gå att se i efterhand.
           </p>
         </div>
 
         <div class="bg-white rounded-lg p-8 shadow-sm">
           <h3 class="text-xl font-bold mb-4">När startar nästa omgång?</h3>
           <p class="text-lg text-gray-700">
-            Antagning sker löpande. Du kan starta direkt när du blivit antagen eller välja ett senare startdatum i mån av plats.
+            Nästa omgång startar 11 november.
           </p>
         </div>
 
         <div class="bg-white rounded-lg p-8 shadow-sm">
-          <h3 class="text-xl font-bold mb-4">Hur många platser finns det?</h3>
+          <h3 class="text-xl font-bold mb-4">Vad är det för köpvillkor?</h3>
           <p class="text-lg text-gray-700">
-            Antalet platser är begränsat varje månad – först till kvarn gäller.
+            Du har 14 dagars ångerrätt så länge inte programmet har påbörjats och du har fått tillgång till materialet.
           </p>
         </div>
+
+        <div class="bg-white rounded-lg p-8 shadow-sm">
+          <h3 class="text-xl font-bold mb-4">Går det att delbetala?</h3>
+          <p class="text-lg text-gray-700">
+            Ja, det går att dela upp betalningen på två månader. Mejla mig på malin@mh-consulting.se så löser vi det.
+          </p>
+        </div>
+      </div>
+
+      <div class="mt-12 text-center">
+        <.link navigate={~p"/ansok?course=focus_360"} class="bg-black text-white px-8 py-4 rounded font-medium hover:bg-gray-800 transition-colors inline-block">
+          Ansök nu – och ta första steget mot en vardag som fungerar
+        </.link>
       </div>
     </div>
   </section>
 
-<!-- Final CTA Section -->
+  <!-- Final CTA Section -->
   <section class="h-screen relative">
     <img
       src="/images/guide_image.jpg"
@@ -304,13 +423,15 @@
           Är du redo att få tid för det som faktiskt spelar roll?
         </h2>
         <p class="text-white text-lg md:text-xl mb-8 leading-relaxed">
-          Sluta skjuta upp det som känns viktigt. Skapa utrymme för att tänka, växa och utveckla – både dig själv och ditt företag.
+          Sluta skjuta upp det som känns viktigt för att du är fast i det akuta. Skapa utrymme för att tänka, växa och utveckla – både dig själv och ditt företag.
+        </p>
+        <p class="text-white text-lg md:text-xl mb-8 leading-relaxed font-semibold">
+          Ansök till Fokus 360 Kickstart idag.
         </p>
         <div class="flex justify-center items-center">
-        <.link href="/ansok" class="border-2 text-white px-12 py-6 rounded text-xl font-semibold hover:bg-white hover:text-black transition-all duration-300">
-          Ja, jag vill ansöka nu!
-
-        </.link>
+          <.link navigate={~p"/ansok?course=focus_360"} class="border-2 text-white px-12 py-6 rounded text-xl font-semibold hover:bg-white hover:text-black transition-all duration-300">
+            JA, jag vill ansöka nu!
+          </.link>
         </div>
       </div>
     </div>

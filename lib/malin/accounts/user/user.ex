@@ -33,6 +33,13 @@ defmodule Malin.Accounts.User do
       public? false
     end
 
+    attribute :course, :atom do
+      allow_nil? true
+      constraints one_of: [:focus_360, :flowmakers, :open]
+      default :open
+      public? true
+    end
+
     attribute :first_name, :string do
       allow_nil? true
       public? false
@@ -98,9 +105,10 @@ defmodule Malin.Accounts.User do
     end
 
     create :register do
-      accept [:email, :application_note, :first_name, :last_name]
+      accept [:email, :application_note, :first_name, :last_name, :course]
       upsert? true
       upsert_identity :unique_email
+      change Malin.Accounts.Changes.SendMagicLinkOnRegister
     end
 
     update :update do
