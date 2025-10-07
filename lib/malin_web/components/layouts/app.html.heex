@@ -4,8 +4,8 @@
     <.link navigate={~p"/"} class="py-4">
       <img src={~p"/images/logo.svg"} width="60px" />
     </.link>
-
-    <!-- Desktop Navigation Links -->
+    
+<!-- Desktop Navigation Links -->
     <div class="hidden lg:flex items-center gap-8">
       <.link navigate={~p"/about"} class="text-accent font-medium hover:text-gray-300">
         Om mig
@@ -34,13 +34,15 @@
         Min sida
       </.link>
       <%= if @current_user do %>
-        <.live_component module={MalinWeb.NotificationsComponent}
-                         id="notifications"
-                         current_user={@current_user} />
+        <.live_component
+          module={MalinWeb.NotificationsComponent}
+          id="notifications"
+          current_user={@current_user}
+        />
       <% end %>
     </div>
-
-    <!-- Mobile Menu Button -->
+    
+<!-- Mobile Menu Button -->
     <div class="lg:hidden relative">
       <button
         id="mobile-menu-button"
@@ -51,12 +53,12 @@
         }
       >
         <div class="relative">
-          <.icon name="hero-bars-3" class="h-10 w-10 text-accent"/>
+          <.icon name="hero-bars-3" class="h-10 w-10 text-accent" />
         </div>
       </button>
     </div>
-
-    <!-- Mobile Menu Overlay -->
+    
+<!-- Mobile Menu Overlay -->
     <div
       id="mobile-menu-overlay"
       class="fixed inset-0 bg-black z-50 transform -translate-y-full transition-transform duration-300 ease-in-out overflow-hidden min-h-screen"
@@ -118,8 +120,8 @@
         >
           Blog
         </.link>
-
-        <!-- Mobile Login/Profile Logic -->
+        
+<!-- Mobile Login/Profile Logic -->
         <.link
           :if={@current_user == nil}
           navigate={~p"/sign-in"}
@@ -149,13 +151,15 @@
             Min sida
           </div>
         </.link>
-
-        <!-- Mobile Notifications (if user is logged in) -->
+        
+<!-- Mobile Notifications (if user is logged in) -->
         <%= if @current_user do %>
           <div class="mt-4">
-            <.live_component module={MalinWeb.NotificationsComponent}
-                             id="mobile-notifications"
-                             current_user={@current_user} />
+            <.live_component
+              module={MalinWeb.NotificationsComponent}
+              id="mobile-notifications"
+              current_user={@current_user}
+            />
           </div>
         <% end %>
       </div>

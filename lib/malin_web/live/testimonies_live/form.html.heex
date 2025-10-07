@@ -4,8 +4,8 @@
     <div class="mb-8">
       <h1 class="text-3xl font-bold text-gray-900">{@page_title}</h1>
     </div>
-
-    <!-- Form -->
+    
+<!-- Form -->
     <div class="bg-white rounded-lg shadow-sm border p-6">
       <.form for={@form} phx-change="validate" phx-submit="save">
         <div class="space-y-6">
@@ -19,8 +19,8 @@
               required
             />
           </div>
-
-          <!-- Author -->
+          
+<!-- Author -->
           <div>
             <.label for="author">Författare</.label>
             <.input
@@ -30,8 +30,8 @@
               required
             />
           </div>
-
-          <!-- Content -->
+          
+<!-- Content -->
           <div>
             <.label for="content">Innehåll</.label>
             <.input
@@ -42,8 +42,8 @@
               required
             />
           </div>
-
-          <!-- Actions -->
+          
+<!-- Actions -->
           <div class="flex items-center justify-between pt-4">
             <.link
               navigate={~p"/admin/testimonials"}
@@ -51,7 +51,10 @@
             >
               Avbryt
             </.link>
-            <.button type="submit" class="bg-accent text-white px-6 py-2 rounded-sm font-medium hover:bg-blue-600 transition-colors">
+            <.button
+              type="submit"
+              class="bg-accent text-white px-6 py-2 rounded-sm font-medium hover:bg-blue-600 transition-colors"
+            >
               Spara
             </.button>
           </div>

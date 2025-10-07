@@ -11,9 +11,7 @@ defmodule MalinWeb.TestimoniesLive.Index do
 
   def handle_params(_params, _uri, socket) do
     testimonies =
-      Malin.Testimonies.list_testimonies!(
-        actor: socket.assigns.current_user
-      )
+      Malin.Testimonies.list_testimonies!(actor: socket.assigns.current_user)
 
     socket =
       socket
@@ -28,9 +26,7 @@ defmodule MalinWeb.TestimoniesLive.Index do
         case Malin.Testimonies.delete_testimony(testimony, actor: socket.assigns.current_user) do
           :ok ->
             testimonies =
-              Malin.Testimonies.list_testimonies!(
-                actor: socket.assigns.current_user
-              )
+              Malin.Testimonies.list_testimonies!(actor: socket.assigns.current_user)
 
             {:noreply,
              socket

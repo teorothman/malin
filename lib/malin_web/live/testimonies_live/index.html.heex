@@ -15,8 +15,8 @@
         Lägg till testimonial
       </.link>
     </div>
-
-    <!-- Testimonials List -->
+    
+<!-- Testimonials List -->
     <div class="space-y-4">
       <div :for={testimony <- @testimonies} class="bg-white rounded-lg shadow-sm border">
         <!-- Testimony Header -->
@@ -25,8 +25,8 @@
             <h3 class="font-medium text-gray-900">{testimony.title}</h3>
             <p class="text-sm text-gray-500">av {testimony.author}</p>
           </div>
-
-          <!-- Actions -->
+          
+<!-- Actions -->
           <div class="flex items-center space-x-2">
             <.link
               navigate={~p"/admin/testimonials/#{testimony.id}/edit"}
@@ -44,8 +44,8 @@
             </button>
           </div>
         </div>
-
-        <!-- Testimony Content -->
+        
+<!-- Testimony Content -->
         <div class="px-6 py-4">
           <div class="prose prose-gray max-w-none">
             <p class="whitespace-pre-wrap text-gray-800">{testimony.content}</p>
@@ -53,8 +53,8 @@
         </div>
       </div>
     </div>
-
-    <!-- Empty state -->
+    
+<!-- Empty state -->
     <%= if length(@testimonies) == 0 do %>
       <div class="text-center py-12">
         <div class="text-gray-400 text-6xl mb-4">💬</div>

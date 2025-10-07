@@ -3,28 +3,31 @@
     <!-- Header -->
     <div class="text-center mb-16 flex items-center justify-center flex-col">
       <h1 class="text-4xl md:text-5xl font-bold text-black mb-6">
-      Hej {@current_user.first_name}!
+        Hej {@current_user.first_name}!
       </h1>
       <p class="text-xl text-gray-700 max-w-3xl mx-auto mb-4">
         Välj hur du vill komma igång - utforska mina gratisresurser eller skicka ett meddelande direkt
       </p>
       <div :if={@current_user.role == :admin} class="p-4">
         <.link navigate={~p"/admin"} class="bg-blue-500 hover:bg-blue-600 text-white p-2 rounded ">
-      Växla till admin-läge
-      </.link>
+          Växla till admin-läge
+        </.link>
       </div>
       <.link navigate={~p"/sign-out"} class="bg-red-500 hover:bg-red-600 text-white p-2 rounded ">
-      Logga ut
+        Logga ut
       </.link>
     </div>
-
-    <!-- Two-column layout -->
+    
+<!-- Two-column layout -->
     <div class="grid lg:grid-cols-2 gap-12 lg:gap-16">
-
-      <!-- Free Resources Column -->
+      
+<!-- Free Resources Column -->
       <div class="bg-white rounded-xl p-8 shadow-lg">
         <div class="flex items-center gap-4 mb-8">
-          <img src={~p"/images/guide_image.jpg"} class="w-16 h-16 rounded-lg object-cover flex-shrink-0" />
+          <img
+            src={~p"/images/guide_image.jpg"}
+            class="w-16 h-16 rounded-lg object-cover flex-shrink-0"
+          />
           <h2 class="text-2xl font-semibold text-black">
             Gratisresurser
           </h2>
@@ -84,8 +87,8 @@
           </div>
         </div>
       </div>
-
-      <!-- Contact Form Column -->
+      
+<!-- Contact Form Column -->
       <div class="bg-white rounded-xl p-8 shadow-lg">
         <div class="flex items-center gap-4 mb-8">
           <.icon name="hero-chat-bubble-left-right" class="h-12 w-12 text-accent flex-shrink-0" />
@@ -95,7 +98,7 @@
         </div>
 
         <p class="text-gray-700 mb-8">
-        Skicka ett meddelande så kontaktar jag dig så fort som möjligt!
+          Skicka ett meddelande så kontaktar jag dig så fort som möjligt!
         </p>
 
         <.form :let={f} for={@form} phx-submit="submit" phx-change="validate" class="space-y-6">
@@ -136,13 +139,11 @@
             ></textarea>
           </div>
 
-
-
           <button
             type="submit"
             class="w-full bg-black text-white px-8 py-4 rounded-sm font-medium hover:bg-gray-800 transition-colors"
           >
-          Skicka ett meddelande
+            Skicka ett meddelande
           </button>
         </.form>
       </div>
