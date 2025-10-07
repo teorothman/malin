@@ -4,7 +4,7 @@
     <.link navigate={~p"/"} class="py-4">
       <img src={~p"/images/logo.svg"} width="60px" />
     </.link>
-    
+
 <!-- Desktop Navigation Links -->
     <div class="hidden lg:flex items-center gap-8">
       <.link navigate={~p"/about"} class="text-accent font-medium hover:text-gray-300">
@@ -15,6 +15,9 @@
       </.link>
       <.link navigate={~p"/fokus360"} class="text-accent font-medium hover:text-gray-300">
         Fokus 360
+      </.link>
+      <.link navigate={~p"/flowmakers"} class="text-accent font-medium hover:text-gray-300">
+      Flowmakers
       </.link>
       <.link navigate={~p"/posts"} class="text-accent font-medium hover:text-gray-300">
         Blog
@@ -41,7 +44,7 @@
         />
       <% end %>
     </div>
-    
+
 <!-- Mobile Menu Button -->
     <div class="lg:hidden relative">
       <button
@@ -57,7 +60,7 @@
         </div>
       </button>
     </div>
-    
+
 <!-- Mobile Menu Overlay -->
     <div
       id="mobile-menu-overlay"
@@ -120,7 +123,7 @@
         >
           Blog
         </.link>
-        
+
 <!-- Mobile Login/Profile Logic -->
         <.link
           :if={@current_user == nil}
@@ -151,7 +154,7 @@
             Min sida
           </div>
         </.link>
-        
+
 <!-- Mobile Notifications (if user is logged in) -->
         <%= if @current_user do %>
           <div class="mt-4">

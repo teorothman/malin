@@ -46,7 +46,7 @@ defmodule Malin.Accounts.Emails do
         <div style="margin-top: 40px; padding-top: 24px; border-top: 1px solid #e2e8f0; text-align: center;">
           <p style="color: #a0aec0; font-size: 12px; margin: 0;">
             Med vänlig hälsning,<br>
-            Malin Högberg
+            Malin Hägg
           </p>
         </div>
       </div>
@@ -61,7 +61,7 @@ defmodule Malin.Accounts.Emails do
       Om du inte begärt denna inloggningslänk kan du ignorera detta mejl.
 
       Med vänlig hälsning,
-      Malin Högberg
+      Malin Hägg
       """)
 
     Mailer.deliver(email)
