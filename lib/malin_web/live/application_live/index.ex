@@ -8,11 +8,12 @@ defmodule MalinWeb.ApplicationLive.Index do
   end
 
   def handle_params(params, _uri, socket) do
-    course = case params["course"] do
-      "focus_360" -> :focus_360
-      "flowmakers" -> :flowmakers
-      _ -> :open
-    end
+    course =
+      case params["course"] do
+        "focus_360" -> :focus_360
+        "flowmakers" -> :flowmakers
+        _ -> :open
+      end
 
     form =
       User
