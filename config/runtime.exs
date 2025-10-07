@@ -20,10 +20,6 @@ if System.get_env("PHX_SERVER") do
   config :malin, MalinWeb.Endpoint, server: true
 end
 
-config :malin, Malin.Mailer,
-  adapter: Resend.Swoosh.Adapter,
-  api_key: System.get_env("RESEND_API_KEY")
-
 if config_env() == :prod do
   config :malin, Malin.Mailer,
     adapter: Resend.Swoosh.Adapter,
@@ -41,10 +37,11 @@ if config_env() == :prod do
   maybe_ipv6 = if System.get_env("ECTO_IPV6") in ~w(true 1), do: [:inet6], else: []
 
   config :malin, Malin.Repo,
-    # ssl: true,
+    ssl: false,
     url: database_url,
     pool_size: String.to_integer(System.get_env("POOL_SIZE") || "10"),
-    socket_options: maybe_ipv6
+    socket_options: maybe_ipv6,
+    show_sensitive_data_on_connection_error: true
 
   # The secret key base is used to sign/encrypt cookies and other secrets.
   # A default value is used in config/dev.exs and config/test.exs but you

@@ -1,0 +1,62 @@
+<div class="min-h-screen bg-gray-50 py-8 pt-24">
+  <div class="max-w-2xl mx-auto px-4">
+    <!-- Header -->
+    <div class="mb-8">
+      <h1 class="text-3xl font-bold text-gray-900">{@page_title}</h1>
+    </div>
+
+    <!-- Form -->
+    <div class="bg-white rounded-lg shadow-sm border p-6">
+      <.form for={@form} phx-change="validate" phx-submit="save">
+        <div class="space-y-6">
+          <!-- Title -->
+          <div>
+            <.label for="title">Titel</.label>
+            <.input
+              field={@form[:title]}
+              type="text"
+              placeholder="T.ex. Fantastisk upplevelse"
+              required
+            />
+          </div>
+
+          <!-- Author -->
+          <div>
+            <.label for="author">Författare</.label>
+            <.input
+              field={@form[:author]}
+              type="text"
+              placeholder="T.ex. Anna Andersson"
+              required
+            />
+          </div>
+
+          <!-- Content -->
+          <div>
+            <.label for="content">Innehåll</.label>
+            <.input
+              field={@form[:content]}
+              type="textarea"
+              rows="8"
+              placeholder="Skriv testimonial här..."
+              required
+            />
+          </div>
+
+          <!-- Actions -->
+          <div class="flex items-center justify-between pt-4">
+            <.link
+              navigate={~p"/admin/testimonials"}
+              class="text-gray-600 hover:text-gray-900 font-medium"
+            >
+              Avbryt
+            </.link>
+            <.button type="submit" class="bg-accent text-white px-6 py-2 rounded-sm font-medium hover:bg-blue-600 transition-colors">
+              Spara
+            </.button>
+          </div>
+        </div>
+      </.form>
+    </div>
+  </div>
+</div>

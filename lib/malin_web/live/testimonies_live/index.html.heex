@@ -1,0 +1,72 @@
+<div class="min-h-screen bg-gray-50 py-8 pt-24">
+  <div class="max-w-4xl mx-auto px-4">
+    <!-- Header -->
+    <div class="mb-8 flex items-center justify-between">
+      <div>
+        <h1 class="text-3xl font-bold text-gray-900">Testimonials</h1>
+        <p class="text-gray-600 mt-2">
+          {length(@testimonies)} testimonials totalt
+        </p>
+      </div>
+      <.link
+        navigate={~p"/admin/testimonials/new"}
+        class="bg-accent text-white px-6 py-3 rounded-sm font-medium hover:bg-blue-600 transition-colors"
+      >
+        Lägg till testimonial
+      </.link>
+    </div>
+
+    <!-- Testimonials List -->
+    <div class="space-y-4">
+      <div :for={testimony <- @testimonies} class="bg-white rounded-lg shadow-sm border">
+        <!-- Testimony Header -->
+        <div class="px-6 py-4 border-b border-gray-200 flex items-center justify-between">
+          <div>
+            <h3 class="font-medium text-gray-900">{testimony.title}</h3>
+            <p class="text-sm text-gray-500">av {testimony.author}</p>
+          </div>
+
+          <!-- Actions -->
+          <div class="flex items-center space-x-2">
+            <.link
+              navigate={~p"/admin/testimonials/#{testimony.id}/edit"}
+              class="px-3 py-1 rounded-md text-sm font-medium bg-gray-100 text-gray-700 hover:bg-gray-200 transition-colors"
+            >
+              Redigera
+            </.link>
+            <button
+              phx-click="delete_testimony"
+              phx-value-id={testimony.id}
+              data-confirm="Är du säker på att du vill radera denna testimonial?"
+              class="px-3 py-1 rounded-md text-sm font-medium bg-red-100 text-red-700 hover:bg-red-200 transition-colors"
+            >
+              Radera
+            </button>
+          </div>
+        </div>
+
+        <!-- Testimony Content -->
+        <div class="px-6 py-4">
+          <div class="prose prose-gray max-w-none">
+            <p class="whitespace-pre-wrap text-gray-800">{testimony.content}</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Empty state -->
+    <%= if length(@testimonies) == 0 do %>
+      <div class="text-center py-12">
+        <div class="text-gray-400 text-6xl mb-4">💬</div>
+        <h3 class="text-lg font-medium text-gray-900 mb-2">Inga testimonials</h3>
+        <p class="text-gray-500 mb-4">Skapa din första testimonial.</p>
+        <.link
+          navigate={~p"/admin/testimonials/new"}
+          class="inline-block bg-accent text-white px-6 py-3 rounded-sm font-medium hover:bg-blue-600 transition-colors"
+        >
+          Lägg till testimonial
+        </.link>
+      </div>
+    <% end %>
+  </div>
+</div>

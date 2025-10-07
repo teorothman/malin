@@ -7,6 +7,9 @@
 
     <!-- Desktop Navigation Links -->
     <div class="hidden lg:flex items-center gap-8">
+      <.link navigate={~p"/about"} class="text-accent font-medium hover:text-gray-300">
+        Om mig
+      </.link>
       <.link navigate={~p"/kontakta-mig"} class="text-accent font-medium hover:text-gray-300">
         Kontakta mig
       </.link>
@@ -71,6 +74,17 @@
         </button>
       </div>
       <div class="flex flex-col items-center justify-center h-full text-2xl font-semibold space-y-8">
+        <.link
+          navigate={~p"/about"}
+          class="text-white font-medium hover:text-gray-300 transition-colors"
+          phx-click={
+            JS.remove_class("translate-y-0", to: "#mobile-menu-overlay")
+            |> JS.add_class("-translate-y-full", to: "#mobile-menu-overlay")
+            |> JS.remove_class("overflow-hidden", to: "body")
+          }
+        >
+          Om mig
+        </.link>
         <.link
           navigate={~p"/kontakta-mig"}
           class="text-white font-medium hover:text-gray-300 transition-colors"

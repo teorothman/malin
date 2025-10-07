@@ -4,17 +4,28 @@ defmodule MalinWeb.ApplicationLive.Index do
   alias Malin.Accounts.User
 
   def mount(_params, _session, socket) do
-    form = AshPhoenix.Form.for_create(User, :register, api: Malin.Accounts)
+    {:ok, socket}
+  end
+
+  def handle_params(params, _uri, socket) do
+    course = case params["course"] do
+      "focus_360" -> :focus_360
+      "flowmakers" -> :flowmakers
+      _ -> :open
+    end
+
+    form =
+      User
+      |> AshPhoenix.Form.for_create(:register,
+        api: Malin.Accounts,
+        params: %{"course" => course}
+      )
 
     socket =
       socket
       |> assign(page_title: "Apply")
       |> assign(form: form)
 
-    {:ok, socket}
-  end
-
-  def handle_params(_params, _uri, socket) do
     {:noreply, socket}
   end
 

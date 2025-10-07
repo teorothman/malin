@@ -98,6 +98,12 @@
       >
         Meddelanden
       </.link>
+      <.link
+        navigate={~p"/admin/testimonials"}
+        class="bg-gray-200 text-black px-8 py-4 rounded-sm font-medium hover:bg-gray-300 transition-colors text-center"
+      >
+        Testimonials
+      </.link>
     </div>
 
 <!-- Quick Actions -->
@@ -135,6 +141,17 @@
           </div>
           <div class="font-medium text-black">Analytics</div>
           <div class="text-sm text-gray-600">Kommer snart!</div>
+        </.link>
+
+        <.link
+          navigate={~p"/admin/testimonials/new"}
+          class="text-left p-4 bg-white rounded-sm hover:bg-gray-50 transition-colors border block"
+        >
+          <div class="text-accent mb-2">
+            <.icon name="hero-chat-bubble-left-right" class="w-6 h-6" />
+          </div>
+          <div class="font-medium text-black">Lägg till testimonial</div>
+          <div class="text-sm text-gray-600">Skapa ny testimonial</div>
         </.link>
       </div>
     </div>
