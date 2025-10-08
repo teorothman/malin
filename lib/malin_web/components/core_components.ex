@@ -736,8 +736,7 @@ defmodule MalinWeb.CoreComponents do
     ~H"""
     <article class={@class}>
       {@content
-      |> Earmark.as_html!(escape: false, inner_html: true, compact_output: true)
-      |> HtmlSanitizeEx.basic_html()
+      |> Earmark.as_html!()
       |> Phoenix.HTML.raw()}
     </article>
     """

@@ -3,7 +3,10 @@ defmodule MalinWeb.PostLive.Show do
 
   def handle_params(unsigned_params, _uri, socket) do
     {:ok, post} =
-      Ash.get(Malin.Posts.Post, unsigned_params["id"], action: :list, actor: socket.assigns.current_user)
+      Ash.get(Malin.Posts.Post, unsigned_params["id"],
+        action: :list,
+        actor: socket.assigns.current_user
+      )
 
     {:noreply, assign(socket, post: post)}
   end
@@ -27,7 +30,7 @@ defmodule MalinWeb.PostLive.Show do
 
         <h1 class="text-2xl lg:text-4xl">{@post.title}</h1>
         <span class="text-zinc-500"></span>
-        <.markdown content={@post.text} class="text-lg pt-4" />
+        <.markdown content={@post.text} class="prose prose-lg max-w-none pt-4" />
         <div>
           <p class="text-sm font-semibold">By: Malin Hägg</p>
         </div>
