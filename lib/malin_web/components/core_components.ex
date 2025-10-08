@@ -720,4 +720,26 @@ defmodule MalinWeb.CoreComponents do
   def translate_errors(errors, field) when is_list(errors) do
     for {^field, {msg, opts}} <- errors, do: translate_error({msg, opts})
   end
+
+  @doc """
+  Renders markdown content as sanitized HTML.
+
+  ## Examples
+
+      <.markdown content={@post.text} />
+
+  """
+  attr :content, :string, required: true
+  attr :class, :string, default: "prose prose-sm sm:prose lg:prose-lg xl:prose-xl mx-auto"
+
+  def markdown(assigns) do
+    ~H"""
+    <article class={@class}>
+      {@content
+      |> Earmark.as_html!(escape: false, inner_html: true, compact_output: true)
+      |> HtmlSanitizeEx.basic_html()
+      |> Phoenix.HTML.raw()}
+    </article>
+    """
+  end
 end

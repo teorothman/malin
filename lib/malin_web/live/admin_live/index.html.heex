@@ -1,6 +1,6 @@
 <!-- Main Dashboard -->
 <section class="min-h-screen bg-white py-12 px-4 mt-24">
-  <div class="max-w-6xl mx-auto">
+  <div class="max-w-6xl mx-auto pb-24">
     <!-- Dashboard Title -->
     <div class="mb-12">
       <h2 class="text-4xl md:text-5xl font-bold text-black mb-4">
@@ -9,6 +9,56 @@
       <p class="text-lg text-gray-700 leading-relaxed max-w-2xl">
         Håll koll på dina användare och innehåll. Här får du en tydlig bild av aktiviteten i ditt system.
       </p>
+      
+<!-- Quick Actions -->
+      <div class="mt-16 bg-gray-50 p-8 rounded-sm">
+        <h3 class="text-2xl font-bold text-black mb-6">Snabbåtgärder</h3>
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
+          <.link
+            navigate={~p"/admin/post/new"}
+            class="text-left p-4 bg-white rounded-sm hover:bg-gray-50 transition-colors border block"
+          >
+            <div class="text-accent mb-2">
+              <.icon name="hero-plus" class="w-6 h-6" />
+            </div>
+            <div class="font-medium text-black">Skapa nyhet</div>
+            <div class="text-sm text-gray-600">Lägg till ny artikel</div>
+          </.link>
+
+          <.link
+            navigate={~p"/admin/users"}
+            class="text-left p-4 bg-white rounded-sm hover:bg-gray-50 transition-colors border block"
+          >
+            <div class="text-accent mb-2">
+              <.icon name="hero-user-group" class="w-6 h-6" />
+            </div>
+            <div class="font-medium text-black">Alla användare</div>
+            <div class="text-sm text-gray-600">Se användarlista</div>
+          </.link>
+
+          <.link
+            navigate={~p"/admin/analytics"}
+            class="text-left p-4 bg-white rounded-sm hover:bg-gray-50 transition-colors border block"
+          >
+            <div class="text-accent mb-2">
+              <.icon name="hero-chart-bar" class="w-6 h-6" />
+            </div>
+            <div class="font-medium text-black">Analytics</div>
+            <div class="text-sm text-gray-600">Se trafik!</div>
+          </.link>
+
+          <.link
+            navigate={~p"/admin/testimonials/new"}
+            class="text-left p-4 bg-white rounded-sm hover:bg-gray-50 transition-colors border block"
+          >
+            <div class="text-accent mb-2">
+              <.icon name="hero-chat-bubble-left-right" class="w-6 h-6" />
+            </div>
+            <div class="font-medium text-black">Lägg till testimonial</div>
+            <div class="text-sm text-gray-600">Skapa ny testimonial</div>
+          </.link>
+        </div>
+      </div>
     </div>
     
 <!-- Stats Grid -->
@@ -104,56 +154,6 @@
       >
         Testimonials
       </.link>
-    </div>
-    
-<!-- Quick Actions -->
-    <div class="mt-16 bg-gray-50 p-8 rounded-sm">
-      <h3 class="text-2xl font-bold text-black mb-6">Snabbåtgärder</h3>
-      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
-        <.link
-          navigate={~p"/admin/post/new"}
-          class="text-left p-4 bg-white rounded-sm hover:bg-gray-50 transition-colors border block"
-        >
-          <div class="text-accent mb-2">
-            <.icon name="hero-plus" class="w-6 h-6" />
-          </div>
-          <div class="font-medium text-black">Skapa nyhet</div>
-          <div class="text-sm text-gray-600">Lägg till ny artikel</div>
-        </.link>
-
-        <.link
-          navigate={~p"/admin/users"}
-          class="text-left p-4 bg-white rounded-sm hover:bg-gray-50 transition-colors border block"
-        >
-          <div class="text-accent mb-2">
-            <.icon name="hero-user-group" class="w-6 h-6" />
-          </div>
-          <div class="font-medium text-black">Alla användare</div>
-          <div class="text-sm text-gray-600">Se användarlista</div>
-        </.link>
-
-        <.link
-          navigate={~p"/admin/analytics"}
-          class="text-left p-4 bg-white rounded-sm hover:bg-gray-50 transition-colors border block"
-        >
-          <div class="text-accent mb-2">
-            <.icon name="hero-chart-bar" class="w-6 h-6" />
-          </div>
-          <div class="font-medium text-black">Analytics</div>
-          <div class="text-sm text-gray-600">Kommer snart!</div>
-        </.link>
-
-        <.link
-          navigate={~p"/admin/testimonials/new"}
-          class="text-left p-4 bg-white rounded-sm hover:bg-gray-50 transition-colors border block"
-        >
-          <div class="text-accent mb-2">
-            <.icon name="hero-chat-bubble-left-right" class="w-6 h-6" />
-          </div>
-          <div class="font-medium text-black">Lägg till testimonial</div>
-          <div class="text-sm text-gray-600">Skapa ny testimonial</div>
-        </.link>
-      </div>
     </div>
   </div>
 </section>

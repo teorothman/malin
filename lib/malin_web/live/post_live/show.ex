@@ -27,12 +27,7 @@ defmodule MalinWeb.PostLive.Show do
 
         <h1 class="text-2xl lg:text-4xl">{@post.title}</h1>
         <span class="text-zinc-500"></span>
-        <p class="text-lg text-black/70 pt-4">
-          <span :for={part <- String.split(@post.text, "\n")}>
-            {part}
-            <br />
-          </span>
-        </p>
+        <.markdown content={@post.text} class="text-lg pt-4" />
         <div>
           <p class="text-sm font-semibold">By: Malin Hägg</p>
         </div>

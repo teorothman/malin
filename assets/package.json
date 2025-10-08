@@ -1,0 +1,12 @@
+{
+  "name": "malin-assets",
+  "version": "1.0.0",
+  "description": "Asset management for Malin Phoenix app",
+  "scripts": {
+    "deploy": "cd .. && mix assets.deploy && rm -f _build/esbuild"
+  },
+  "dependencies": {
+    "easymde": "^2.18.0"
+  },
+  "devDependencies": {}
+}

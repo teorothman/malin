@@ -11,7 +11,7 @@
         <div class="space-y-6">
           <!-- Title -->
           <div>
-            <.label for="title">Titel</.label>
+            <.label for="title">Title</.label>
             <.input
               field={@form[:title]}
               type="text"
@@ -44,19 +44,19 @@
           </div>
           
 <!-- Actions -->
-          <div class="flex items-center justify-between pt-4">
-            <.link
-              navigate={~p"/admin/testimonials"}
-              class="text-gray-600 hover:text-gray-900 font-medium"
-            >
-              Avbryt
-            </.link>
+          <div class="flex gap-4  items-center justify-between pt-4">
             <.button
               type="submit"
-              class="bg-accent text-white px-6 py-2 rounded-sm font-medium hover:bg-blue-600 transition-colors"
+              class="bg-accent text-white px-6 py-2 font-medium hover:bg-blue-600 transition-colors rounded-xl"
             >
               Spara
             </.button>
+            <.link
+              navigate={~p"/admin/testimonials"}
+              class="text-gray-600 hover:text-gray-900 font-medium bg-brand px-6 py-2 rounded-xl"
+            >
+              Avbryt
+            </.link>
           </div>
         </div>
       </.form>

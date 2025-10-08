@@ -1,71 +1,63 @@
-<div class="grid grid-cols-3">
-  <div></div>
-  <.form for={@form} phx-change="validate" phx-submit="submit" class="gap-4 flex flex-col w-full ">
-    <h1 class="py-4 text-2xl">
-      {if @live_action == :new, do: "New Post", else: "Edit Post"}
-    </h1>
+<div class="max-w-7xl mx-auto px-4 py-4 pt-24">
+  <.form for={@form} phx-change="validate" phx-submit="submit" class="h-full">
+    <div class="grid grid-cols-1 lg:grid-cols-3 gap-6 h-full">
+      <!-- Left Column: Main Content -->
+      <div class="lg:col-span-2 space-y-4">
+        <h1 class="text-2xl font-bold">
+          {if @live_action == :new, do: "New Post", else: "Edit Post"}
+        </h1>
 
-    <div>
-      <label class="block text-gray-700 font-medium mb-2">News Image</label>
+        <.input type="text" label="Title" field={@form[:title]} />
+        <.input type="text" label="Intro" field={@form[:intro]} />
 
-      <%= if assigns[:existing_image] do %>
-        <div class="mb-4">
-          <p class="text-sm text-gray-600 mb-2">Current Image:</p>
-          <div class="w-32 h-32 bg-gray-100 rounded-md overflow-hidden border border-gray-200">
-            <img
-              src={@existing_image}
-              class="w-full h-full object-cover"
-              alt="Current news image"
-            />
+        <div class="flex-1">
+          <label class="block text-sm font-medium text-gray-700 mb-1">Content (Markdown)</label>
+          <div
+            phx-hook="MarkdownEditor"
+            id="markdown-editor-container"
+            phx-update="ignore"
+            class="h-[400px]"
+          >
+            <.input type="textarea" field={@form[:text]} id="post-text-input" />
           </div>
         </div>
-      <% end %>
+      </div>
+      
+<!-- Right Column: Metadata & Settings -->
+      <div class="space-y-4">
+        <!-- Image Upload -->
+        <div>
+          <label class="block text-sm font-medium text-gray-700 mb-1">Featured Image</label>
 
-      <div
-        phx-drop-target={@uploads.image_url.ref}
-        class="border-2 border-dashed border-gray-300 rounded-lg p-6 transition-colors hover:border-gray-400 bg-gray-50"
-      >
-        <div class="text-center">
-          <svg
-            class="mx-auto h-12 w-12 text-gray-400"
-            fill="none"
-            viewBox="0 0 24 24"
-            stroke="currentColor"
-            aria-hidden="true"
+          <%= if assigns[:existing_image] do %>
+            <div class="mb-2">
+              <div class="w-full h-32 bg-gray-100 rounded overflow-hidden border border-gray-200">
+                <img src={@existing_image} class="w-full h-full object-cover" alt="Current image" />
+              </div>
+            </div>
+          <% end %>
+
+          <div
+            phx-drop-target={@uploads.image_url.ref}
+            class="border-2 border-dashed border-gray-300 rounded p-3 text-center bg-gray-50"
           >
-            <path
-              stroke-linecap="round"
-              stroke-linejoin="round"
-              stroke-width="2"
-              d="M7 16a4 4 0 01-.88-7.903A5 5 0 1115.9 6L16 6a5 5 0 011 9.9M15 13l-3-3m0 0l-3 3m3-3v12"
-            />
-          </svg>
-          <div class="mt-2">
-            <p class="text-sm text-gray-600">Drop main image here or click to select</p>
+            <.live_file_input upload={@uploads.image_url} class="sr-only" />
+            <label for={@uploads.image_url.ref} class="cursor-pointer">
+              <.icon name="hero-photo" class="h-8 w-8 mx-auto text-gray-400" />
+              <p class="text-xs text-gray-600 mt-1">Drop or click</p>
+            </label>
           </div>
-        </div>
-
-        <div class="mt-4 flex justify-center">
-          <.live_file_input upload={@uploads.image_url} class="sr-only" />
-          <label
-            for={@uploads.image_url.ref}
-            class="cursor-pointer rounded-md bg-blue-600 px-4 py-2 text-sm font-medium text-white hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500"
-          >
-            Browse Files
-          </label>
-        </div>
-        
-<!-- Preview of uploads -->
-        <div class="mt-4 space-y-4">
+          
+<!-- Upload Preview -->
           <%= for entry <- @uploads.image_url.entries do %>
-            <div class="flex items-center space-x-4">
-              <div class="w-24 h-24 bg-gray-100 rounded-md overflow-hidden border border-gray-200">
+            <div class="mt-2 flex items-center gap-2">
+              <div class="w-16 h-16 bg-gray-100 rounded overflow-hidden border">
                 <.live_img_preview entry={entry} class="w-full h-full object-cover" />
               </div>
-              <div class="flex-1">
-                <p class="text-sm text-gray-600">{entry.client_name}</p>
-                <div class="w-full bg-gray-200 rounded-full h-2.5 mt-2">
-                  <div class="bg-blue-600 h-2.5 rounded-full" style={"width: #{entry.progress}%"}>
+              <div class="flex-1 min-w-0">
+                <p class="text-xs text-gray-600 truncate">{entry.client_name}</p>
+                <div class="w-full bg-gray-200 rounded-full h-1.5">
+                  <div class="bg-blue-600 h-1.5 rounded-full" style={"width: #{entry.progress}%"}>
                   </div>
                 </div>
               </div>
@@ -74,67 +66,50 @@
                 phx-click="cancel-upload"
                 phx-value-ref={entry.ref}
                 phx-value-upload="image_url"
-                class="text-red-500 hover:text-red-700 focus:outline-none"
-                aria-label="cancel"
+                class="text-red-500 hover:text-red-700"
               >
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  class="h-5 w-5"
-                  viewBox="0 0 20 20"
-                  fill="currentColor"
-                >
-                  <path
-                    fill-rule="evenodd"
-                    d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z"
-                    clip-rule="evenodd"
-                  />
-                </svg>
+                <.icon name="hero-x-mark" class="h-4 w-4" />
               </button>
             </div>
-            
-<!-- Upload errors -->
             <%= for err <- upload_errors(@uploads.image_url, entry) do %>
-              <p class="text-red-500 text-sm mt-1">{error_to_string(err)}</p>
+              <p class="text-red-500 text-xs mt-1">{error_to_string(err)}</p>
             <% end %>
+          <% end %>
+
+          <%= for err <- upload_errors(@uploads.image_url) do %>
+            <p class="text-red-500 text-xs mt-1">{error_to_string(err)}</p>
           <% end %>
         </div>
         
-<!-- Overall upload errors -->
-        <%= for err <- upload_errors(@uploads.image_url) do %>
-          <p class="text-red-500 text-sm mt-1">{error_to_string(err)}</p>
-        <% end %>
+<!-- Publishing Settings -->
+        <.input type="datetime-local" label="Publish at" field={@form[:publish_at]} />
+
+        <.input
+          type="select"
+          field={@form[:category_id]}
+          options={Enum.map(@categories, &{&1.name, &1.id})}
+          label="Category"
+        />
+
+        <.input
+          type="textarea"
+          label="Tags (comma-separated)"
+          field={@form[:tags_input]}
+          value={@tags_input}
+          placeholder="elixir, phoenix, ash"
+        />
+
+        <.input
+          type="select"
+          label="Status"
+          field={@form[:state]}
+          options={["draft", "published", "archived"]}
+        />
+
+        <.button class="w-full">
+          {if @live_action == :new, do: "Create Post", else: "Save Changes"}
+        </.button>
       </div>
     </div>
-
-    <.input type="text" label="Title" field={@form[:title]} />
-    <.input type="text" label="Intro" field={@form[:intro]} />
-    <.input type="textarea" label="Text" field={@form[:text]} />
-    <.input type="datetime-local" label="Publish at" field={@form[:publish_at]} />
-
-    <.input
-      type="select"
-      field={@form[:category_id]}
-      options={Enum.map(@categories, &{&1.name, &1.id})}
-      label="Category"
-    />
-
-    <.input
-      type="textarea"
-      label="Tags (separated by commas)"
-      field={@form[:tags_input]}
-      value={@tags_input}
-      placeholder="e.g., elixir, phoenix, ash"
-    />
-
-    <.input
-      type="select"
-      label="Status"
-      field={@form[:state]}
-      options={["draft", "published", "archived"]}
-    />
-
-    <.button>
-      {if @live_action == :new, do: "Create Post", else: "Save"}
-    </.button>
   </.form>
 </div>
