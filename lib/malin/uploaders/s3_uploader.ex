@@ -17,7 +17,9 @@ defmodule Malin.Uploaders.S3Uploader do
     # Get bucket name
     bucket = System.get_env("AWS_S3_BUCKET")
 
-    # Upload to S3
+    # Upload to S3 with explicit host configuration
+    region = System.get_env("AWS_REGION")
+
     {:ok, _response} =
       ExAws.S3.put_object(bucket, filename, contents, [
         {:content_type, MIME.from_path(client_name)}
@@ -25,7 +27,9 @@ defmodule Malin.Uploaders.S3Uploader do
       |> ExAws.request(
         access_key_id: System.get_env("AWS_ACCESS_KEY_ID"),
         secret_access_key: System.get_env("AWS_SECRET_ACCESS_KEY"),
-        region: System.get_env("AWS_REGION")
+        region: region,
+        host: "s3.#{region}.amazonaws.com",
+        scheme: "https://"
       )
 
     # Construct and return the public URL

@@ -29,6 +29,22 @@ end
 # Admin email for notifications
 config :malin, :admin_email, System.get_env("ADMIN_EMAIL") || "admin@teorothman.com"
 
+# ExAws S3 configuration
+if System.get_env("AWS_REGION") do
+  config :ex_aws,
+    json_codec: Jason,
+    access_key_id: System.get_env("AWS_ACCESS_KEY_ID"),
+    secret_access_key: System.get_env("AWS_SECRET_ACCESS_KEY"),
+    region: System.get_env("AWS_REGION")
+
+  config :ex_aws, :s3,
+    scheme: "https://",
+    region: System.get_env("AWS_REGION"),
+    host: %{
+      "eu-north-1" => "s3.eu-north-1.amazonaws.com"
+    }
+end
+
 if config_env() == :prod do
   database_url =
     System.get_env("DATABASE_URL") ||
