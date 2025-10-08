@@ -35,7 +35,7 @@ defmodule MalinWeb.PostLive.Edit do
           )
 
         :edit ->
-          post = Ash.get!(Malin.Posts.Post, params["id"], actor: socket.assigns.current_user)
+          post = Ash.get!(Malin.Posts.Post, params["id"], action: :list, actor: socket.assigns.current_user)
 
           form =
             post

@@ -3,7 +3,7 @@ defmodule MalinWeb.PostLive.Show do
 
   def handle_params(unsigned_params, _uri, socket) do
     {:ok, post} =
-      Ash.get(Malin.Posts.Post, unsigned_params["id"], actor: socket.assigns.current_user)
+      Ash.get(Malin.Posts.Post, unsigned_params["id"], action: :list, actor: socket.assigns.current_user)
 
     {:noreply, assign(socket, post: post)}
   end

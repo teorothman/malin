@@ -15,8 +15,13 @@
       <.link navigate={~p"/posts/#{post.id}"} class="block">
         <div class="border  rounded-lg overflow-hidden w-full h-full flex flex-col">
           <!-- Image section -->
-          <div class="h-48 bg-gray-200 flex-shrink-0">
+          <div class="h-48 bg-gray-200 flex-shrink-0 relative">
             <img src={post.image_url} )} class="w-full h-full object-cover" />
+            <%= if post.state != :published do %>
+              <div class="absolute top-2 right-2 bg-yellow-500 text-white px-3 py-1 rounded-md text-sm font-semibold uppercase">
+                <%= post.state %>
+              </div>
+            <% end %>
           </div>
           <!-- Content section -->
           <div class="p-4 flex flex-col justify-between flex-grow">
