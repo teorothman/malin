@@ -12,13 +12,21 @@ defmodule MalinWeb.ContactLive.Index do
       socket
       |> assign(page_title: "Kontakt")
       |> assign(form: form)
+      |> assign(message_length: 0)
 
     {:ok, socket}
   end
 
   def handle_event("validate", %{"form" => params}, socket) do
     form = AshPhoenix.Form.validate(socket.assigns.form, params, errors: false)
-    {:noreply, assign(socket, form: form)}
+    message_length = String.length(params["message"] || "")
+
+    socket =
+      socket
+      |> assign(form: form)
+      |> assign(message_length: message_length)
+
+    {:noreply, socket}
   end
 
   def handle_event("submit", %{"form" => params}, socket) do
@@ -45,6 +53,7 @@ defmodule MalinWeb.ContactLive.Index do
                 "Meddelande skickat! Du får en länk via email för att fortsätta konversationen."
               )
               |> assign(form: form)
+              |> assign(message_length: 0)
 
             {:noreply, push_navigate(socket, to: ~p"/kontakt/success")}
 

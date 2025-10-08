@@ -46,8 +46,13 @@ defmodule Malin.Messages.Message do
   end
 
   actions do
-    defaults [:create, :update, :destroy, :read]
+    defaults [:create, :update, :destroy]
     default_accept [:content, :user_id]
+
+    read :read do
+      primary? true
+      prepare build(sort: [inserted_at: :desc])
+    end
 
     update :toggle_read do
       require_atomic? false
@@ -95,6 +100,6 @@ defmodule Malin.Messages.Message do
 
   validations do
     validate present(:content)
-    validate string_length(:content, min: 1, max: 10_000)
+    validate string_length(:content, min: 1, max: 1000)
   end
 end

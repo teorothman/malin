@@ -75,7 +75,9 @@ defmodule Malin.MixProject do
       {:dotenv_parser, "~> 2.0"},
       {:uuid, "~> 1.1"},
       {:hackney, "~> 1.18"},
-      {:resend, "~> 0.4.0"}
+      {:resend, "~> 0.4.0"},
+      {:earmark, "~> 1.4"},
+      {:html_sanitize_ex, "~> 1.4"}
     ]
   end
 

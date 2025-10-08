@@ -2,7 +2,30 @@
 @import "tailwindcss/components";
 @import "tailwindcss/utilities";
 
+/* EasyMDE Markdown Editor */
+@import "easymde/dist/easymde.min.css";
+
 /* This file is for your main application CSS */
+
+/* Compact EasyMDE editor styling */
+.EasyMDEContainer {
+  height: 100%;
+}
+
+.EasyMDEContainer .CodeMirror {
+  height: 350px !important;
+  min-height: 350px !important;
+  max-height: 350px !important;
+}
+
+.EasyMDEContainer .editor-toolbar {
+  border-top-left-radius: 4px;
+  border-top-right-radius: 4px;
+}
+
+.EasyMDEContainer .CodeMirror-scroll {
+  min-height: 300px !important;
+}
 
 body {
   min-height: 100vh;

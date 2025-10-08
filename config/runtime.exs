@@ -26,6 +26,9 @@ if config_env() == :prod do
     api_key: System.get_env("RESEND_API_KEY")
 end
 
+# Admin email for notifications
+config :malin, :admin_email, System.get_env("ADMIN_EMAIL") || "admin@teorothman.com"
+
 if config_env() == :prod do
   database_url =
     System.get_env("DATABASE_URL") ||

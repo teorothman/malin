@@ -109,6 +109,7 @@ defmodule Malin.Accounts.User do
       upsert? true
       upsert_identity :unique_email
       change Malin.Accounts.Changes.SendMagicLinkOnRegister
+      change Malin.Accounts.Changes.SendAdminNotificationOnRegister
     end
 
     update :update do

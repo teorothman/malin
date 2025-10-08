@@ -67,6 +67,92 @@ defmodule Malin.Accounts.Emails do
     Mailer.deliver(email)
   end
 
+  def send_new_application_notification(user) do
+    admin_email = Application.get_env(:malin, :admin_email)
+    user_email = get_email(user.email)
+    name = "#{user.first_name} #{user.last_name}"
+    course_name = format_course(user.course)
+
+    email =
+      new()
+      |> to(admin_email)
+      |> from("no-reply@teorothman.com")
+      |> subject("Ny ansökan från #{name}")
+      |> html_body("""
+      <div style="font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif; max-width: 600px; margin: 0 auto; padding: 40px 20px;">
+        <div style="text-align: center; margin-bottom: 40px;">
+          <h1 style="color: #000000; font-size: 28px; font-weight: 700; margin: 0 0 16px 0; letter-spacing: -0.5px;">
+            Ny ansökan mottagen
+          </h1>
+          <p style="color: #4a5568; font-size: 16px; line-height: 1.6; margin: 0;">
+            En ny person har ansökt till ditt program.
+          </p>
+        </div>
+
+        <div style="background-color: #f7fafc; border-left: 4px solid #000000; padding: 20px; margin: 30px 0;">
+          <h2 style="color: #000000; font-size: 18px; font-weight: 600; margin: 0 0 16px 0;">
+            Sökande information
+          </h2>
+          <div style="color: #2d3748; font-size: 14px; line-height: 1.8;">
+            <p style="margin: 8px 0;"><strong>Namn:</strong> #{name}</p>
+            <p style="margin: 8px 0;"><strong>E-post:</strong> #{user_email}</p>
+            <p style="margin: 8px 0;"><strong>Program:</strong> #{course_name}</p>
+          </div>
+        </div>
+
+        #{if user.application_note do
+        """
+        <div style="background-color: #edf2f7; padding: 20px; margin: 30px 0; border-radius: 4px;">
+          <h3 style="color: #000000; font-size: 16px; font-weight: 600; margin: 0 0 12px 0;">
+            Ansökningsnotering
+          </h3>
+          <p style="color: #2d3748; font-size: 14px; line-height: 1.6; margin: 0; white-space: pre-wrap;">#{user.application_note}</p>
+        </div>
+        """
+      else
+        ""
+      end}
+
+        <div style="text-align: center; margin: 40px 0;">
+          <a href="https://teorothman.com/admin/users"
+             style="background-color: #000000; color: #ffffff; padding: 16px 32px;
+                    text-decoration: none; border-radius: 4px; display: inline-block;
+                    font-weight: 600; font-size: 16px; transition: all 0.3s ease;">
+            Hantera ansökningar
+          </a>
+        </div>
+
+        <div style="margin-top: 40px; padding-top: 24px; border-top: 1px solid #e2e8f0; text-align: center;">
+          <p style="color: #a0aec0; font-size: 12px; margin: 0;">
+            Detta är en automatisk notifiering från din webbplats.
+          </p>
+        </div>
+      </div>
+      """)
+      |> text_body("""
+      Ny ansökan mottagen
+
+      Sökande information:
+      Namn: #{name}
+      E-post: #{user_email}
+      Program: #{course_name}
+
+      #{if user.application_note do
+        "Ansökningsnotering:\n#{user.application_note}\n\n"
+      else
+        ""
+      end}
+      Logga in på https://teorothman.com/admin/users för att hantera ansökningar.
+      """)
+
+    Mailer.deliver(email)
+  end
+
+  defp format_course(:focus_360), do: "Fokus 360"
+  defp format_course(:flowmakers), do: "Flowmakers"
+  defp format_course(:open), do: "Ej valt än"
+  defp format_course(_), do: "Okänt"
+
   # Updated to handle Ash.CiString
   defp get_email(%{email: email}), do: to_string(email)
   # Add this line
