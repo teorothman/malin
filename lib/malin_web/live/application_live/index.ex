@@ -12,6 +12,7 @@ defmodule MalinWeb.ApplicationLive.Index do
       case params["course"] do
         "focus_360" -> :focus_360
         "flowmakers" -> :flowmakers
+        "1:1_Coaching" -> :one_on_one_coaching
         _ -> :open
       end
 

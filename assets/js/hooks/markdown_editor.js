@@ -21,8 +21,7 @@ export default {
       },
       placeholder: "Write your post content in Markdown...",
       status: ["autosave", "lines", "words"],
-      minHeight: "350px",
-      maxHeight: "350px",
+      minHeight: "400px",
       toolbar: [
         "bold",
         "italic",
