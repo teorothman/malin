@@ -85,11 +85,73 @@
     </div>
   </section>
 
-  <div id="fd-form-67e7e2531b159ac3de2ab264"></div>
-  <script>
-    window.fd('form', {
-      formId: '67e7e2531b159ac3de2ab264',
-      containerEl: '#fd-form-67e7e2531b159ac3de2ab264'
-    });
-  </script>
+  <!-- Explore More Section -->
+  <section class="bg-gray-100 py-20 px-4">
+    <div class="max-w-6xl mx-auto">
+      <h2 class="text-3xl md:text-4xl font-bold text-black mb-12 text-center">
+        Utforska mer
+      </h2>
+
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+        <!-- Contact Card -->
+        <div class="bg-white rounded-lg p-8 shadow-sm border border-gray-200 flex flex-col">
+          <h3 class="text-xl font-bold text-black mb-4">Kontakta mig</h3>
+          <p class="text-gray-700 mb-6 flex-grow">
+            Har du en fråga eller vill boka ett samtal? Fyll i formuläret så hör jag av mig.
+          </p>
+          <.link
+            navigate={~p"/kontakta-mig"}
+            class="bg-black text-white px-6 py-3 rounded-sm font-medium hover:bg-gray-800 transition-colors text-center"
+          >
+            Till kontaktformuläret
+          </.link>
+        </div>
+
+        <!-- Services Card -->
+        <div class="bg-white rounded-lg p-8 shadow-sm border border-gray-200 flex flex-col">
+          <h3 class="text-xl font-bold text-black mb-4">Så kan vi jobba tillsammans</h3>
+          <p class="text-gray-700 mb-6 flex-grow">
+            Läs mer om mina program och hur jag hjälper entreprenörer att hitta fokus och riktning.
+          </p>
+          <div class="flex flex-col gap-3">
+            <.link
+              navigate={~p"/fokus360"}
+              class="border-2 border-black text-black px-6 py-3 rounded-sm font-medium hover:bg-black hover:text-white transition-all duration-300 text-center"
+            >
+              Fokus 360
+            </.link>
+            <.link
+              navigate={~p"/flowmakers"}
+              class="border-2 border-black text-black px-6 py-3 rounded-sm font-medium hover:bg-black hover:text-white transition-all duration-300 text-center"
+            >
+              Flowmakers
+            </.link>
+          </div>
+        </div>
+
+        <!-- Blog Card -->
+        <div class="bg-white rounded-lg p-8 shadow-sm border border-gray-200 flex flex-col">
+          <h3 class="text-xl font-bold text-black mb-4">Läs bloggen</h3>
+          <p class="text-gray-700 mb-6 flex-grow">
+            Ta del av tankar, tips och inspiration för ditt företagande och personliga utveckling.
+          </p>
+          <.link
+            navigate={~p"/posts"}
+            class="bg-black text-white px-6 py-3 rounded-sm font-medium hover:bg-gray-800 transition-colors text-center"
+          >
+            Till bloggen
+          </.link>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="py-24 bg-white flex items-center justify-center">
+    <div
+      id="fd-form-67e7e2531b159ac3de2ab264"
+      phx-hook="FlodeskForm"
+      data-form-id="67e7e2531b159ac3de2ab264"
+    >
+    </div>
+  </section>
 </div>

@@ -11,11 +11,7 @@
       </h1>
 
       <div class="flex gap-4 mt-8">
-        <.link navigate={~p"/fokus360"}>
-          <button class="border border-white text-white px-6 py-3 rounded">
-            LÄS MER
-          </button>
-        </.link>
+
         <.link navigate={~p"/ansok"}>
           <button class="border border-white text-white px-6 py-3 rounded">
             KOM IGÅNG DIREKT
@@ -42,32 +38,12 @@
           </p>
         </div>
 
-        <.link navigate={~p"/fokus360"}>
-          <button class="bg-black text-white px-8 py-4 rounded-sm font-medium hover:bg-gray-800 transition-colors mt-8">
-            Läs mer om Fokus 360
-          </button>
-        </.link>
+
       </div>
     </div>
   </section>
 
-  <section class="min-h-screen py-20 bg-brand">
-    <div class="flex flex-col md:flex-row lg:flex-row">
-      <div class="flex flex-col items-center justify-center gap-8 px-10">
-        <h1 class="text-3xl font-semibold">OM MIG</h1>
-        <p>
-          Jag hjälper frilansare och konsulter som vill ta sitt företag till nästa nivå genom att jobba smartare, inte mer. Med min bakgrund inom kommunikation och verksamhetsutveckling i kombination med min expertis inom time management, struktur och självledarskap, hjälper jag egenföretagare att skapa en hållbar vardag och ett företag som hela tiden utvecklas.
-        </p>
-        <.link
-          navigate={~p"/about"}
-          class="border-2 border-black text-black px-8 py-4 rounded-sm font-medium hover:bg-black hover:text-white transition-all duration-300"
-        >
-          Läs mer om mig
-        </.link>
-      </div>
-      <img src={~p"/images/about_image.jpg"} class="max-h-[600px] object-cover rounded-xl pt-8" />
-    </div>
-  </section>
+
 
   <section class="min-h-screen bg-gray-100 py-20 px-8 flex items-center">
     <div class="max-w-6xl mx-auto text-center">
@@ -78,19 +54,19 @@
       <div class="grid grid-cols-1 md:grid-cols-3 gap-8 mb-16 max-w-5xl mx-auto">
         <div class="bg-white border-2 border-accent rounded-lg p-8 min-h-[200px] flex items-center justify-center">
           <p class="text-lg font-semibold text-black text-center leading-relaxed">
-            Ditt företag går bra men du har nått en platå där du och ditt företag står och stampar.
+          Ditt företag går helt okej men du vet att du egentligen skulle kunna göra så mycket mer. Det känns som att du står och stampar när alla andra växlar upp.
           </p>
         </div>
 
         <div class="bg-white border-2 border-accent rounded-lg p-8 min-h-[200px] flex items-center justify-center">
           <p class="text-lg font-semibold text-black text-center leading-relaxed">
-            Du jobbar sena kvällar och helger men ser bara allt du inte hinner med.
+          Du jobbar i princip hela tiden men du har svårt att pinpointa exakt vart tiden tar vägen. Varje beslut du behöver fatta tar alldeles för lång tid.
           </p>
         </div>
 
         <div class="bg-white border-2 border-accent rounded-lg p-8 min-h-[200px] flex items-center justify-center">
           <p class="text-lg font-semibold text-black text-center leading-relaxed">
-            Du vet vilka mål du vill nå men har svårt att se hur vägen dit ser ut.
+          Du sätter mål för ditt företagande men innan du nått dem så ger du upp eller drar ner dem. Känslan är att det är mer fantasier än faktiska mål.
           </p>
         </div>
       </div>
@@ -102,7 +78,7 @@
   </section>
 
   <section class="min-h-screen py-16 px-4 sm:px-6 lg:px-8 flex items-center bg-white">
-    <div class="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-5xl mx-auto">
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-7xl mx-auto">
       <div class="rounded-lg p-8 shadow-sm border-2 border-accent">
         <h3 class="text-2xl font-bold text-black mb-4">Fokus 360</h3>
         <p class="text-gray-700 leading-relaxed mb-6">
@@ -126,6 +102,18 @@
           class="border-2 border-black text-black px-6 py-3 rounded-sm font-medium hover:bg-black hover:text-white transition-all duration-300 inline-block"
         >
           Läs mer om Flowmakers
+        </.link>
+      </div>
+      <div class="rounded-lg p-8 shadow-sm border-2 border-accent">
+        <h3 class="text-2xl font-bold text-black mb-4">1:1 Privat coachning</h3>
+        <p class="text-gray-700 leading-relaxed mb-6">
+        Skräddarsydd coachning efter dina behov där du sätter agendan. Du bestämmer själv hur många sessioner och hur lång tid du vill att vi ska arbeta tillsammans. Mellan våra 1:1 sessioner via Zoom håller vi kontakten via text och röstmeddelanden i en privat chattgrupp. Kontakta mig för förslag på pris och upplägg.
+        </p>
+        <.link
+          navigate={~p"/ansok?course=1:1_Coaching"}
+          class="border-2 border-black text-black px-6 py-3 rounded-sm font-medium hover:bg-black hover:text-white transition-all duration-300 inline-block"
+        >
+        Jag vill ansöka!
         </.link>
       </div>
     </div>
@@ -267,7 +255,7 @@
           Här hittar du mina reflektioner och tankar kring hållbart och värderingsstyrt företagande.
         </h2>
       </div>
-      
+
 <!-- Blog Grid -->
       <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
         <article

@@ -1,5 +1,5 @@
-<div class="max-w-7xl mx-auto px-4 py-4 pt-24">
-  <.form for={@form} phx-change="validate" phx-submit="submit" class="h-full">
+<div class="w-screen mx-auto px-24 py-4 pt-24">
+  <.form for={@form} phx-change="validate" phx-submit="submit" class="h-full w-full">
     <div class="grid grid-cols-1 lg:grid-cols-3 gap-6 h-full">
       <!-- Left Column: Main Content -->
       <div class="lg:col-span-2 space-y-4">
@@ -10,21 +10,21 @@
         <.input type="text" label="Title" field={@form[:title]} />
         <.input type="text" label="Intro" field={@form[:intro]} />
 
-        <div class="flex-1">
+        <div class="w-full">
           <label class="block text-sm font-medium text-gray-700 mb-1">Content (Markdown)</label>
           <div
             phx-hook="MarkdownEditor"
             id="markdown-editor-container"
             phx-update="ignore"
-            class="h-[400px]"
+            class="h-[400px] w-full"
           >
             <.input type="textarea" field={@form[:text]} id="post-text-input" />
           </div>
         </div>
       </div>
-      
+
 <!-- Right Column: Metadata & Settings -->
-      <div class="space-y-4">
+      <div class="space-y-4 pt-12">
         <!-- Image Upload -->
         <div>
           <label class="block text-sm font-medium text-gray-700 mb-1">Featured Image</label>
@@ -47,7 +47,7 @@
               <p class="text-xs text-gray-600 mt-1">Drop or click</p>
             </label>
           </div>
-          
+
 <!-- Upload Preview -->
           <%= for entry <- @uploads.image_url.entries do %>
             <div class="mt-2 flex items-center gap-2">
@@ -80,7 +80,7 @@
             <p class="text-red-500 text-xs mt-1">{error_to_string(err)}</p>
           <% end %>
         </div>
-        
+
 <!-- Publishing Settings -->
         <.input type="datetime-local" label="Publish at" field={@form[:publish_at]} />
 

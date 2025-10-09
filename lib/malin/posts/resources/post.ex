@@ -93,8 +93,8 @@ defmodule Malin.Posts.Post do
       argument :tags, {:array, :map}, allow_nil?: true
 
       change relate_actor(:author)
-
       change manage_relationship(:tags, type: :append_and_remove, on_no_match: :create)
+      change Malin.Accounts.Changes.SendNewPostNotifications
     end
 
     update :update do
@@ -103,10 +103,7 @@ defmodule Malin.Posts.Post do
 
       argument :tags, {:array, :map}, allow_nil?: true
       change manage_relationship(:tags, type: :append_and_remove, on_no_match: :create)
+      change Malin.Accounts.Changes.SendNewPostNotifications
     end
-  end
-
-  changes do
-    change Malin.Accounts.Changes.SendNewPostNotifications, on: [:create]
   end
 end
