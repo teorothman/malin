@@ -154,17 +154,6 @@
             Min sida
           </div>
         </.link>
-        
-<!-- Mobile Notifications (if user is logged in) -->
-        <%= if @current_user do %>
-          <div class="mt-4">
-            <.live_component
-              module={MalinWeb.NotificationsComponent}
-              id="mobile-notifications"
-              current_user={@current_user}
-            />
-          </div>
-        <% end %>
       </div>
     </div>
   </div>

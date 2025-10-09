@@ -8,33 +8,33 @@ defmodule MalinWeb.NotificationsComponent do
 
   @impl true
   def update(%{current_user: current_user} = assigns, socket) do
-    # Load notifications when component updates
-    notifications =
-      if current_user do
-        notifications = Malin.Accounts.notifications_for_user!(actor: current_user)
-
-        # Debug: Check what we're getting
-        IO.inspect(notifications, label: "Loaded notifications")
-
-        if length(notifications) > 0 do
-          IO.inspect(hd(notifications).post, label: "First notification post")
-        end
-
-        notifications
-      else
-        []
-      end
-
-    # Subscribe to real-time notifications if we have a user
-    if connected?(socket) && current_user do
+    # Subscribe to real-time notifications if we have a user (only once)
+    if connected?(socket) && current_user && !Map.has_key?(socket.assigns, :subscribed) do
       "notifications:#{current_user.id}"
       |> MalinWeb.Endpoint.subscribe()
     end
 
-    {:ok,
-     socket
-     |> assign(assigns)
-     |> assign(:notifications, notifications)}
+    socket =
+      socket
+      |> assign(assigns)
+      |> assign(:subscribed, true)
+
+    # Only load notifications if not already loaded
+    socket =
+      if Map.has_key?(socket.assigns, :notifications) do
+        socket
+      else
+        notifications =
+          if current_user do
+            Malin.Accounts.notifications_for_user!(actor: current_user)
+          else
+            []
+          end
+
+        assign(socket, :notifications, notifications)
+      end
+
+    {:ok, socket}
   end
 
   @impl true
