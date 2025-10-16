@@ -13,7 +13,7 @@ kill_signal = 'SIGTERM'
   release_command = '/app/bin/malin eval Malin.Release.migrate'
 
 [env]
-  PHX_HOST = 'malin.fly.dev'
+  PHX_HOST = 'mh-consulting.se'
   PORT = '8080'
   PHX_SERVER = 'true'
 
