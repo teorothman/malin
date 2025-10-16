@@ -9,7 +9,7 @@
       <p class="text-lg text-gray-700 leading-relaxed max-w-2xl">
         Håll koll på dina användare och innehåll. Här får du en tydlig bild av aktiviteten i ditt system.
       </p>
-      
+
 <!-- Quick Actions -->
       <div class="mt-16 bg-gray-50 p-8 rounded-sm">
         <h3 class="text-2xl font-bold text-black mb-6">Snabbåtgärder</h3>
@@ -23,6 +23,17 @@
             </div>
             <div class="font-medium text-black">Skapa nyhet</div>
             <div class="text-sm text-gray-600">Lägg till ny artikel</div>
+          </.link>
+
+          <.link
+            navigate={~p"/admin/content/new"}
+            class="text-left p-4 bg-white rounded-sm hover:bg-gray-50 transition-colors border block"
+          >
+            <div class="text-accent mb-2">
+              <.icon name="hero-document-plus" class="w-6 h-6" />
+            </div>
+            <div class="font-medium text-black">Skapa content</div>
+            <div class="text-sm text-gray-600">Lägg till nytt innehåll</div>
           </.link>
 
           <.link
@@ -60,7 +71,7 @@
         </div>
       </div>
     </div>
-    
+
 <!-- Stats Grid -->
     <div class="grid grid-cols-1 md:grid-cols-3 gap-8 mb-12">
       <!-- Total News -->
@@ -74,7 +85,7 @@
         <div class="text-3xl font-bold text-black mb-2">{@total_posts}</div>
         <p class="text-sm text-gray-600">Totalt antal publicerade nyheter</p>
       </div>
-      
+
 <!-- Total Users -->
       <div class="bg-gray-50 p-8 rounded-sm border-l-4 border-black">
         <div class="flex items-center justify-between mb-4">
@@ -86,7 +97,7 @@
         <div class="text-3xl font-bold text-black mb-2">{@total_users}</div>
         <p class="text-sm text-gray-600">Registrerade användare totalt</p>
       </div>
-      
+
 <!-- New Users This Week -->
       <div class="bg-gray-50 p-8 rounded-sm border-l-4 border-green-500">
         <div class="flex items-center justify-between mb-4">
@@ -121,9 +132,9 @@
         <p class="text-sm text-gray-600">Antal meddelanden</p>
       </div>
     </div>
-    
+
 <!-- Action Buttons -->
-    <div class="flex flex-col sm:flex-row gap-4">
+    <div class="grid grid-cols-4 gap-4">
       <button
         phx-click="refresh_data"
         class="bg-black text-white px-8 py-4 rounded-sm font-medium hover:bg-gray-800 transition-colors"
@@ -153,6 +164,12 @@
         class="bg-gray-200 text-black px-8 py-4 rounded-sm font-medium hover:bg-gray-300 transition-colors text-center"
       >
         Testimonials
+      </.link>
+      <.link
+        navigate={~p"/admin/content"}
+        class="bg-gray-200 text-black px-8 py-4 rounded-sm font-medium hover:bg-gray-300 transition-colors text-center"
+      >
+        Hantera content
       </.link>
     </div>
   </div>

@@ -43,6 +43,7 @@ config :malin,
   ecto_repos: [Malin.Repo],
   generators: [timestamp_type: :utc_datetime],
   ash_domains: [
+    Malin.Content,
     Malin.Analytics,
     Malin.Messages,
     Malin.Testimonies,

@@ -2,15 +2,21 @@ defmodule MalinWeb.ProfileLive.Index do
   use MalinWeb, :live_view
 
   alias Malin.Accounts.User
+  alias Malin.Content
 
   def mount(_params, _session, socket) do
     # Create a form that accepts the message field as an argument
     form = AshPhoenix.Form.for_create(User, :register, domain: Malin.Accounts)
 
+    # Load published content items
+    user = socket.assigns.current_user
+    content_items = Content.list_content_items!(actor: user, page: [limit: 100]).results
+
     socket =
       socket
       |> assign(page_title: "Kontakt")
       |> assign(form: form)
+      |> assign(content_items: content_items)
 
     {:ok, socket}
   end
@@ -74,4 +80,12 @@ defmodule MalinWeb.ProfileLive.Index do
 
     result
   end
+
+  defp content_icon(%{icon: icon}) when not is_nil(icon), do: "hero-#{icon}"
+  defp content_icon(%{content_type: :pdf}), do: "hero-document-check"
+  defp content_icon(%{content_type: :video}), do: "hero-play-circle"
+  defp content_icon(%{content_type: :text_article}), do: "hero-document-text"
+  defp content_icon(%{content_type: :guide}), do: "hero-book-open"
+  defp content_icon(%{content_type: :external_link}), do: "hero-arrow-top-right-on-square"
+  defp content_icon(_), do: "hero-document"
 end

@@ -1,0 +1,140 @@
+<div class="min-h-screen  py-12 pt-24">
+  <div class="mx-auto max-w-4xl px-4 sm:px-6 lg:px-8">
+    <!-- Back Link -->
+    <.link patch={~p"/profil"} class="text-accent text-sm mb-4  flex items-center gap-1">
+      <.icon name="hero-arrow-left" class="w-4 h-4" /> Tillbaka
+    </.link>
+
+    <!-- Content Header -->
+    <div class="bg-gray-100 shadow-sm rounded-lg overflow-hidden">
+      <div class="px-6 py-8 border-b border-brand">
+        <div class="flex items-center mb-4">
+          <span class="inline-flex items-center rounded-full bg-accent px-3 py-0.5 text-sm font-medium text-white">
+            <%= format_content_type(@content_item.content_type) %>
+          </span>
+        </div>
+        <h1 class="text-3xl font-bold text-gray-900 mb-4">
+          <%= @content_item.title %>
+        </h1>
+        <%= if @content_item.description do %>
+          <p class="text-sm text-gray-600">
+            <%= @content_item.description %>
+          </p>
+        <% end %>
+        <%= if @content_item.published_at do %>
+          <p class="mt-4 text-sm text-gray-500">
+            Published <%= Calendar.strftime(@content_item.published_at, "%B %d, %Y") %>
+          </p>
+        <% end %>
+      </div>
+
+      <!-- Content Body -->
+      <div class="px-6 py-8">
+        <%= case @content_item.content_type do %>
+          <% :pdf -> %>
+            <div class="text-center py-8">
+              <.icon name="hero-document-text" class="mx-auto h-16 w-16 text-accent mb-4" />
+              <h3 class="text-lg font-medium text-gray-900 mb-4">PDF Document</h3>
+              <%= if @content_item.file_url do %>
+                <div class="space-y-3">
+                  <a
+                    href={@content_item.file_url}
+                    target="_blank"
+                    class="inline-flex items-center rounded-md border border-transparent bg-accent px-6 py-3 text-base font-medium text-white shadow-sm hover:bg-accent2 focus:outline-none focus:ring-2 focus:ring-selected focus:ring-offset-2"
+                  >
+                    <.icon name="hero-arrow-down-tray" class="h-5 w-5 mr-2" />
+                    Download PDF
+                  </a>
+                  <p class="text-sm text-gray-500">
+                    Opens in a new tab
+                  </p>
+                </div>
+              <% else %>
+                <p class="text-gray-500">No PDF file available</p>
+              <% end %>
+            </div>
+
+          <% :video -> %>
+            <%= if @content_item.video_url do %>
+              <% youtube_id = extract_youtube_id(@content_item.video_url) %>
+              <% vimeo_id = extract_vimeo_id(@content_item.video_url) %>
+
+              <%= cond do %>
+                <% youtube_id != nil -> %>
+                  <div class="aspect-video">
+                    <iframe
+                      class="w-full h-full rounded-lg"
+                      src={"https://www.youtube.com/embed/#{youtube_id}"}
+                      title="YouTube video player"
+                      frameborder="0"
+                      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                      allowfullscreen
+                    >
+                    </iframe>
+                  </div>
+
+                <% vimeo_id != nil -> %>
+                  <div class="aspect-video">
+                    <iframe
+                      class="w-full h-full rounded-lg"
+                      src={"https://player.vimeo.com/video/#{vimeo_id}"}
+                      title="Vimeo video player"
+                      frameborder="0"
+                      allow="autoplay; fullscreen; picture-in-picture"
+                      allowfullscreen
+                    >
+                    </iframe>
+                  </div>
+
+                <% true -> %>
+                  <div class="text-center py-8">
+                    <p class="text-gray-500 mb-4">Video URL provided but format not recognized</p>
+                    <a
+                      href={@content_item.video_url}
+                      target="_blank"
+                      class="text-selected hover:text-accent"
+                    >
+                      Open video in new tab
+                    </a>
+                  </div>
+              <% end %>
+            <% else %>
+              <div class="text-center py-8">
+                <p class="text-gray-500">No video URL provided</p>
+              </div>
+            <% end %>
+
+          <% type when type in [:text_article, :guide] -> %>
+            <%= if @content_item.body do %>
+              <div class="prose max-w-none">
+                <%= raw(simple_markdown_to_html(@content_item.body)) %>
+              </div>
+            <% else %>
+              <div class="text-center py-8">
+                <p class="text-gray-500">No content available</p>
+              </div>
+            <% end %>
+
+          <% :external_link -> %>
+            <div class="text-center py-8">
+
+
+              <%= if @content_item.external_url do %>
+                <a
+                  href={@content_item.external_url}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  class="inline-flex items-center rounded-md border border-transparent bg-accent px-6 py-3 text-base font-medium text-white shadow-sm hover:bg-accent2 focus:outline-none focus:ring-2 focus:ring-selected focus:ring-offset-2"
+                >
+                Besök länk
+                  <.icon name="hero-arrow-top-right-on-square" class="h-5 w-5 ml-2" text-accent />
+                </a>
+              <% else %>
+                <p class="text-gray-500">No URL provided</p>
+              <% end %>
+            </div>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>
