@@ -37,55 +37,32 @@
           Ta första steget redan idag med mina mest populära gratisresurser:
         </p>
 
-        <div class="space-y-6">
-          <div class="flex items-start gap-4">
-            <.icon name="hero-document-check" class="h-8 w-8 mt-1 flex-shrink-0 text-accent" />
-            <div>
-              <a
-                href="https://malinhgg.myflodesk.com/kaos"
-                target="_blank"
-                class="font-semibold hover:underline text-black"
-              >
-                Från kaos till kontroll
-              </a>
-              <p class="text-gray-600 text-sm mt-1">
-                PDF-guide som hjälper dig ta kontroll över din tid.
-              </p>
-            </div>
+        <%= if Enum.empty?(@content_items) do %>
+          <div class="text-center py-8">
+            <p class="text-gray-500">Inga resurser tillgängliga än.</p>
           </div>
-
-          <div class="flex items-start gap-4">
-            <.icon name="hero-sun" class="h-8 w-8 mt-1 flex-shrink-0 text-accent" />
-            <div>
-              <a
-                href="https://malinhgg.myflodesk.com/walktalk"
-                target="_blank"
-                class="font-semibold hover:underline text-black"
-              >
-                Promenadguide
-              </a>
-              <p class="text-gray-600 text-sm mt-1">
-                Reflekterande ljudguide som du kan ta med dig ut på en promenad.
-              </p>
-            </div>
+        <% else %>
+          <div class="space-y-6">
+            <%= for item <- @content_items do %>
+              <div class="flex items-start gap-4">
+                <.icon name={content_icon(item)} class="h-8 w-8 mt-1 flex-shrink-0 text-accent" />
+                <div>
+                  <.link
+                    navigate={~p"/content/#{item.id}"}
+                    class="font-semibold hover:underline text-black"
+                  >
+                    <%= item.title %>
+                  </.link>
+                  <%= if item.description do %>
+                    <p class="text-gray-600 text-sm mt-1">
+                      <%= item.description %>
+                    </p>
+                  <% end %>
+                </div>
+              </div>
+            <% end %>
           </div>
-
-          <div class="flex items-start gap-4">
-            <.icon name="hero-bolt" class="h-8 w-8 mt-1 flex-shrink-0 text-accent" />
-            <div>
-              <a
-                href="https://malinhgg.myflodesk.com/energi"
-                target="_blank"
-                class="font-semibold hover:underline text-black"
-              >
-                Energikartläggning
-              </a>
-              <p class="text-gray-600 text-sm mt-1">
-                Ta reda på den ultimata arbetsdagen för din unika tid genom en mall för energikartläggning.
-              </p>
-            </div>
-          </div>
-        </div>
+        <% end %>
       </div>
       
 <!-- Contact Form Column -->

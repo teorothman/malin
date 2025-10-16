@@ -54,6 +54,9 @@ defmodule MalinWeb.Router do
       live "/testimonials", TestimoniesLive.Index, :index
       live "/testimonials/new", TestimoniesLive.Form, :new
       live "/testimonials/:id/edit", TestimoniesLive.Form, :edit
+      live "/content", ContentLive.Index
+      live "/content/new", ContentLive.Edit, :new
+      live "/content/:id/edit", ContentLive.Edit, :edit
     end
   end
 
@@ -64,6 +67,16 @@ defmodule MalinWeb.Router do
     ash_authentication_live_session :live_user_required,
       on_mount: [{MalinWeb.LiveUserAuth, :live_user_required}] do
       live "/", ProfileLive.Index
+    end
+  end
+
+  scope "/content", MalinWeb do
+    pipe_through(:browser)
+
+    # Content library for authenticated users
+    ash_authentication_live_session :content_library,
+      on_mount: [{MalinWeb.LiveUserAuth, :live_user_required}] do
+      live "/:id", ContentLive.Show
     end
   end
 

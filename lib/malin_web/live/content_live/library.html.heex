@@ -1,0 +1,116 @@
+<div class="min-h-screen bg-gray-50 pt-24">
+  <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-12">
+    <!-- Header -->
+    <div class="text-center mb-12">
+      <h1 class="text-4xl font-bold text-gray-900 mb-4">Content Library</h1>
+      <p class="text-lg text-gray-600">
+        Access all your learning materials, guides, and resources
+      </p>
+    </div>
+
+    <!-- Filter Tabs -->
+    <div class="border-b border-gray-200 mb-8">
+      <nav class="-mb-px flex space-x-8 justify-center" aria-label="Tabs">
+        <button
+          phx-click="filter"
+          phx-value-type="all"
+          class={[
+            "whitespace-nowrap border-b-2 py-4 px-1 text-sm font-medium",
+            if(@filter_type in [nil, "all"],
+              do: "border-indigo-500 text-indigo-600",
+              else: "border-transparent text-gray-500 hover:border-gray-300 hover:text-gray-700"
+            )
+          ]}
+        >
+          All Content
+        </button>
+        <button
+          phx-click="filter"
+          phx-value-type="pdf"
+          class={[
+            "whitespace-nowrap border-b-2 py-4 px-1 text-sm font-medium",
+            if(@filter_type == "pdf",
+              do: "border-indigo-500 text-indigo-600",
+              else: "border-transparent text-gray-500 hover:border-gray-300 hover:text-gray-700"
+            )
+          ]}
+        >
+          PDFs
+        </button>
+        <button
+          phx-click="filter"
+          phx-value-type="video"
+          class={[
+            "whitespace-nowrap border-b-2 py-4 px-1 text-sm font-medium",
+            if(@filter_type == "video",
+              do: "border-indigo-500 text-indigo-600",
+              else: "border-transparent text-gray-500 hover:border-gray-300 hover:text-gray-700"
+            )
+          ]}
+        >
+          Videos
+        </button>
+        <button
+          phx-click="filter"
+          phx-value-type="guide"
+          class={[
+            "whitespace-nowrap border-b-2 py-4 px-1 text-sm font-medium",
+            if(@filter_type == "guide",
+              do: "border-indigo-500 text-indigo-600",
+              else: "border-transparent text-gray-500 hover:border-gray-300 hover:text-gray-700"
+            )
+          ]}
+        >
+          Guides
+        </button>
+      </nav>
+    </div>
+
+    <!-- Content Grid -->
+    <%= if Enum.empty?(@content_items) do %>
+      <div class="text-center py-12">
+        <.icon name="hero-inbox" class="mx-auto h-12 w-12 text-gray-400" />
+        <h3 class="mt-2 text-sm font-medium text-gray-900">No content available</h3>
+        <p class="mt-1 text-sm text-gray-500">Check back later for new content.</p>
+      </div>
+    <% else %>
+      <div class="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
+        <%= for item <- @content_items do %>
+          <.link
+            navigate={~p"/content/#{item.id}"}
+            class="group relative flex flex-col overflow-hidden rounded-lg border border-gray-200 bg-white hover:shadow-lg transition-shadow"
+          >
+            <div class="flex-1 p-6">
+              <div class="flex items-start justify-between">
+                <div class="flex-1">
+                  <div class="flex items-center mb-2">
+                    <.icon name={content_type_icon(item.content_type)} class="h-5 w-5 text-indigo-600 mr-2" />
+                    <span class="text-xs font-medium text-indigo-600 uppercase tracking-wide">
+                      <%= format_content_type(item.content_type) %>
+                    </span>
+                  </div>
+                  <h3 class="text-lg font-semibold text-gray-900 group-hover:text-indigo-600">
+                    <%= item.title %>
+                  </h3>
+                  <%= if item.description do %>
+                    <p class="mt-2 text-sm text-gray-500 line-clamp-3">
+                      <%= item.description %>
+                    </p>
+                  <% end %>
+                </div>
+              </div>
+            </div>
+            <div class="bg-gray-50 px-6 py-3">
+              <div class="flex items-center text-sm text-gray-500">
+                <%= if item.published_at do %>
+                  <.icon name="hero-calendar" class="h-4 w-4 mr-1" />
+                  <%= Calendar.strftime(item.published_at, "%B %d, %Y") %>
+                <% end %>
+              </div>
+            </div>
+          </.link>
+        <% end %>
+      </div>
+    <% end %>
+  </div>
+</div>

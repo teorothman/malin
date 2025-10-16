@@ -1,0 +1,219 @@
+<div class="px-4 sm:px-6 lg:px-8 py-8 pt-24">
+  <div class="md:grid md:grid-cols-3 md:gap-6">
+    <div class="md:col-span-1">
+      <div class="px-4 sm:px-0">
+        <h3 class="text-lg font-medium leading-6 text-gray-900"><%= @page_title %></h3>
+        <p class="mt-1 text-sm text-gray-600">
+          Add content for your members. Choose a content type and fill in the relevant fields.
+        </p>
+      </div>
+    </div>
+
+    <div class="mt-5 md:col-span-2 md:mt-0">
+      <.form :let={f} for={@form} phx-change="validate" phx-submit="submit">
+        <div class="shadow sm:overflow-hidden sm:rounded-md">
+          <div class="space-y-6 bg-white px-4 py-5 sm:p-6">
+            <!-- Title -->
+            <div>
+              <label for="title" class="block text-sm font-medium text-gray-700">
+                Title <span class="text-red-500">*</span>
+              </label>
+              <.input field={f[:title]} type="text" class="mt-1" />
+            </div>
+
+            <!-- Description -->
+            <div>
+              <label for="description" class="block text-sm font-medium text-gray-700">
+                Description
+              </label>
+              <.input field={f[:description]} type="textarea" rows="3" class="mt-1" />
+              <p class="mt-2 text-sm text-gray-500">
+                A brief description of the content. Optional.
+              </p>
+            </div>
+
+            <!-- Content Type -->
+            <div>
+              <label for="content_type" class="block text-sm font-medium text-gray-700">
+                Content Type <span class="text-red-500">*</span>
+              </label>
+              <.input
+                field={f[:content_type]}
+                type="select"
+                options={[
+                  {"PDF Document", :pdf},
+                  {"Video (YouTube/Vimeo)", :video},
+                  {"Text Article", :text_article},
+                  {"Guide", :guide},
+                  {"External Link", :external_link}
+                ]}
+                prompt="Select a content type"
+                class="mt-1"
+              />
+            </div>
+
+            <!-- Icon Selection -->
+            <div>
+              <label class="block text-sm font-medium text-gray-700 mb-3">
+                Icon
+              </label>
+              <div class="grid grid-cols-3 sm:grid-cols-4 md:grid-cols-6 gap-3">
+                <%= for icon <- [:cake, :check, :clipboard, :"cursor-arrow-rays", :"face-smile", :gift, :"globe-europe-africa", :heart, :key, :map, :"presentation-chart-bar", :star, :sun, :trophy, :"video-camera", :bolt, :"play-circle"] do %>
+                  <label class={[
+                    "flex flex-col items-center p-3 border-2 rounded-lg cursor-pointer hover:bg-gray-50 transition-colors min-h-[100px]",
+                    if(f[:icon].value == icon, do: "border-indigo-600 bg-indigo-50", else: "border-gray-300")
+                  ]}>
+                    <input
+                      type="radio"
+                      name="form[icon]"
+                      value={icon}
+                      checked={f[:icon].value == icon}
+                      class="sr-only"
+                    />
+                    <.icon name={"hero-#{icon}"} class="h-8 w-8 mb-2 text-gray-700 flex-shrink-0" />
+                    <span class="text-xs text-gray-600 text-center break-words w-full"><%= icon %></span>
+                  </label>
+                <% end %>
+              </div>
+
+              <p class="mt-2 text-sm text-gray-500">
+                Choose an icon to represent this content item.
+              </p>
+            </div>
+
+            <!-- Conditional Fields Based on Content Type -->
+            <%= if f[:content_type].value == :pdf do %>
+              <div class="border-l-4 border-blue-400 pl-4">
+                <h4 class="text-sm font-medium text-gray-900 mb-3">PDF Settings</h4>
+
+                <%= if assigns[:content_item] && @content_item.file_url do %>
+                  <div class="mb-3 p-3 bg-gray-50 rounded">
+                    <p class="text-sm text-gray-700">
+                      Current file: <a href={@content_item.file_url} target="_blank" class="text-blue-600 hover:underline">View PDF</a>
+                    </p>
+                  </div>
+                <% end %>
+
+                <div>
+                  <label class="block text-sm font-medium text-gray-700">Upload PDF</label>
+                  <div class="mt-1 flex justify-center rounded-md border-2 border-dashed border-gray-300 px-6 pt-5 pb-6">
+                    <div class="space-y-1 text-center">
+                      <div class="flex text-sm text-gray-600">
+                        <label for={@uploads.file.ref} class="relative cursor-pointer rounded-md bg-white font-medium text-indigo-600 focus-within:outline-none focus-within:ring-2 focus-within:ring-indigo-500 focus-within:ring-offset-2 hover:text-indigo-500">
+                          <span>Upload a file</span>
+                          <.live_file_input upload={@uploads.file} class="sr-only" />
+                        </label>
+                        <p class="pl-1">or drag and drop</p>
+                      </div>
+                      <p class="text-xs text-gray-500">PDF up to 10MB</p>
+                    </div>
+                  </div>
+
+                  <%= for entry <- @uploads.file.entries do %>
+                    <div class="mt-2 text-sm text-gray-600">
+                      <%= entry.client_name %> - <%= entry.progress %>%
+                    </div>
+                  <% end %>
+
+                  <%= for err <- upload_errors(@uploads.file) do %>
+                    <p class="mt-2 text-sm text-red-600"><%= error_to_string(err) %></p>
+                  <% end %>
+                </div>
+              </div>
+            <% end %>
+
+            <%= if f[:content_type].value == :video do %>
+              <div class="border-l-4 border-purple-400 pl-4">
+                <h4 class="text-sm font-medium text-gray-900 mb-3">Video Settings</h4>
+                <div>
+                  <label for="video_url" class="block text-sm font-medium text-gray-700">
+                    Video URL (YouTube or Vimeo)
+                  </label>
+                  <.input field={f[:video_url]} type="text" placeholder="https://www.youtube.com/watch?v=..." class="mt-1" />
+                  <p class="mt-2 text-sm text-gray-500">
+                    Paste the full URL of the YouTube or Vimeo video.
+                  </p>
+                </div>
+              </div>
+            <% end %>
+
+            <%= if f[:content_type].value in [:text_article, :guide] do %>
+              <div class="border-l-4 border-green-400 pl-4">
+                <h4 class="text-sm font-medium text-gray-900 mb-3">
+                  <%= if f[:content_type].value == :guide, do: "Guide Content", else: "Article Content" %>
+                </h4>
+                <div>
+                  <label for="body" class="block text-sm font-medium text-gray-700">
+                    Content
+                  </label>
+                  <.input field={f[:body]} type="textarea" rows="12" class="mt-1 font-mono" />
+                  <p class="mt-2 text-sm text-gray-500">
+                    Write your content here. Markdown is supported.
+                  </p>
+                </div>
+              </div>
+            <% end %>
+
+            <%= if f[:content_type].value == :external_link do %>
+              <div class="border-l-4 border-orange-400 pl-4">
+                <h4 class="text-sm font-medium text-gray-900 mb-3">External Link</h4>
+                <div>
+                  <label for="external_url" class="block text-sm font-medium text-gray-700">
+                    URL
+                  </label>
+                  <.input field={f[:external_url]} type="text" placeholder="https://..." class="mt-1" />
+                  <p class="mt-2 text-sm text-gray-500">
+                    Link to an external resource or website.
+                  </p>
+                </div>
+              </div>
+            <% end %>
+
+            <!-- State -->
+            <div>
+              <label for="state" class="block text-sm font-medium text-gray-700">
+                Status <span class="text-red-500">*</span>
+              </label>
+              <.input
+                field={f[:state]}
+                type="select"
+                options={[
+                  {"Draft (not visible to users)", :draft},
+                  {"Published (visible to users)", :published},
+                  {"Archived (hidden from users)", :archived}
+                ]}
+                class="mt-1"
+              />
+            </div>
+
+            <!-- Published At -->
+            <div>
+              <label for="published_at" class="block text-sm font-medium text-gray-700">
+                Published Date (Optional)
+              </label>
+              <.input field={f[:published_at]} type="datetime-local" class="mt-1" />
+              <p class="mt-2 text-sm text-gray-500">
+                Leave empty to use the current date when publishing.
+              </p>
+            </div>
+          </div>
+
+          <div class="bg-gray-50 px-4 py-3 text-right sm:px-6">
+            <.link
+              navigate={~p"/admin/content"}
+              class="inline-flex justify-center rounded-md border border-gray-300 bg-white py-2 px-4 text-sm font-medium text-gray-700 shadow-sm hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 mr-3"
+            >
+              Cancel
+            </.link>
+            <button
+              type="submit"
+              class="inline-flex justify-center rounded-md border border-transparent bg-indigo-600 py-2 px-4 text-sm font-medium text-white shadow-sm hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2"
+            >
+              Save
+            </button>
+          </div>
+        </div>
+      </.form>
+    </div>
+  </div>
+</div>
